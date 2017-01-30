@@ -16,6 +16,8 @@ Instead of having to open up both applications, this app will allow riders to co
 
 ## Wireframes
 
+Wireframes can be found [here](./wireframes).
+
 ## Technologies & Technical Challenges
 
 Bookr will be a desktop app implemented using Electron.js with JavaScript, HTML, and CSS.
