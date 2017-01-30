@@ -1,7 +1,29 @@
+var path = require("path");
+
 module.exports = {
+  context: __dirname,
   entry: "./lib/index.js",
   output: {
-  	filename: "./lib/bundle.js"
+    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
+    filename: "lib/bundle.js"
   },
-  devtool: 'source-map',
+  module: {
+    loaders: [
+      {
+        test: [/\.jsx?$/, /\.js?$/],
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'react']
+        }
+      }
+    ]
+  },
+  devtool: 'source-maps',
+  resolve: {
+    extensions: ["", ".js", ".jsx" ]
+  },
+  node: {
+    fs: "empty"
+  }
 };
