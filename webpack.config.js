@@ -2,10 +2,10 @@ var path = require("path");
 
 module.exports = {
   context: __dirname,
-  entry: "./lib/index.js",
+  entry: "app/index.js",
   output: {
     path: path.join(__dirname, 'app', 'assets', 'javascripts'),
-    filename: "lib/bundle.js"
+    filename: "app/bundle.js"
   },
   module: {
     loaders: [
