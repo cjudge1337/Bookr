@@ -3,7 +3,6 @@ import { Router, hashHistory, Route } from 'react-router';
 import { Provider } from 'react-redux';
 import Test from './test';
 
-
 const Root = ({ store }) => {
   return (
     <Provider store={ store }>
