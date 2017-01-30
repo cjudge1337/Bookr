@@ -2,6 +2,10 @@
 
 ## Background
 
+It's not news that ride sharing has taken the world by storm. The most recognizable names with the largest user bases are Uber and Lyft. This desktop app will allow users to quickly enter their pickup location and destination in order to receive the lowest fare estimate between the two. From there, users will be able to book the presented ride with a simple click of a button. After being picked up, he or she will be re-directed to an en-route view until being dropped off. For the sake of convenience, the user will be able to see the app icon on the the top nav bar and click for speedy usability.
+
+Instead of having to open up both applications, this app will allow riders to conveniently get the best deal for their money, abstracting away the competition between the two leading services.
+
 ## Functionality & MVP
 
 - User authentication
