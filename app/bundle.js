@@ -60,17 +60,18 @@
 	
 	var _quotes = __webpack_require__(271);
 	
-	var _quotes2 = _interopRequireDefault(_quotes);
+	var LyftAPIUtil = _interopRequireWildcard(_quotes);
 	
 	var _store = __webpack_require__(273);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// import test from './util/uber/quotes';
 	document.addEventListener('DOMContentLoaded', function () {
-	  window.test = _quotes2.default;
+	  window.getCost = LyftAPIUtil.getCost;
 	  var store = (0, _store2.default)();
 	  var root = document.getElementById('root');
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
@@ -28726,40 +28727,36 @@
 /* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
+	exports.getCost = undefined;
 	
 	var _jQuery = __webpack_require__(272);
 	
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 	
+	var _config = __webpack_require__(279);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var lyftToken = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";
-	var lyftClientSecret = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
-	
-	var test = function test() {
-	    return _jQuery2.default.ajax({
-	        url: "https://api.lyft.com/v1/cost",
-	        method: 'GET',
-	        headers: {
-	            'Authorization': "Bearer " + lyftToken
-	        },
-	        data: {
-	            start_lat: 37.7913050,
-	            start_lng: -122.3937350,
-	            end_lat: 37.7713254,
-	            end_lng: -122.5110340
-	        }
-	    }).then(function (res) {
-	        return console.log(res);
-	    });
+	var getCost = exports.getCost = function getCost(startLat, startLong, endLat, endLong) {
+	  return _jQuery2.default.ajax({
+	    url: "https://api.lyft.com/v1/cost",
+	    method: 'GET',
+	    headers: {
+	      'Authorization': 'Bearer ' + _config.LYFT_CLIENT_TOKEN
+	    },
+	    data: {
+	      start_lat: startLat,
+	      start_lng: startLong,
+	      end_lat: endLat,
+	      end_lng: endLong
+	    }
+	  });
 	};
-	
-	exports.default = test;
 	
 	// startLat, startLong, endLat, endLong
 	// start lat = 37.7913050,
@@ -39064,6 +39061,24 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
+
+/***/ },
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var UBER_CLIENT_ID = exports.UBER_CLIENT_ID = "iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q";
+	var UBER_SERVER_TOKEN = exports.UBER_SERVER_TOKEN = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
+	var UBER_CLIENT_SECRET = exports.UBER_CLIENT_SECRET = "vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU";
+	var LYFT_CLIENT_TOKEN = exports.LYFT_CLIENT_TOKEN = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";;
+	var LYFT_CLIENT_SECRET = exports.LYFT_CLIENT_SECRET = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
 
 /***/ }
 /******/ ]);
