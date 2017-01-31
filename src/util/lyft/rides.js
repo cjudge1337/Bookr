@@ -33,3 +33,14 @@ export const createRideWithPrime = (origin, destination, rideType, primetimeConf
     },
   })
 );
+
+export const getRideDetails = rideId => (
+  $.ajax({
+    url: `https://api.lyft.com/v1/rides/${rideId}`,
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
+      'Content-Type': 'application/json'
+    }
+  })
+);
