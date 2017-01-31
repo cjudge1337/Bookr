@@ -1,5 +1,4 @@
-
-let uberToken = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
+import { UBER_SERVER_TOKEN } from '../../../config.js';
 
 import $ from "jquery";
 
@@ -7,7 +6,7 @@ const getQuote = (startLat, startLong, endLat, endLong) => (
   $.ajax({
     url: "https://api.uber.com/v1/estimates/price",
     headers: {
-        Authorization: "Token " + uberToken
+        Authorization: "Token " + UBER_SERVER_TOKEN
     },
     data: {
         start_latitude: startLat,
@@ -18,4 +17,4 @@ const getQuote = (startLat, startLong, endLat, endLong) => (
   })
 );
 
-export default test;
+export default getQuote;
