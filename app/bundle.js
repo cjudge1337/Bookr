@@ -58,16 +58,17 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _quotes = __webpack_require__(274);
+	var _quotes = __webpack_require__(271);
 	
 	var _quotes2 = _interopRequireDefault(_quotes);
 	
-	var _store = __webpack_require__(270);
+	var _store = __webpack_require__(273);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import test from './util/uber/quotes';
 	document.addEventListener('DOMContentLoaded', function () {
 	  window.test = _quotes2.default;
 	  var store = (0, _store2.default)();
@@ -21527,7 +21528,7 @@
 	
 	var _reactRedux = __webpack_require__(234);
 	
-	var _test = __webpack_require__(273);
+	var _test = __webpack_require__(270);
 	
 	var _test2 = _interopRequireDefault(_test);
 	
@@ -28705,79 +28706,6 @@
 	  value: true
 	});
 	
-	var _redux = __webpack_require__(243);
-	
-	var _root_reducer = __webpack_require__(271);
-	
-	var _root_reducer2 = _interopRequireDefault(_root_reducer);
-	
-	var _reduxThunk = __webpack_require__(272);
-	
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var configureStore = function configureStore() {
-	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
-	};
-	
-	exports.default = configureStore;
-
-/***/ },
-/* 271 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(243);
-	
-	var RootReducer = (0, _redux.combineReducers)({});
-	
-	exports.default = RootReducer;
-
-/***/ },
-/* 272 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	function createThunkMiddleware(extraArgument) {
-	  return function (_ref) {
-	    var dispatch = _ref.dispatch,
-	        getState = _ref.getState;
-	    return function (next) {
-	      return function (action) {
-	        if (typeof action === 'function') {
-	          return action(dispatch, getState, extraArgument);
-	        }
-	
-	        return next(action);
-	      };
-	    };
-	  };
-	}
-	
-	var thunk = createThunkMiddleware();
-	thunk.withExtraArgument = createThunkMiddleware;
-	
-	exports['default'] = thunk;
-
-/***/ },
-/* 273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -28795,7 +28723,7 @@
 	exports.default = Test;
 
 /***/ },
-/* 274 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28804,33 +28732,42 @@
 	    value: true
 	});
 	
-	var _jquery = __webpack_require__(275);
+	var _jQuery = __webpack_require__(272);
 	
-	var _jquery2 = _interopRequireDefault(_jquery);
+	var _jQuery2 = _interopRequireDefault(_jQuery);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var uberToken = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
+	var lyftToken = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";
+	var lyftClientSecret = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
 	
-	var getQuote = function getQuote(startLat, startLong, endLat, endLong) {
-	    return _jquery2.default.ajax({
-	        url: "https://api.uber.com/v1/estimates/price",
+	var test = function test() {
+	    return _jQuery2.default.ajax({
+	        url: "https://api.lyft.com/v1/cost",
+	        method: 'GET',
 	        headers: {
-	            Authorization: "Token " + uberToken
+	            'Authorization': "Bearer " + lyftToken
 	        },
 	        data: {
-	            start_latitude: startLat,
-	            start_longitude: startLong,
-	            end_latitude: endLat,
-	            end_longitude: endLong
+	            start_lat: 37.7913050,
+	            start_lng: -122.3937350,
+	            end_lat: 37.7713254,
+	            end_lng: -122.5110340
 	        }
+	    }).then(function (res) {
+	        return console.log(res);
 	    });
 	};
 	
 	exports.default = test;
+	
+	// startLat, startLong, endLat, endLong
+	// start lat = 37.7913050,
+	// start long = -122.3937350
+	// end lat 37.7713254, end long -122.5110340
 
 /***/ },
-/* 275 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -39054,6 +38991,79 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(243);
+	
+	var _root_reducer = __webpack_require__(274);
+	
+	var _root_reducer2 = _interopRequireDefault(_root_reducer);
+	
+	var _reduxThunk = __webpack_require__(275);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var configureStore = function configureStore() {
+	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+	};
+	
+	exports.default = configureStore;
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(243);
+	
+	var RootReducer = (0, _redux.combineReducers)({});
+	
+	exports.default = RootReducer;
+
+/***/ },
+/* 275 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch,
+	        getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+	
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+	
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+	
+	exports['default'] = thunk;
 
 /***/ }
 /******/ ]);
