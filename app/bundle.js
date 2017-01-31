@@ -28732,7 +28732,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getCost = exports.getRideTypes = undefined;
+	exports.getDrivers = exports.getEta = exports.getCost = exports.getRideTypes = undefined;
 	
 	var _jQuery = __webpack_require__(272);
 	
@@ -28772,6 +28772,36 @@
 	      start_lng: startLong,
 	      end_lat: endLat,
 	      end_lng: endLong
+	    }
+	  });
+	};
+	
+	// Returns the estimated time in seconds it will take for the nearest driver to reach the specified location
+	var getEta = exports.getEta = function getEta(lat, lng) {
+	  return _jQuery2.default.ajax({
+	    url: "https://api.lyft.com/v1/eta",
+	    method: 'GET',
+	    headers: {
+	      'Authorization': 'Bearer ' + _config.LYFT_CLIENT_TOKEN
+	    },
+	    data: {
+	      lat: lat,
+	      lng: lng
+	    }
+	  });
+	};
+	
+	// Allows you to determine the location of drivers near a location
+	var getDrivers = exports.getDrivers = function getDrivers(lat, lng) {
+	  return _jQuery2.default.ajax({
+	    url: "https://api.lyft.com/v1/drivers",
+	    method: 'GET',
+	    headers: {
+	      'Authorization': 'Bearer ' + _config.LYFT_CLIENT_TOKEN
+	    },
+	    data: {
+	      lat: lat,
+	      lng: lng
 	    }
 	  });
 	};

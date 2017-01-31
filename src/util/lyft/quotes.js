@@ -1,5 +1,6 @@
 import $ from 'jQuery';
 import { LYFT_CLIENT_TOKEN, LYFT_CLIENT_SECRET } from '../../../config';
+
 // Makes API call to lyft that returns ride types that are available at specified location
 // Returns error if there are no rides available
 export const getRideTypes = (lat, lng) => (
@@ -30,6 +31,36 @@ export const getCost = (startLat, startLong, endLat, endLong) => (
         start_lng: startLong,
         end_lat: endLat,
         end_lng: endLong
+    },
+  })
+);
+
+// Returns the estimated time in seconds it will take for the nearest driver to reach the specified location
+export const getEta = (lat, lng) => (
+  $.ajax({
+    url: "https://api.lyft.com/v1/eta",
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`
+    },
+    data: {
+        lat,
+        lng
+    },
+  })
+);
+
+// Allows you to determine the location of drivers near a location
+export const getDrivers = (lat, lng) => (
+  $.ajax({
+    url: "https://api.lyft.com/v1/drivers",
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`
+    },
+    data: {
+        lat,
+        lng
     },
   })
 );
