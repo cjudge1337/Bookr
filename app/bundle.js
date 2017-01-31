@@ -62,7 +62,7 @@
 	
 	var LyftAPIUtil = _interopRequireWildcard(_quotes);
 	
-	var _store = __webpack_require__(273);
+	var _store = __webpack_require__(274);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -71,7 +71,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	document.addEventListener('DOMContentLoaded', function () {
-	  window.getCost = LyftAPIUtil.getCost;
+	  window.getEta = LyftAPIUtil.getEta;
 	  var store = (0, _store2.default)();
 	  var root = document.getElementById('root');
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
@@ -28738,7 +28738,7 @@
 	
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 	
-	var _config = __webpack_require__(279);
+	var _config = __webpack_require__(273);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39039,6 +39039,21 @@
 
 /***/ },
 /* 273 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var UBER_CLIENT_ID = exports.UBER_CLIENT_ID = "iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q";
+	var UBER_SERVER_TOKEN = exports.UBER_SERVER_TOKEN = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
+	var UBER_CLIENT_SECRET = exports.UBER_CLIENT_SECRET = "vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU";
+	var LYFT_CLIENT_TOKEN = exports.LYFT_CLIENT_TOKEN = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";;
+	var LYFT_CLIENT_SECRET = exports.LYFT_CLIENT_SECRET = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
+
+/***/ },
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39049,11 +39064,11 @@
 	
 	var _redux = __webpack_require__(243);
 	
-	var _root_reducer = __webpack_require__(274);
+	var _root_reducer = __webpack_require__(275);
 	
 	var _root_reducer2 = _interopRequireDefault(_root_reducer);
 	
-	var _reduxThunk = __webpack_require__(275);
+	var _reduxThunk = __webpack_require__(276);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -39067,7 +39082,7 @@
 	exports.default = configureStore;
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39083,7 +39098,7 @@
 	exports.default = RootReducer;
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -39109,24 +39124,6 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
-
-/***/ },
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var UBER_CLIENT_ID = exports.UBER_CLIENT_ID = "iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q";
-	var UBER_SERVER_TOKEN = exports.UBER_SERVER_TOKEN = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
-	var UBER_CLIENT_SECRET = exports.UBER_CLIENT_SECRET = "vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU";
-	var LYFT_CLIENT_TOKEN = exports.LYFT_CLIENT_TOKEN = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";;
-	var LYFT_CLIENT_SECRET = exports.LYFT_CLIENT_SECRET = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
 
 /***/ }
 /******/ ]);
