@@ -58,18 +58,20 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _quotes = __webpack_require__(274);
+	var _quotes = __webpack_require__(271);
 	
-	var _quotes2 = _interopRequireDefault(_quotes);
+	var LyftAPIUtil = _interopRequireWildcard(_quotes);
 	
-	var _store = __webpack_require__(270);
+	var _store = __webpack_require__(273);
 	
 	var _store2 = _interopRequireDefault(_store);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	document.addEventListener('DOMContentLoaded', function () {
-	  window.test = _quotes2.default;
+	  window.getCost = LyftAPIUtil.getCost;
 	  var store = (0, _store2.default)();
 	  var root = document.getElementById('root');
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
@@ -21527,7 +21529,7 @@
 	
 	var _reactRedux = __webpack_require__(234);
 	
-	var _test = __webpack_require__(273);
+	var _test = __webpack_require__(270);
 	
 	var _test2 = _interopRequireDefault(_test);
 	
@@ -28705,79 +28707,6 @@
 	  value: true
 	});
 	
-	var _redux = __webpack_require__(243);
-	
-	var _root_reducer = __webpack_require__(271);
-	
-	var _root_reducer2 = _interopRequireDefault(_root_reducer);
-	
-	var _reduxThunk = __webpack_require__(272);
-	
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var configureStore = function configureStore() {
-	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
-	};
-	
-	exports.default = configureStore;
-
-/***/ },
-/* 271 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(243);
-	
-	var RootReducer = (0, _redux.combineReducers)({});
-	
-	exports.default = RootReducer;
-
-/***/ },
-/* 272 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	function createThunkMiddleware(extraArgument) {
-	  return function (_ref) {
-	    var dispatch = _ref.dispatch,
-	        getState = _ref.getState;
-	    return function (next) {
-	      return function (action) {
-	        if (typeof action === 'function') {
-	          return action(dispatch, getState, extraArgument);
-	        }
-	
-	        return next(action);
-	      };
-	    };
-	  };
-	}
-	
-	var thunk = createThunkMiddleware();
-	thunk.withExtraArgument = createThunkMiddleware;
-	
-	exports['default'] = thunk;
-
-/***/ },
-/* 273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -28795,42 +28724,95 @@
 	exports.default = Test;
 
 /***/ },
-/* 274 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
+	exports.getDrivers = exports.getEta = exports.getCost = exports.getRideTypes = undefined;
 	
-	var _jquery = __webpack_require__(275);
+	var _jQuery = __webpack_require__(272);
 	
-	var _jquery2 = _interopRequireDefault(_jquery);
+	var _jQuery2 = _interopRequireDefault(_jQuery);
+	
+	var _config = __webpack_require__(279);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var uberToken = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
-	
-	var getQuote = function getQuote(startLat, startLong, endLat, endLong) {
-	    return _jquery2.default.ajax({
-	        url: "https://api.uber.com/v1/estimates/price",
-	        headers: {
-	            Authorization: "Token " + uberToken
-	        },
-	        data: {
-	            start_latitude: startLat,
-	            start_longitude: startLong,
-	            end_latitude: endLat,
-	            end_longitude: endLong
-	        }
-	    });
+	// Makes API call to lyft that returns ride types that are available at specified location
+	// Returns error if there are no rides available
+	var getRideTypes = exports.getRideTypes = function getRideTypes(lat, lng) {
+	  return _jQuery2.default.ajax({
+	    url: "https://api.lyft.com/v1/ridetypes",
+	    method: 'GET',
+	    headers: {
+	      'Authorization': 'Bearer ' + _config.LYFT_CLIENT_TOKEN
+	    },
+	    data: {
+	      lat: lat,
+	      lng: lng
+	    }
+	  });
 	};
 	
-	exports.default = test;
+	//Makes API call to lyft that returns cost of ride to and from locations you specify,
+	// for each type of ride
+	var getCost = exports.getCost = function getCost(startLat, startLong, endLat, endLong) {
+	  return _jQuery2.default.ajax({
+	    url: "https://api.lyft.com/v1/cost",
+	    method: 'GET',
+	    headers: {
+	      'Authorization': 'Bearer ' + _config.LYFT_CLIENT_TOKEN
+	    },
+	    data: {
+	      start_lat: startLat,
+	      start_lng: startLong,
+	      end_lat: endLat,
+	      end_lng: endLong
+	    }
+	  });
+	};
+	
+	// Returns the estimated time in seconds it will take for the nearest driver to reach the specified location
+	var getEta = exports.getEta = function getEta(lat, lng) {
+	  return _jQuery2.default.ajax({
+	    url: "https://api.lyft.com/v1/eta",
+	    method: 'GET',
+	    headers: {
+	      'Authorization': 'Bearer ' + _config.LYFT_CLIENT_TOKEN
+	    },
+	    data: {
+	      lat: lat,
+	      lng: lng
+	    }
+	  });
+	};
+	
+	// Allows you to determine the location of drivers near a location
+	var getDrivers = exports.getDrivers = function getDrivers(lat, lng) {
+	  return _jQuery2.default.ajax({
+	    url: "https://api.lyft.com/v1/drivers",
+	    method: 'GET',
+	    headers: {
+	      'Authorization': 'Bearer ' + _config.LYFT_CLIENT_TOKEN
+	    },
+	    data: {
+	      lat: lat,
+	      lng: lng
+	    }
+	  });
+	};
+	
+	// startLat, startLong, endLat, endLong
+	// start lat = 37.7913050,
+	// start long = -122.3937350
+	// end lat 37.7713254, end long -122.5110340
 
 /***/ },
-/* 275 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -39054,6 +39036,97 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(243);
+	
+	var _root_reducer = __webpack_require__(274);
+	
+	var _root_reducer2 = _interopRequireDefault(_root_reducer);
+	
+	var _reduxThunk = __webpack_require__(275);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var configureStore = function configureStore() {
+	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+	};
+	
+	exports.default = configureStore;
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(243);
+	
+	var RootReducer = (0, _redux.combineReducers)({});
+	
+	exports.default = RootReducer;
+
+/***/ },
+/* 275 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch,
+	        getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+	
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+	
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+	
+	exports['default'] = thunk;
+
+/***/ },
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var UBER_CLIENT_ID = exports.UBER_CLIENT_ID = "iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q";
+	var UBER_SERVER_TOKEN = exports.UBER_SERVER_TOKEN = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
+	var UBER_CLIENT_SECRET = exports.UBER_CLIENT_SECRET = "vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU";
+	var LYFT_CLIENT_TOKEN = exports.LYFT_CLIENT_TOKEN = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";;
+	var LYFT_CLIENT_SECRET = exports.LYFT_CLIENT_SECRET = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
 
 /***/ }
 /******/ ]);
