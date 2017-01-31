@@ -44,3 +44,26 @@ export const getRideDetails = rideId => (
     }
   })
 );
+
+export const cancelRideWithoutFee = rideId => (
+  $.ajax({
+    url: `https://api.lyft.com/v1/rides/${rideId}/cancel`,
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
+      'Content-Type': 'application/json'
+    }
+  })
+);
+
+export const cancelRideWithFee = (rideId, cancelConfirmationToken) => (
+  $.ajax({
+    url: `https://api.lyft.com/v1/rides/${rideId}/cancel`,
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    data: { cancel_confirmation_token: cancelConfirmationToken }
+  })
+);
