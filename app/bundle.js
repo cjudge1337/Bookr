@@ -28810,24 +28810,22 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var test = function test() {
-	    _jquery2.default.ajax({
+	var uberToken = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
+	
+	var getQuote = function getQuote(startLat, startLong, endLat, endLong) {
+	    return _jquery2.default.ajax({
 	        url: "https://api.uber.com/v1/estimates/price",
 	        headers: {
-	            Authorization: "Token " + "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh"
+	            Authorization: "Token " + uberToken
 	        },
 	        data: {
-	            start_latitude: 37.7918270,
-	            start_longitude: -122.4084770,
-	            end_latitude: 37.7913050,
-	            end_longitude: -122.3937350
-	        },
-	        success: function success(result) {
-	            console.log(result);
+	            start_latitude: startLat,
+	            start_longitude: startLong,
+	            end_latitude: endLat,
+	            end_longitude: endLong
 	        }
 	    });
 	};
-	// uberToken = vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh;
 	
 	exports.default = test;
 
