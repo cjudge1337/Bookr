@@ -28732,7 +28732,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getCost = undefined;
+	exports.getCost = exports.getRideTypes = undefined;
 	
 	var _jQuery = __webpack_require__(272);
 	
@@ -28742,6 +28742,24 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// Makes API call to lyft that returns ride types that are available at specified location
+	// Returns error if there are no rides available
+	var getRideTypes = exports.getRideTypes = function getRideTypes(lat, lng) {
+	  return _jQuery2.default.ajax({
+	    url: "https://api.lyft.com/v1/ridetypes",
+	    method: 'GET',
+	    headers: {
+	      'Authorization': 'Bearer ' + _config.LYFT_CLIENT_TOKEN
+	    },
+	    data: {
+	      lat: lat,
+	      lng: lng
+	    }
+	  });
+	};
+	
+	//Makes API call to lyft that returns cost of ride to and from locations you specify,
+	// for each type of ride
 	var getCost = exports.getCost = function getCost(startLat, startLong, endLat, endLong) {
 	  return _jQuery2.default.ajax({
 	    url: "https://api.lyft.com/v1/cost",
