@@ -12,6 +12,7 @@ class Open extends React.Component {
   render() {
     return (
       <div className="auth-actions jawbone">
+        <h1>im here</h1>
         <a href={`https://login.uber.com/oauth/v2/authorize?client_id=${UBER_CLIENT_ID}&response_type=code`} className="login">Log In</a>
       </div>
     );

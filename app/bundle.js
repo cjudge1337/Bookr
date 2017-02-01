@@ -83,6 +83,7 @@
 	  window.getCost = LyftAPIUtil.getCost;
 	  var store = (0, _store2.default)();
 	  var root = document.getElementById('root');
+	
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 	});
 
@@ -39104,7 +39105,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var PORT = exports.PORT = 5555;
+	var PORT = exports.PORT = 3000;
+	var REDIRECT_URI = exports.REDIRECT_URI = "http://localhost:3000";
 	var UBER_CLIENT_ID = exports.UBER_CLIENT_ID = "iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q";
 	var UBER_SERVER_TOKEN = exports.UBER_SERVER_TOKEN = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
 	var UBER_CLIENT_SECRET = exports.UBER_CLIENT_SECRET = "vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU";
@@ -39137,7 +39139,8 @@
 	    data: {
 	      client_id: _config.UBER_CLIENT_ID,
 	      response_type: 'code',
-	      redirect_uri: "/Users/Vinit/Documents/Bookr/index.html"
+	      redirect_uri: _config.REDIRECT_URI,
+	      scope: 'profile'
 	    }
 	  });
 	};
@@ -39150,9 +39153,9 @@
 	      client_id: _config.UBER_CLIENT_ID,
 	      client_secret: _config.UBER_CLIENT_SECRET,
 	      grant_type: 'authorization_code',
-	      redirect_uri: '/',
+	      redirect_uri: _config.REDIRECT_URI,
 	      code: authCode,
-	      scope: 'profile history'
+	      scope: 'profile'
 	    }
 	  });
 	};
@@ -39206,6 +39209,11 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'auth-actions jawbone' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'im here'
+	        ),
 	        _react2.default.createElement(
 	          'a',
 	          { href: 'https://login.uber.com/oauth/v2/authorize?client_id=' + _config.UBER_CLIENT_ID + '&response_type=code', className: 'login' },

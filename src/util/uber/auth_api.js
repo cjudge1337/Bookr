@@ -1,4 +1,4 @@
-import { UBER_SERVER_TOKEN, UBER_CLIENT_ID, UBER_CLIENT_SECRET } from '../../../config.js';
+import { UBER_SERVER_TOKEN, UBER_CLIENT_ID, UBER_CLIENT_SECRET, REDIRECT_URI } from '../../../config.js';
 import $ from "jQuery";
 
 export const authorize = () => (
@@ -8,7 +8,8 @@ export const authorize = () => (
     data: {
       client_id: UBER_CLIENT_ID,
       response_type: 'code',
-      redirect_uri: "/Users/Vinit/Documents/Bookr/index.html"
+      redirect_uri: REDIRECT_URI,
+      scope: 'profile'
     }
   })
 );
@@ -21,9 +22,9 @@ export const login = (authCode) => (
       client_id: UBER_CLIENT_ID,
       client_secret: UBER_CLIENT_SECRET,
       grant_type: 'authorization_code',
-      redirect_uri: '/',
+      redirect_uri: REDIRECT_URI,
       code: authCode,
-      scope: 'profile history'
+      scope: 'profile'
     }
   })
 );

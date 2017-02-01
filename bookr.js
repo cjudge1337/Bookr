@@ -5,6 +5,7 @@ require('./server.js');
 const mb = menubar({
   showDockIcon: true,
   preloadWindow: true,
+  // index: `file://${__dirname}/app.html`,
 });
 
 mb.on('ready', function ready () {
