@@ -58,11 +58,17 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _quotes = __webpack_require__(276);
+	var _quotes = __webpack_require__(271);
 	
 	var LyftAPIUtil = _interopRequireWildcard(_quotes);
 	
-	var _store = __webpack_require__(273);
+	var _auth_api = __webpack_require__(278);
+	
+	var _jQuery = __webpack_require__(272);
+	
+	var _jQuery2 = _interopRequireDefault(_jQuery);
+	
+	var _store = __webpack_require__(274);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -71,6 +77,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	document.addEventListener('DOMContentLoaded', function () {
+	  window.$ = _jQuery2.default;
+	  window.login = _auth_api.login;
+	  window.authorize = _auth_api.authorize;
 	  window.getCost = LyftAPIUtil.getCost;
 	  var store = (0, _store2.default)();
 	  var root = document.getElementById('root');
@@ -21529,9 +21538,9 @@
 	
 	var _reactRedux = __webpack_require__(234);
 	
-	var _test = __webpack_require__(270);
+	var _open = __webpack_require__(279);
 	
-	var _test2 = _interopRequireDefault(_test);
+	var _open2 = _interopRequireDefault(_open);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21544,7 +21553,7 @@
 	    _react2.default.createElement(
 	      _reactRouter.Router,
 	      { history: _reactRouter.hashHistory },
-	      _react2.default.createElement(_reactRouter.Route, { path: '/', component: _test2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: '/', component: _open2.default })
 	    )
 	  );
 	};
@@ -28698,108 +28707,8 @@
 	}
 
 /***/ },
-/* 270 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Test = function Test() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'hello everyone'
-	  );
-	};
-	
-	exports.default = Test;
-
-/***/ },
-/* 271 */,
-/* 272 */,
-/* 273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(243);
-	
-	var _root_reducer = __webpack_require__(274);
-	
-	var _root_reducer2 = _interopRequireDefault(_root_reducer);
-	
-	var _reduxThunk = __webpack_require__(275);
-	
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var configureStore = function configureStore() {
-	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
-	};
-	
-	exports.default = configureStore;
-
-/***/ },
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(243);
-	
-	var RootReducer = (0, _redux.combineReducers)({});
-	
-	exports.default = RootReducer;
-
-/***/ },
-/* 275 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	function createThunkMiddleware(extraArgument) {
-	  return function (_ref) {
-	    var dispatch = _ref.dispatch,
-	        getState = _ref.getState;
-	    return function (next) {
-	      return function (action) {
-	        if (typeof action === 'function') {
-	          return action(dispatch, getState, extraArgument);
-	        }
-	
-	        return next(action);
-	      };
-	    };
-	  };
-	}
-	
-	var thunk = createThunkMiddleware();
-	thunk.withExtraArgument = createThunkMiddleware;
-	
-	exports['default'] = thunk;
-
-/***/ },
-/* 276 */
+/* 270 */,
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28809,11 +28718,11 @@
 	});
 	exports.getDrivers = exports.getEta = exports.getCost = exports.getRideTypes = undefined;
 	
-	var _jQuery = __webpack_require__(277);
+	var _jQuery = __webpack_require__(272);
 	
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 	
-	var _config = __webpack_require__(278);
+	var _config = __webpack_require__(277);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28887,7 +28796,7 @@
 	// end lat 37.7713254, end long -122.5110340
 
 /***/ },
-/* 277 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -39113,7 +39022,81 @@
 
 
 /***/ },
-/* 278 */
+/* 273 */,
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(243);
+	
+	var _root_reducer = __webpack_require__(275);
+	
+	var _root_reducer2 = _interopRequireDefault(_root_reducer);
+	
+	var _reduxThunk = __webpack_require__(276);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var configureStore = function configureStore() {
+	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+	};
+	
+	exports.default = configureStore;
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(243);
+	
+	var RootReducer = (0, _redux.combineReducers)({});
+	
+	exports.default = RootReducer;
+
+/***/ },
+/* 276 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch,
+	        getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+	
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+	
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+	
+	exports['default'] = thunk;
+
+/***/ },
+/* 277 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -39121,11 +39104,121 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	var PORT = exports.PORT = 5555;
 	var UBER_CLIENT_ID = exports.UBER_CLIENT_ID = "iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q";
 	var UBER_SERVER_TOKEN = exports.UBER_SERVER_TOKEN = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
 	var UBER_CLIENT_SECRET = exports.UBER_CLIENT_SECRET = "vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU";
-	var LYFT_CLIENT_TOKEN = exports.LYFT_CLIENT_TOKEN = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";;
+	var LYFT_CLIENT_TOKEN = exports.LYFT_CLIENT_TOKEN = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";
 	var LYFT_CLIENT_SECRET = exports.LYFT_CLIENT_SECRET = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.login = exports.authorize = undefined;
+	
+	var _config = __webpack_require__(277);
+	
+	var _jQuery = __webpack_require__(272);
+	
+	var _jQuery2 = _interopRequireDefault(_jQuery);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var authorize = exports.authorize = function authorize() {
+	  return _jQuery2.default.ajax({
+	    url: 'https://login.uber.com/oauth/v2/authorize',
+	    method: "GET",
+	    data: {
+	      client_id: _config.UBER_CLIENT_ID,
+	      response_type: 'code',
+	      redirect_uri: "/Users/Vinit/Documents/Bookr/index.html"
+	    }
+	  });
+	};
+	
+	var login = exports.login = function login(authCode) {
+	  return _jQuery2.default.ajax({
+	    url: "https://login.uber.com/v2/token",
+	    method: "POST",
+	    data: {
+	      client_id: _config.UBER_CLIENT_ID,
+	      client_secret: _config.UBER_CLIENT_SECRET,
+	      grant_type: 'authorization_code',
+	      redirect_uri: '/',
+	      code: authCode,
+	      scope: 'profile history'
+	    }
+	  });
+	};
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _auth_api = __webpack_require__(278);
+	
+	var _config = __webpack_require__(277);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Open = function (_React$Component) {
+	  _inherits(Open, _React$Component);
+	
+	  function Open() {
+	    var _ret;
+	
+	    _classCallCheck(this, Open);
+	
+	    var _this = _possibleConstructorReturn(this, (Open.__proto__ || Object.getPrototypeOf(Open)).call(this));
+	
+	    var user = JSON.parse(localStorage.getItem('user'));
+	    if (user) return _ret = window.location.replace('order'), _possibleConstructorReturn(_this, _ret);
+	    return _this;
+	  }
+	
+	  _createClass(Open, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'auth-actions jawbone' },
+	        _react2.default.createElement(
+	          'a',
+	          { href: 'https://login.uber.com/oauth/v2/authorize?client_id=' + _config.UBER_CLIENT_ID + '&response_type=code', className: 'login' },
+	          'Log In'
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Open;
+	}(_react2.default.Component);
+	
+	exports.default = Open;
 
 /***/ }
 /******/ ]);
