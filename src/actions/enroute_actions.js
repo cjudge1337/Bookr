@@ -1,4 +1,5 @@
 import * as UberAPIUtil from '../util/uber/quotes';
+import * as LyftAPIUtil from '../util/lyft/rides';
 
 export const RECEIVE_UBER_RIDE_INFO = "RECEIVE_UBER_RIDE_INFO";
 export const RECEIVE_UBER_MAP = "RECEIVE_UBER_MAP";
@@ -30,3 +31,31 @@ export const removeLyftRide = rideId => ({
   type: REMOVE_LYFT_RIDE,
   rideId
 });
+
+export const getUberRideInfo = requestId => dispatch => (
+  UberAPIUtil.getRideInfo(requestId)
+  .then(info => dispatch(receieveUberRideInfo(info)),
+        error => console.log(error))
+);
+
+export const getUberMap = requestId => dispatch => (
+  UberAPIUtil.getRideMap(requestId)
+  .then(mapInfo => dispatch(receieveUberMap(mapInfo)),
+        error => console.log(error))
+);
+
+export const deleteUberRide = requestId => dispatch => {
+  UberAPIUtil.deleteRide(requestId);
+  return dispatch(removeUberRide(requestId));
+};
+
+export const getLyftRideInfo = rideId => dispatch => (
+  LyftAPIUtil.getRideDetails(rideId)
+  .then(info => dispatch(receieveLyftRideInfo(info)),
+        error => console.log(error))
+);
+
+export const deleteLyftRide = rideId => dispatch => {
+  LyftAPIUtil.cancelRide(rideId);
+  return dispatch(removeLyftRide(rideId));
+};

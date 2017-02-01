@@ -67,3 +67,11 @@ export const cancelRideWithFee = (rideId, cancelConfirmationToken) => (
     data: { cancel_confirmation_token: cancelConfirmationToken }
   })
 );
+
+export const cancelRide = rideId => (
+  cancelRideWithoutFee(rideId).then(res => {
+    if (res.cancel_confirmation_token) {
+      cancelRideWithFee(rideId, res.cancel_confirmation_token);
+    }
+  })
+);
