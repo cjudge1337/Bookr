@@ -58,11 +58,15 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _quotes = __webpack_require__(276);
+	var _quotes = __webpack_require__(271);
 	
 	var LyftAPIUtil = _interopRequireWildcard(_quotes);
 	
-	var _store = __webpack_require__(273);
+	var _quotes2 = __webpack_require__(274);
+	
+	var UberAPIUtil = _interopRequireWildcard(_quotes2);
+	
+	var _store = __webpack_require__(276);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -72,6 +76,13 @@
 	
 	document.addEventListener('DOMContentLoaded', function () {
 	  window.getCost = LyftAPIUtil.getCost;
+	  window.getUberCosts = UberAPIUtil.getAllProductQuotes;
+	  window.getUberCost = UberAPIUtil.getProductQuote;
+	  window.makeRide = UberAPIUtil.createRide;
+	  window.getInfo = UberAPIUtil.getRideInfo;
+	  window.getMap = UberAPIUtil.getRideMap;
+	  window.deleteRide = UberAPIUtil.deleteRide;
+	  window.getProducts = UberAPIUtil.getUberProducts;
 	  var store = (0, _store2.default)();
 	  var root = document.getElementById('root');
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
@@ -28724,82 +28735,7 @@
 	exports.default = Test;
 
 /***/ },
-/* 271 */,
-/* 272 */,
-/* 273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(243);
-	
-	var _root_reducer = __webpack_require__(274);
-	
-	var _root_reducer2 = _interopRequireDefault(_root_reducer);
-	
-	var _reduxThunk = __webpack_require__(275);
-	
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var configureStore = function configureStore() {
-	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
-	};
-	
-	exports.default = configureStore;
-
-/***/ },
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(243);
-	
-	var RootReducer = (0, _redux.combineReducers)({});
-	
-	exports.default = RootReducer;
-
-/***/ },
-/* 275 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	function createThunkMiddleware(extraArgument) {
-	  return function (_ref) {
-	    var dispatch = _ref.dispatch,
-	        getState = _ref.getState;
-	    return function (next) {
-	      return function (action) {
-	        if (typeof action === 'function') {
-	          return action(dispatch, getState, extraArgument);
-	        }
-	
-	        return next(action);
-	      };
-	    };
-	  };
-	}
-	
-	var thunk = createThunkMiddleware();
-	thunk.withExtraArgument = createThunkMiddleware;
-	
-	exports['default'] = thunk;
-
-/***/ },
-/* 276 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28809,18 +28745,18 @@
 	});
 	exports.getDrivers = exports.getEta = exports.getCost = exports.getRideTypes = undefined;
 	
-	var _jQuery = __webpack_require__(277);
+	var _jquery = __webpack_require__(275);
 	
-	var _jQuery2 = _interopRequireDefault(_jQuery);
+	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _config = __webpack_require__(278);
+	var _config = __webpack_require__(273);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// Makes API call to lyft that returns ride types that are available at specified location
 	// Returns error if there are no rides available
 	var getRideTypes = exports.getRideTypes = function getRideTypes(lat, lng) {
-	  return _jQuery2.default.ajax({
+	  return _jquery2.default.ajax({
 	    url: "https://api.lyft.com/v1/ridetypes",
 	    method: 'GET',
 	    headers: {
@@ -28836,7 +28772,7 @@
 	//Makes API call to lyft that returns cost of ride to and from locations you specify,
 	// for each type of ride
 	var getCost = exports.getCost = function getCost(startLat, startLong, endLat, endLong) {
-	  return _jQuery2.default.ajax({
+	  return _jquery2.default.ajax({
 	    url: "https://api.lyft.com/v1/cost",
 	    method: 'GET',
 	    headers: {
@@ -28853,7 +28789,7 @@
 	
 	// Returns the estimated time in seconds it will take for the nearest driver to reach the specified location
 	var getEta = exports.getEta = function getEta(lat, lng) {
-	  return _jQuery2.default.ajax({
+	  return _jquery2.default.ajax({
 	    url: "https://api.lyft.com/v1/eta",
 	    method: 'GET',
 	    headers: {
@@ -28868,7 +28804,7 @@
 	
 	// Allows you to determine the location of drivers near a location
 	var getDrivers = exports.getDrivers = function getDrivers(lat, lng) {
-	  return _jQuery2.default.ajax({
+	  return _jquery2.default.ajax({
 	    url: "https://api.lyft.com/v1/drivers",
 	    method: 'GET',
 	    headers: {
@@ -28887,7 +28823,137 @@
 	// end lat 37.7713254, end long -122.5110340
 
 /***/ },
-/* 277 */
+/* 272 */,
+/* 273 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var UBER_CLIENT_ID = exports.UBER_CLIENT_ID = "iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q";
+	var UBER_SERVER_TOKEN = exports.UBER_SERVER_TOKEN = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
+	var UBER_CLIENT_SECRET = exports.UBER_CLIENT_SECRET = "vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU";
+	var LYFT_CLIENT_TOKEN = exports.LYFT_CLIENT_TOKEN = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";;
+	var LYFT_CLIENT_SECRET = exports.LYFT_CLIENT_SECRET = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getUberProducts = exports.deleteRide = exports.getRideMap = exports.getRideInfo = exports.createRide = exports.getProductQuote = exports.getAllProductQuotes = undefined;
+	
+	var _config = __webpack_require__(273);
+	
+	var _jquery = __webpack_require__(275);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var getAllProductQuotes = exports.getAllProductQuotes = function getAllProductQuotes(startLat, startLong, endLat, endLong) {
+	  return _jquery2.default.ajax({
+	    method: 'GET',
+	    url: "https://api.uber.com/v1.2/estimates/price",
+	    headers: {
+	      Authorization: "Token " + _config.UBER_SERVER_TOKEN
+	    },
+	    data: {
+	      start_latitude: startLat,
+	      start_longitude: startLong,
+	      end_latitude: endLat,
+	      end_longitude: endLong
+	    }
+	  });
+	};
+	
+	var getProductQuote = exports.getProductQuote = function getProductQuote(product_id, startLat, startLong, endLat, endLong) {
+	  return _jquery2.default.ajax({
+	    method: 'GET',
+	    url: "https://api.uber.com/v1.2/requests/estimates",
+	    headers: {
+	      Authorization: "Token " + _config.UBER_SERVER_TOKEN
+	    },
+	    data: {
+	      product_id: product_id,
+	      start_latitude: startLat,
+	      start_longitude: startLong,
+	      end_latitude: endLat,
+	      end_longitude: endLong
+	    }
+	  });
+	};
+	
+	var createRide = exports.createRide = function createRide(fare_id, product_id, startLat, startLong, endLat, endLong) {
+	  return _jquery2.default.ajax({
+	    method: 'POST',
+	    url: "https://api.uber.com/v1.2/requests",
+	    headers: {
+	      Authorization: "Token " + _config.UBER_SERVER_TOKEN
+	    },
+	    data: {
+	      fare_id: fare_id,
+	      product_id: product_id,
+	      start_latitude: startLat,
+	      start_longitude: startLong,
+	      end_latitude: endLat,
+	      end_longitude: endLong
+	    }
+	  });
+	};
+	
+	var getRideInfo = exports.getRideInfo = function getRideInfo(requestId) {
+	  return _jquery2.default.ajax({
+	    method: 'GET',
+	    url: 'https://api.uber.com/v1.2/requests/' + requestId,
+	    headers: {
+	      Authorization: "Token " + _config.UBER_SERVER_TOKEN
+	    }
+	  });
+	};
+	
+	var getRideMap = exports.getRideMap = function getRideMap(requestId) {
+	  return _jquery2.default.ajax({
+	    method: 'GET',
+	    url: 'https://api.uber.com/v1.2/requests/' + requestId + '/map',
+	    headers: {
+	      Authorization: "Token " + _config.UBER_SERVER_TOKEN
+	    }
+	  });
+	};
+	
+	var deleteRide = exports.deleteRide = function deleteRide(requestId) {
+	  return _jquery2.default.ajax({
+	    method: 'DELETE',
+	    url: 'https://api.uber.com/v1.2/requests/' + requestId,
+	    headers: {
+	      Authorization: "Token " + _config.UBER_SERVER_TOKEN
+	    }
+	  });
+	};
+	
+	var getUberProducts = exports.getUberProducts = function getUberProducts(lat, longitude) {
+	  return _jquery2.default.ajax({
+	    method: 'GET',
+	    url: 'https://api.uber.com/v1.2/products',
+	    headers: {
+	      Authorization: "Token " + _config.UBER_SERVER_TOKEN
+	    },
+	    data: {
+	      latitude: lat,
+	      longitude: longitude
+	    }
+	  });
+	};
+
+/***/ },
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -39113,19 +39179,77 @@
 
 
 /***/ },
-/* 278 */
-/***/ function(module, exports) {
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var UBER_CLIENT_ID = exports.UBER_CLIENT_ID = "iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q";
-	var UBER_SERVER_TOKEN = exports.UBER_SERVER_TOKEN = "vJ11xh5DBIe9Xc6dBG9S78PhX1dU8xx3ShIxqqdh";
-	var UBER_CLIENT_SECRET = exports.UBER_CLIENT_SECRET = "vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU";
-	var LYFT_CLIENT_TOKEN = exports.LYFT_CLIENT_TOKEN = "gAAAAABYkAOD1VwOl3AjcIFIdxnYYMWSGp_nVoh9k0ddxYU4CxVlouZUkVqYNfnQLozgXFeVC_3XsOrQL2JUEEi63WcftIBNO1uM_YHq-KDEwbMEPmcfG4zzFmYwKKvlowBxNj2rJAfGrLP0_YNlHQ8CQ2jxVCL87awI-ZBMbpS1rhyCYdVaGqk=";;
-	var LYFT_CLIENT_SECRET = exports.LYFT_CLIENT_SECRET = "M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy";
+	
+	var _redux = __webpack_require__(243);
+	
+	var _root_reducer = __webpack_require__(277);
+	
+	var _root_reducer2 = _interopRequireDefault(_root_reducer);
+	
+	var _reduxThunk = __webpack_require__(278);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var configureStore = function configureStore() {
+	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+	};
+	
+	exports.default = configureStore;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(243);
+	
+	var RootReducer = (0, _redux.combineReducers)({});
+	
+	exports.default = RootReducer;
+
+/***/ },
+/* 278 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch,
+	        getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+	
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+	
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+	
+	exports['default'] = thunk;
 
 /***/ }
 /******/ ]);
