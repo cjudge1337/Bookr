@@ -18,6 +18,20 @@ export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => (
   })
 );
 
+export const getAllProductTimes = (startLat, startLong) => (
+  $.ajax({
+    method: 'GET',
+    url: "https://api.uber.com/v1.2/estimates/time",
+    headers: {
+        Authorization: "Token " + UBER_SERVER_TOKEN
+    },
+    data: {
+        start_latitude: startLat,
+        start_longitude: startLong
+    },
+  })
+);
+
 export const getProductQuote = (product_id, startLat, startLong, endLat, endLong) => (
   $.ajax({
     method: 'GET',
