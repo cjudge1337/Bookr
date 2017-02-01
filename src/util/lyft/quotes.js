@@ -66,7 +66,6 @@ export const getDrivers = (lat, lng) => (
 );
 
 
-
 // startLat, startLong, endLat, endLong
 // start lat = 37.7913050,
   // start long = -122.3937350

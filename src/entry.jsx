@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getMap = UberAPIUtil.getRideMap;
   window.deleteRide = UberAPIUtil.deleteRide;
   window.getProducts = UberAPIUtil.getUberProducts;
+  window.getEta = LyftAPIUtil.getEta;
   const store = configureStore();
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store }/>, root);
