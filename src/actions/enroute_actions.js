@@ -18,8 +18,7 @@ export const receieveUberMap = mapInfo => ({
 });
 
 export const removeUberRide = requestId => ({
-  type: REMOVE_UBER_RIDE,
-  requestId
+  type: REMOVE_UBER_RIDE
 });
 
 export const receieveLyftRideInfo = info => ({
@@ -28,8 +27,7 @@ export const receieveLyftRideInfo = info => ({
 });
 
 export const removeLyftRide = rideId => ({
-  type: REMOVE_LYFT_RIDE,
-  rideId
+  type: REMOVE_LYFT_RIDE
 });
 
 export const getUberRideInfo = requestId => dispatch => (
