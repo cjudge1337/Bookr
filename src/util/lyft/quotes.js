@@ -19,7 +19,7 @@ export const getRideTypes = (lat, lng) => (
 
 //Makes API call to lyft that returns cost of ride to and from locations you specify,
 // for each type of ride
-export const getCost = (startLat, startLong, endLat, endLong) => (
+export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => (
   $.ajax({
     url: "https://api.lyft.com/v1/cost",
     method: 'GET',
