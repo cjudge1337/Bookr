@@ -13,7 +13,7 @@ export const UPDATE_DESTINATION_GEOLOCATION = "UPDATE_DESTINATION_GEOLOCATION";
 
 export const updateCurrentGeolocation = location => ({
   type: UPDATE_CURRENT_GEOLOCATION,
-  location
+  location: location.results[0].geometry.location
 });
 
 export const getCurrentGeolocation = address => dispatch => (
@@ -22,8 +22,8 @@ export const getCurrentGeolocation = address => dispatch => (
 );
 
 export const updateDestinationGeolocation = location => ({
-  type: UPDATE_CURRENT_GEOLOCATION,
-  location
+  type: UPDATE_DESTINATION_GEOLOCATION,
+  location: location.results[0].geometry.location
 });
 
 export const getDestinationGeolocation = address => dispatch => (

@@ -1,4 +1,4 @@
-import $ from 'jQuery';
+import $ from 'jquery';
 import { LYFT_CLIENT_TOKEN, LYFT_CLIENT_SECRET } from '../../../config';
 
 export const getUserProfile = () => (
