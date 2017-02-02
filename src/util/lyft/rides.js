@@ -1,4 +1,4 @@
-import $ from 'jQuery';
+import $ from 'jquery';
 import { LYFT_CLIENT_TOKEN, LYFT_CLIENT_SECRET } from '../../../config';
 
 export const createRideWithoutPrime = (origin, destination, rideType) => (
@@ -65,5 +65,13 @@ export const cancelRideWithFee = (rideId, cancelConfirmationToken) => (
       'Content-Type': 'application/json'
     },
     data: { cancel_confirmation_token: cancelConfirmationToken }
+  })
+);
+
+export const cancelRide = rideId => (
+  cancelRideWithoutFee(rideId).then(res => {
+    if (res.cancel_confirmation_token) {
+      cancelRideWithFee(rideId, res.cancel_confirmation_token);
+    }
   })
 );
