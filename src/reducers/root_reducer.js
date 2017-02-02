@@ -1,8 +1,12 @@
 import {combineReducers} from 'redux';
+
+import QuoteReducer from './quote_reducer';
 import EnrouteReducer from './enroute_reducer';
 
 const RootReducer = combineReducers({
-  enroute: EnrouteReducer
+  quotes: QuoteReducer,
+  enroute: EnrouteReducer,
+
 });
 
 export default RootReducer;
