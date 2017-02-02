@@ -5,8 +5,8 @@ const _noProducts = {
   errors: {},
   prices: {},
   times: {},
-  address: {},
-  geolocations: {},
+  address: {current: "", destination: ""},
+  geolocations: {current: "", destination: ""},
 };
 
 const QuoteReducer = (state = _noProducts, action) => {
@@ -25,7 +25,7 @@ const QuoteReducer = (state = _noProducts, action) => {
       const newLyftTimes = merge({}, state.times, action.timesObj);
       return merge({}, state, {times: {lyft: newLyftTimes}});
     case UPDATE_CURRENT_ADDRESS:
-      const newCurrentAdresses = merge({}, state.address, {current: action.address.results[0]});
+      const newCurrentAdresses = merge({}, state.address, {current: action.address});
       return merge({}, state, {address: newCurrentAdresses});
     case UPDATE_DESTINATION_ADDRESS:
       const newDestinationAdresses = merge({}, state.address, {destination: action.address});

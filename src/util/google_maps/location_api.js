@@ -23,8 +23,3 @@ export const geoToAddress = (latitude, longitude) => (
     },
   })
 );
-
-
-
-// translate lat/long to address
-// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
