@@ -33,7 +33,6 @@ export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => {
         end_lng: endLong
     },
   });
-  console.log(ret);
   return ret;
 };
 

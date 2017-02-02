@@ -22,14 +22,17 @@ class Search extends React.Component {
       const oldGeos = this.props.quotes.geolocations;
       if(newGeos.current !== "" && newGeos.destination !== ""
       &&
-      (newGeos.current !== oldGeos.current
+      (newGeos.current.lat !== oldGeos.current.lat
         ||
-        newGeos.destination !== oldGeos.destination)){
-          debugger
-          this.props.getLyftQuotes(newGeos.current.lat, newGeos.current.long, oldGeos.current.lat, oldGeos.current.long);
-          this.props.getUberQuotes(newGeos.current.lat, newGeos.current.long, oldGeos.current.lat, oldGeos.current.long);
-          this.props.getLyftETAs(newGeos.current.lat, newGeos.current.long);
-          this.props.getUberETAs(newGeos.current.lat, newGeos.current.long);
+        newGeos.current.lng !== oldGeos.current.lng
+        ||
+        newGeos.destination.lat !== oldGeos.destination.lat
+        ||
+        newGeos.destination.lng !== oldGeos.destination.lng)){
+          this.props.getLyftQuotes(newGeos.current.lat, newGeos.current.lng, newGeos.destination.lat, newGeos.destination.lng);
+          this.props.getUberQuotes(newGeos.current.lat, newGeos.current.lng, newGeos.destination.lat, newGeos.destination.lng);
+          this.props.getLyftETAs(newGeos.current.lat, newGeos.current.lng);
+          this.props.getUberETAs(newGeos.current.lat, newGeos.current.lng);
         }
     }
   }
