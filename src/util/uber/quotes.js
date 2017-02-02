@@ -94,6 +94,7 @@ export const getRideMap = (requestId) => (
   })
 );
 
+// cancel an uber ride
 export const deleteRide = (requestId) => (
   $.ajax({
     method: 'DELETE',
@@ -104,7 +105,7 @@ export const deleteRide = (requestId) => (
   })
 );
 
-// cancel an uber ride
+
 export const getUberProducts = (lat, longitude) => (
   $.ajax({
     method: 'GET',
