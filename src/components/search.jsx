@@ -5,7 +5,7 @@ import Autocomplete from 'react-google-autocomplete';
 class Search extends React.Component {
   constructor(props){
     super(props);
-    bindAll(this, 'handleSelectDestination');
+    bindAll(this, 'handleSelectDestination','renderAutocomplete');
 
   }
 
@@ -46,15 +46,18 @@ class Search extends React.Component {
     // this.setState({destination_geolocation: });
   }
 
+  renderAutocomplete(){
+    return <Autocomplete
+      style={{width: '90%'}}
+      onPlaceSelected={ (place) => this.handleSelectDestination(place) }
+      types={'address'}/>;
+  }
+
   // TODO add location bias based on user's location https://github.com/ErrorPro/react-google-autocomplete https://developers.google.com/places/web-service/autocomplete#location_biasing
   render() {
     return (
       <div>
-        <Autocomplete
-          style={{width: '90%'}}
-          onPlaceSelected={ (place) => this.handleSelectDestination(place) }
-          types={'address'}
-        />
+        {this.renderAutocomplete()}
       </div>
     );
   }
