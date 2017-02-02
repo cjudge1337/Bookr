@@ -23,3 +23,10 @@ export const geoToAddress = (latitude, longitude) => (
     },
   })
 );
+
+export const userAddressToGeo = () => (
+  $.ajax({
+    method: 'GET',
+    url: "https://maps.googleapis.com/maps/api/browserlocation/json?browser=chromium&sensor=true"
+  })
+);

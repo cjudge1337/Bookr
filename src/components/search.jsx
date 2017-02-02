@@ -34,6 +34,8 @@ class Search extends React.Component {
     }
   }
 
+  
+
 
   // this.props.getCurrentGeolocation(this.state.current_address);
 

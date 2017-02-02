@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getLyftQuotes = QuoteActions.getLyftQuotes;
   window.getLyftETAs = QuoteActions.getLyftETAs;
   window.getUberETAs = QuoteActions.getUberETAs;
+  window.userAddressToGeo = GoogleAPIUtil.userAddressToGeo;
   const store = configureStore();
   window.store = store;
   const root = document.getElementById('root');
