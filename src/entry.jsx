@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import * as LyftAPIUtil from './util/lyft/quotes';
 import { authorize, login } from './util/uber/auth_api';
-import $ from 'jQuery';
+import $ from 'jquery';
 
 import configureStore from './store/store';
 

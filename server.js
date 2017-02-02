@@ -1,6 +1,10 @@
 import express from 'express';
+import jsdom from 'jsdom';
 import path from 'path';
 import { PORT } from './config';
+import * as UberAuth from './src/util/uber/auth_api';
+import { UBER_SERVER_TOKEN, UBER_CLIENT_ID, UBER_CLIENT_SECRET, REDIRECT_URI } from './config.js';
+import $ from 'jquery';
 
 const app = express();
 
@@ -13,8 +17,13 @@ app.use((req, res, next) => {
 
 app.use('/app', express.static(path.join(__dirname, './app')));
 
+app.get('/auth', (req, res) => {
+  // res.json(UberAuth.login(req.query.code));
+  res.redirect('/#/test/' + req.query.code);
+  // res.send(req.query.code);
+});
+
 app.get('*', (req, res) => {
-  console.log('hello');
   res.sendFile(path.join(__dirname, './index.html'));
 });
 

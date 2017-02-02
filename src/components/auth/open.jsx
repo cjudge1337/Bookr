@@ -1,5 +1,5 @@
 import React from 'react';
-import { authorize } from '../../util/uber/auth_api';
+// import { authorize } from '../../util/uber/auth_api';
 import { UBER_CLIENT_ID } from '../../../config.js';
 
 class Open extends React.Component {
