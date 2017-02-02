@@ -19,8 +19,8 @@ export const getRideTypes = (lat, lng) => (
 
 //Makes API call to lyft that returns cost of ride to and from locations you specify,
 // for each type of ride
-export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => (
-  $.ajax({
+export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => {
+  const ret = $.ajax({
     url: "https://api.lyft.com/v1/cost",
     method: 'GET',
     headers: {
@@ -32,8 +32,10 @@ export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => (
         end_lat: endLat,
         end_lng: endLong
     },
-  })
-);
+  });
+  console.log(ret);
+  return ret;
+};
 
 // Returns the estimated time in seconds it will take for the nearest driver to reach the specified location
 export const getEta = (lat, lng) => (

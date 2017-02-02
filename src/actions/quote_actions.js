@@ -12,7 +12,7 @@ export const addUberQuotes = quotesObj => ({
 
 export const getUberQuotes = (startLat, startLong, endLat, endLong) => dispatch => (
   UberAPIUtil.getAllProductQuotes(startLat, startLong, endLat, endLong)
-    .then(response => dispatch(addUberQuotes(response.prices)))
+    .then(response => dispatch(addUberQuotes(response)))
 );
 
 export const addLyftQuotes = quotesObj => ({
@@ -22,7 +22,7 @@ export const addLyftQuotes = quotesObj => ({
 
 export const getLyftQuotes = (startLat, startLong, endLat, endLong) => dispatch => (
   LyftAPIUtil.getAllProductQuotes(startLat, startLong, endLat, endLong)
-    .then(response => dispatch(addLyftQuotes(response.prices)))
+    .then(response => dispatch(addLyftQuotes(response)))
 );
 
 export const addUberETAs = timesObj => ({
@@ -32,7 +32,7 @@ export const addUberETAs = timesObj => ({
 
 export const getUberETAs = (Lat, Long) => dispatch => (
   UberAPIUtil.getAllProductQuotes(Lat, Long)
-    .then(response => dispatch(addUberQuotes(response.prices)))
+    .then(response => dispatch(addUberQuotes(response)))
 );
 
 export const addLyftETAs = timesObj => ({
@@ -42,5 +42,5 @@ export const addLyftETAs = timesObj => ({
 
 export const getLyftETAs = (Lat, Long) => dispatch => (
   LyftAPIUtil.getAllProductQuotes(Lat, Long)
-    .then(response => dispatch(addLyftQuotes(response.prices)))
+    .then(response => dispatch(addLyftQuotes(response)))
 );
