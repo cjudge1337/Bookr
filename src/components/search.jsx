@@ -7,7 +7,7 @@ class Search extends React.Component {
   constructor(props){
     super(props);
 
-    bindAll(this, 'handleSelectDestination','renderAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
+    bindAll(this, 'getUberTime','handleSelectDestination','renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
 
 
   }
@@ -66,19 +66,42 @@ class Search extends React.Component {
     // this.setState({destination_geolocation: });
   }
 
-  renderAutocomplete(){
+  handleSelectOrigin(place){
+    this.props.updateCurrentAddress(place.formatted_address);
+    this.props.getCurrentGeolocation(this.props.quotes.address.current);
+    // this.setState({destination_geolocation: });
+  }
+
+  renderDestinationAutocomplete(){
     return <Autocomplete
-      style={{width: '90%'}}
+      // style={{width: '90%'}}
       onPlaceSelected={ (place) => this.handleSelectDestination(place) }
+      types={'address'}/>;
+  }
+
+  renderOriginAutocomplete(){
+    return <Autocomplete
+      // style={{width: '90%'}}
+      onPlaceSelected={ (place) => this.handleSelectOrigin(place) }
+      placeholder={this.props.quotes.address.current}
       types={'address'}/>;
   }
 
   getUberResults(){
       return this.props.quotes.prices.uber.map(productObj => {
         if(productObj.high_estimate > 0  && productObj.display_name !== "ASSIST" && productObj.display_name !== "WAV"){
-          return <li key={productObj.display_name}>Uber {productObj.display_name} costs {productObj.estimate}</li>;
+          return <li key={productObj.display_name}>Uber {productObj.display_name} costs {productObj.estimate} and can pick you up in {this.getUberTime(productObj.display_name)} minutes</li>;
         }
       });
+  }
+
+  getUberTime(displayName){
+    this.props.quotes.times.uber.forEach(timeObj => {
+      if(timeObj.display_name === displayName){
+        console.log(timeObj.estimate / 60);
+        return timeObj.estimate / 60;
+      }
+    });
   }
 
   centsToDollars(min, max){
@@ -117,7 +140,8 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        {this.renderAutocomplete()}
+        {this.renderOriginAutocomplete()}
+        {this.renderDestinationAutocomplete()}
         {this.renderResults()}
       </div>
     );
