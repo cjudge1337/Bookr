@@ -3,6 +3,7 @@ import path from 'path';
 import { PORT } from './config';
 import { UBER_SERVER_TOKEN, UBER_CLIENT_ID, UBER_CLIENT_SECRET, REDIRECT_URI } from './config.js';
 import OauthClient from 'client-oauth2';
+import qs from 'query-string';
 
 const lyftAuth = new OauthClient({
   clientId: '2gu3pDBvbRnH',
@@ -46,11 +47,18 @@ app.get('/uberCallback', (req, res) => {
         url: 'http://localhost:3000'
       });
 
-      userinfo = user.data;
+      userinfo = qs.stringify({
+        access_token: user.data.access_token,
+        refresh_token: user.data.refresh_token,
+        token_type: user.data.token_type,
+        scope: user.data.scope,
+        expires_in: user.data.expires_in,
+        expires: user.expires
+      });
       return;
     })
     .then(() => {
-      return res.redirect('/#/uberAuth/' + userinfo.access_token);
+      return res.redirect('/#/uberAuth/' + userinfo);
     });
 });
 

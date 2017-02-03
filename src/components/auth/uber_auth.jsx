@@ -1,9 +1,14 @@
 import React from 'react';
+import qs from 'query-string';
 
 class UberAuth extends React.Component {
   constructor(props) {
     super(props);
-    debugger
+  }
+
+  componentDidMount() {
+    let creds = qs.parse(this.props.params.uberCreds);
+    this.props.receiveUberCreds(creds);
   }
 
   render() {

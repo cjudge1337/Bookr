@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import UberAuth from './uber_auth';
-import { requestUberToken } from '../../actions/auth_actions';
+import { receiveUberCreds } from '../../actions/auth_actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  requestUberToken: (code) => dispatch(requestUberToken(code))
+  receiveUberCreds: (creds) => dispatch(receiveUberCreds(creds))
 });
 
 export default connect(
