@@ -1,6 +1,5 @@
 import React from 'react';
-// import { authorize } from '../../util/uber/auth_api';
-import { UBER_CLIENT_ID } from '../../../config.js';
+import { UBER_CLIENT_ID, LYFT_CLIENT_ID } from '../../../config.js';
 
 class Open extends React.Component {
   constructor() {
@@ -13,7 +12,8 @@ class Open extends React.Component {
     return (
       <div className="auth-actions jawbone">
         <h1>im here</h1>
-        <a href={`https://login.uber.com/oauth/v2/authorize?client_id=${UBER_CLIENT_ID}&response_type=code`} className="login">Log In</a>
+        <a href={'http://localhost:3000/uber'} className="login">Log In Uber</a>
+        <a href={'http://localhost:3000/lyft'} className="login">Log In Lyft</a>
       </div>
     );
   }

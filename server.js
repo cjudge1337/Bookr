@@ -1,10 +1,26 @@
 import express from 'express';
-import jsdom from 'jsdom';
 import path from 'path';
 import { PORT } from './config';
-import * as UberAuth from './src/util/uber/auth_api';
 import { UBER_SERVER_TOKEN, UBER_CLIENT_ID, UBER_CLIENT_SECRET, REDIRECT_URI } from './config.js';
-import $ from 'jquery';
+import OauthClient from 'client-oauth2';
+
+const lyftAuth = new OauthClient({
+  clientId: '2gu3pDBvbRnH',
+  clientSecret: 'M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy',
+  accessTokenUri: 'https://api.lyft.com/oauth/token',
+  authorizationUri: 'https://api.lyft.com/oauth/authorize',
+  redirectUri: 'http://localhost:3000/callback',
+  scopes: ['profile']
+});
+
+const uberAuth = new OauthClient({
+  clientId: 'iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q',
+  clientSecret: 'vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU',
+  accessTokenUri: 'https://login.uber.com/oauth/v2/token',
+  authorizationUri: 'https://login.uber.com/oauth/v2/authorize',
+  redirectUri: 'http://localhost:3000/callback',
+  scopes: ['profile']
+});
 
 const app = express();
 
@@ -17,10 +33,29 @@ app.use((req, res, next) => {
 
 app.use('/app', express.static(path.join(__dirname, './app')));
 
-app.get('/auth', (req, res) => {
-  // res.json(UberAuth.login(req.query.code));
-  res.redirect('/#/test/' + req.query.code);
-  // res.send(req.query.code);
+app.get('/callback', (req, res) => {
+  console.log('callback');
+  uberAuth.code.getToken(req.originalUrl)
+    .then(user => {
+      console.log(user); //=> { accessToken: '...', tokenType: 'bearer', ... }
+
+      // Refresh the current users access token.
+      user.refresh().then(function (updatedUser) {
+        console.log(updatedUser !== user); //=> true
+        console.log(updatedUser.accessToken);
+      });
+    });
+});
+
+app.get('/lyft', (req, res) => {
+  let uri = lyftAuth.code.getUri();
+  res.redirect(uri);
+});
+
+app.get('/uber', (req, res) => {
+  let uri = uberAuth.code.getUri();
+  console.log(uri);
+  res.redirect(uri);
 });
 
 app.get('*', (req, res) => {
