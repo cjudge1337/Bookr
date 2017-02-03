@@ -1,16 +1,13 @@
 import express from 'express';
 import path from 'path';
-import { PORT } from './config';
-import { UBER_SERVER_TOKEN, UBER_CLIENT_ID, UBER_CLIENT_SECRET, REDIRECT_URI } from './config.js';
+import { PORT, UBER_CLIENT_ID, UBER_CLIENT_SECRET, LYFT_CLIENT_ID, LYFT_CLIENT_SECRET } from './config.js';
 import OauthClient from 'client-oauth2';
 import SimpleOauth from 'simple-oauth2';
 import qs from 'query-string';
 
-let state;
-
 const uberAuth = new OauthClient({
-  clientId: 'iUm_rhTOLnZLnwq4LyzQLq1pI2Bd0a3Q',
-  clientSecret: 'vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU',
+  clientId: UBER_CLIENT_ID,
+  clientSecret: UBER_CLIENT_SECRET,
   accessTokenUri: 'https://login.uber.com/oauth/v2/token',
   authorizationUri: 'https://login.uber.com/oauth/v2/authorize',
   redirectUri: 'http://localhost:3000/uberCallback',
@@ -19,8 +16,8 @@ const uberAuth = new OauthClient({
 
 const lyftAuth = SimpleOauth.create({
   client: {
-    id: '2gu3pDBvbRnH',
-    secret: 'M2fCNYbYNMBDCAp-LqLJ7BaZE3_5aZsy'
+    id: LYFT_CLIENT_ID,
+    secret: LYFT_CLIENT_SECRET
   },
   auth: {
     tokenHost: 'https://api.lyft.com'
@@ -37,6 +34,11 @@ app.use((req, res, next) => {
 });
 
 app.use('/app', express.static(path.join(__dirname, './app')));
+
+app.get('/uber', (req, res) => {
+  let uri = uberAuth.code.getUri();
+  res.redirect(uri);
+});
 
 app.get('/uberCallback', (req, res) => {
   let uberUserInfo;
@@ -68,6 +70,15 @@ app.get('/uberCallback', (req, res) => {
     });
 });
 
+app.get('/lyft', (req, res) => {
+  const authorizationUri = lyftAuth.authorizationCode.authorizeURL({
+    redirect_uri: 'http://localhost:3000/lyftCallback',
+    scope: 'profile',
+    state: 'randomstuff'
+  });
+  res.redirect(authorizationUri);
+});
+
 app.get('/lyftCallback', (req, res) => {
   let lyftUserInfo;
 
@@ -78,10 +89,14 @@ app.get('/lyftCallback', (req, res) => {
 
   lyftAuth.authorizationCode.getToken(tokenConfig)
     .then((result) => {
-      const token = lyftAuth.accessToken.create(result);
+      const token = lyftAuth.accessToken.create(result).token;
 
       lyftUserInfo = qs.stringify({
-        access_token: token.token.access_token
+        access_token: token.access_token,
+        token_type: token.token_type,
+        scope: token.scope,
+        expires_in: token.expires_in,
+        expires: token.expires_at
       });
       return;
     })
@@ -91,21 +106,6 @@ app.get('/lyftCallback', (req, res) => {
     .catch(() => {
       return res.redirect('/#/');
     });
-});
-
-app.get('/lyft', (req, res) => {
-  const authorizationUri = lyftAuth.authorizationCode.authorizeURL({
-    redirect_uri: 'http://localhost:3000/lyftCallback',
-    scope: 'profile',
-    state: 'randomstuff'
-  });
-  console.log(authorizationUri);
-  res.redirect(authorizationUri);
-});
-
-app.get('/uber', (req, res) => {
-  let uri = uberAuth.code.getUri();
-  res.redirect(uri);
 });
 
 app.get('*', (req, res) => {
