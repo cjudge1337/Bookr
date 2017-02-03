@@ -13,17 +13,23 @@ import configureStore from './store/store';
 process.env.GOOGLE_API_KEY = GOOGLE_API_KEY;
 
 document.addEventListener('DOMContentLoaded', () => {
+  window.$ = $;
+
+  window.getCost = LyftAPIUtil.getCost;
   window.addTrans = GoogleAPIUtil.addressToGeo("1600 Amphitheatre Parkway, Mountain View, CA");
   window.geoTrans = GoogleAPIUtil.geoToAddress(40.714224,-73.961452);
-  window.$ = $;
   window.getUberQuotes = QuoteActions.getUberQuotes;
   window.getLyftQuotes = QuoteActions.getLyftQuotes;
   window.getLyftETAs = QuoteActions.getLyftETAs;
   window.getUberETAs = QuoteActions.getUberETAs;
   window.getUserGeo = GoogleAPIUtil.getUserGeo;
   window.geoToAddress = GoogleAPIUtil.geoToAddress;
+
   const store = configureStore();
   window.store = store;
   const root = document.getElementById('root');
+
+  window.store = store;
+
   ReactDOM.render(<Root store={ store }/>, root);
 });

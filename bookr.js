@@ -1,5 +1,6 @@
 const menubar = require('menubar');
 require('babel-register');
+require('./server.js');
 
 const mb = menubar({
   showDockIcon: true,
