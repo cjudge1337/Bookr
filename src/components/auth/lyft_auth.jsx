@@ -6,7 +6,6 @@ class LyftAuth extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestLyftToken(this.props.params.lyftAuthCode);
   }
 
   render() {

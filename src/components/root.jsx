@@ -13,7 +13,7 @@ const Root = ({ store }) => {
         <Route path="/" component={Open}></Route>
         <Route path="/search" component={SearchContainer}></Route>
         <Route path="/uberAuth/:uberCreds" component={UberAuthContainer}></Route>
-        <Route path="/lyftAuth/:lyftAuthCode" component={LyftAuthContainer}></Route>
+        <Route path="/lyftAuth/:lyftCreds" component={LyftAuthContainer}></Route>
       </Router>
     </Provider>
   );
