@@ -6,6 +6,7 @@ import * as LyftAPIUtil from './util/lyft/quotes';
 import * as UberAPIUtil from './util/uber/quotes';
 import * as GoogleAPIUtil from './util/google_maps/location_api';
 import * as QuoteActions from './actions/quote_actions';
+import $ from 'jquery';
 
 import configureStore from './store/store';
 
@@ -14,7 +15,7 @@ process.env.GOOGLE_API_KEY = GOOGLE_API_KEY;
 document.addEventListener('DOMContentLoaded', () => {
   window.addTrans = GoogleAPIUtil.addressToGeo("1600 Amphitheatre Parkway, Mountain View, CA");
   window.geoTrans = GoogleAPIUtil.geoToAddress(40.714224,-73.961452);
-
+  window.$ = $;
   window.getUberQuotes = QuoteActions.getUberQuotes;
   window.getLyftQuotes = QuoteActions.getLyftQuotes;
   window.getLyftETAs = QuoteActions.getLyftETAs;

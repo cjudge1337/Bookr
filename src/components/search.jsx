@@ -7,7 +7,7 @@ class Search extends React.Component {
   constructor(props){
     super(props);
 
-    bindAll(this, 'handleSelectDestination','renderAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
+    bindAll(this, 'getUberTime','handleSelectDestination','renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
 
 
   }
@@ -15,9 +15,7 @@ class Search extends React.Component {
   componentDidMount(){
     // TODO temporary fixed start point for testing until we can get user's geolocation with navigator.geolocation.getCurrentPosition()
 
-    let address;
-    this.getUserLocation().then(res => {
-      address = res;
+    this.getUserLocation().then(address => {
       this.props.updateCurrentAddress(address);
     });
 
@@ -68,20 +66,43 @@ class Search extends React.Component {
     // this.setState({destination_geolocation: });
   }
 
-  renderAutocomplete(){
-    return (
-        <Autocomplete
-          onPlaceSelected={ (place) => this.handleSelectDestination(place) }
-          types={'address'}/>
-    );
+
+
+  handleSelectOrigin(place){
+    this.props.updateCurrentAddress(place.formatted_address);
+    this.props.getCurrentGeolocation(this.props.quotes.address.current);
+  }
+
+  renderDestinationAutocomplete(){
+    return <Autocomplete
+      onPlaceSelected={ (place) => this.handleSelectDestination(place) }
+      types={'address'}/>;
+  }
+
+  renderOriginAutocomplete(){
+    return <Autocomplete
+      // style={{width: '90%'}}
+      onPlaceSelected={ (place) => this.handleSelectOrigin(place) }
+      placeholder={this.props.quotes.address.current}
+      types={'address'}/>;
   }
 
   getUberResults(){
       return this.props.quotes.prices.uber.map(productObj => {
-        if(productObj.high_estimate > 0){
-          return <li key={productObj.display_name} className="uber-lineitem">Uber {productObj.display_name} costs {productObj.estimate}</li>;
+
+        if(productObj.high_estimate > 0  && productObj.display_name !== "ASSIST" && productObj.display_name !== "WAV"){
+          return <li key={productObj.display_name} className="uber-lineitem">Uber {productObj.display_name} costs {productObj.estimate} and can pick you up in {this.getUberTime(productObj.display_name)} minutes</li>;
         }
       });
+  }
+
+  getUberTime(displayName){
+    this.props.quotes.times.uber.forEach(timeObj => {
+      if(timeObj.display_name === displayName){
+        console.log(timeObj.estimate / 60);
+        return timeObj.estimate / 60;
+      }
+    });
   }
 
   centsToDollars(min, max){
@@ -123,8 +144,8 @@ class Search extends React.Component {
     return (
       <div>
         <div className="search-container">
-
-          {this.renderAutocomplete()}
+          {this.renderOriginAutocomplete()}
+          {this.renderDestinationAutocomplete()}
         </div>
         {this.renderResults()}
       </div>
