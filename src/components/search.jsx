@@ -15,9 +15,7 @@ class Search extends React.Component {
   componentDidMount(){
     // TODO temporary fixed start point for testing until we can get user's geolocation with navigator.geolocation.getCurrentPosition()
 
-    let address;
-    this.getUserLocation().then(res => {
-      address = res;
+    this.getUserLocation().then(address => {
       this.props.updateCurrentAddress(address);
     });
 
@@ -77,7 +75,7 @@ class Search extends React.Component {
 
   getUberResults(){
       return this.props.quotes.prices.uber.map(productObj => {
-        if(productObj.high_estimate > 0){
+        if(productObj.high_estimate > 0  && productObj.display_name !== "ASSIST" && productObj.display_name !== "WAV"){
           return <li key={productObj.display_name}>Uber {productObj.display_name} costs {productObj.estimate}</li>;
         }
       });

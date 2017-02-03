@@ -13,9 +13,9 @@ const QuoteReducer = (state = _noProducts, action) => {
   Object.freeze(state);
   switch (action.type) {
     case ADD_UBER_QUOTES:
-      return merge({}, state, {prices: {uber: action.prices}});
+      return merge({}, state, {prices: {uber: action.prices.sort((a, b) => a.high_estimate - b.high_estimate)}});
     case ADD_LYFT_QUOTES:
-      return merge({}, state, {prices: {lyft: action.prices}});
+      return merge({}, state, {prices: {lyft: action.prices.sort((a, b) => a.estimated_cost_cents_max - b.estimated_cost_cents_max)}});
     case ADD_UBER_ETAS:
       return merge({}, state, {times: {uber: action.times}});
     case ADD_LYFT_ETAS:
