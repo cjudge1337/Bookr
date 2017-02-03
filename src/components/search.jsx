@@ -69,16 +69,17 @@ class Search extends React.Component {
   }
 
   renderAutocomplete(){
-    return <Autocomplete
-      style={{width: '90%'}}
-      onPlaceSelected={ (place) => this.handleSelectDestination(place) }
-      types={'address'}/>;
+    return (
+        <Autocomplete
+          onPlaceSelected={ (place) => this.handleSelectDestination(place) }
+          types={'address'}/>
+    );
   }
 
   getUberResults(){
       return this.props.quotes.prices.uber.map(productObj => {
         if(productObj.high_estimate > 0){
-          return <li key={productObj.display_name}>Uber {productObj.display_name} costs {productObj.estimate}</li>;
+          return <li key={productObj.display_name} className="uber-lineitem">Uber {productObj.display_name} costs {productObj.estimate}</li>;
         }
       });
   }
@@ -90,7 +91,7 @@ class Search extends React.Component {
   getLyftResults(){
       return this.props.quotes.prices.lyft.map(productObj => {
         if(productObj.estimated_cost_cents_max > 0){
-          return <li key={productObj.display_name}>{productObj.display_name} costs {this.centsToDollars(productObj.estimated_cost_cents_min,
+          return <li key={productObj.display_name} className="lyft-lineitem">{productObj.display_name} costs {this.centsToDollars(productObj.estimated_cost_cents_min,
             productObj.estimated_cost_cents_max)}</li>;
         }
       });
@@ -98,16 +99,18 @@ class Search extends React.Component {
 
   renderResults(){
     if(this.props.quotes.prices.uber && this.props.quotes.prices.lyft){
-      return (<div>
-        <section>
+      return (<div className="quotes-container">
+        <section className="ride-info">
           <h3>{this.props.quotes.prices.uber[0].distance} Mile Ride</h3>
           <h3>Should take {this.props.quotes.prices.uber[0].duration / 60} Minutes</h3>
         </section>
-        <section>
-          {this.getUberResults()}
-        </section>
-        <section>
-          {this.getLyftResults()}
+        <section className="results-container">
+          <section className="uber-results">
+            {this.getUberResults()}
+          </section>
+          <section className="lyft-results">
+            {this.getLyftResults()}
+          </section>
         </section>
       </div>);
     }else{
@@ -119,7 +122,10 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        {this.renderAutocomplete()}
+        <div className="search-container">
+
+          {this.renderAutocomplete()}
+        </div>
         {this.renderResults()}
       </div>
     );

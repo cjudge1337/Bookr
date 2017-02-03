@@ -6,7 +6,7 @@ const mb = menubar({
   preloadWindow: true,
   alwaysOnTop: true,
   width: 900,
-  height: 300,
+  height: 600,
   x: 1000,
 
   // TODO dev only

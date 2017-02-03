@@ -1,0 +1,16 @@
+.quotes-container {
+  display: flex;
+  width: 350px;
+  background-color: blue;
+}
+
+.search-container {
+  height: 70px;
+  width: 350px;
+}
+
+.search-container > div {
+  height: 30px;
+  width: 350px;
+  background-color: red;
+}
