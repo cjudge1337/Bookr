@@ -1,17 +1,26 @@
 import {bindAll} from 'lodash';
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
+import { getUserGeo, geoToAddress } from '../util/google_maps/location_api';
 
 class Search extends React.Component {
   constructor(props){
     super(props);
-    bindAll(this, 'handleSelectDestination','renderAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults');
+
+    bindAll(this, 'handleSelectDestination','renderAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
+
 
   }
 
   componentDidMount(){
     // TODO temporary fixed start point for testing until we can get user's geolocation with navigator.geolocation.getCurrentPosition()
-    this.props.updateCurrentAddress("101 Market St, San Francisco, CA 94105, USA");
+
+    let address;
+    this.getUserLocation().then(res => {
+      address = res;
+      this.props.updateCurrentAddress(address);
+    });
+
   }
 
   componentWillReceiveProps(newProps){
@@ -36,6 +45,19 @@ class Search extends React.Component {
         }
     }
   }
+
+  getUserLocation() {
+    let coords;
+    const that = this;
+    return getUserGeo().then(res => {
+      coords = res.location;
+      return geoToAddress(coords.lat, coords.lng).then(res2 => {
+        coords = res2;
+        return coords.results[0].formatted_address;
+      });
+    });
+  }
+
 
 
   // this.props.getCurrentGeolocation(this.state.current_address);
