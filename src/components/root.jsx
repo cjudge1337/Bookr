@@ -10,7 +10,7 @@ const Root = ({ store }) => {
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path="/" component={Open}></Route>
-        <Route path="/uberAuth/:uberAuthCode" component={UberAuthContainer}></Route>
+        <Route path="/uberAuth" component={UberAuthContainer}></Route>
         <Route path="/lyftAuth/:lyftAuthCode" component={LyftAuthContainer}></Route>
       </Router>
     </Provider>

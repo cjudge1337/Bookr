@@ -1,18 +1,15 @@
 import React from 'react';
+import Router from 'react-router';
 
 class UberAuth extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.requestUberToken(this.props.params.uberAuthCode);
-  }
-
   render() {
     return (
       <div className="auth-actions jawbone">
-        <h1>test page</h1>
+        <h1>uber test page</h1>
       </div>
     );
   }

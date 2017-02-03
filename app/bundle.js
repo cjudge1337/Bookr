@@ -58,17 +58,17 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _quotes = __webpack_require__(276);
+	var _quotes = __webpack_require__(279);
 	
 	var LyftAPIUtil = _interopRequireWildcard(_quotes);
 	
-	var _auth_api = __webpack_require__(285);
+	var _auth_api = __webpack_require__(275);
 	
-	var _jquery = __webpack_require__(275);
+	var _jquery = __webpack_require__(276);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _store = __webpack_require__(278);
+	var _store = __webpack_require__(281);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -21543,11 +21543,11 @@
 	
 	var _open2 = _interopRequireDefault(_open);
 	
-	var _uber_auth_container = __webpack_require__(281);
+	var _uber_auth_container = __webpack_require__(272);
 	
 	var _uber_auth_container2 = _interopRequireDefault(_uber_auth_container);
 	
-	var _lyft_auth_container = __webpack_require__(283);
+	var _lyft_auth_container = __webpack_require__(277);
 	
 	var _lyft_auth_container2 = _interopRequireDefault(_lyft_auth_container);
 	
@@ -21563,7 +21563,7 @@
 	      _reactRouter.Router,
 	      { history: _reactRouter.hashHistory },
 	      _react2.default.createElement(_reactRouter.Route, { path: '/', component: _open2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/uberAuth/:uberAuthCode', component: _uber_auth_container2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/uberAuth', component: _uber_auth_container2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/lyftAuth/:lyftAuthCode', component: _lyft_auth_container2.default })
 	    )
 	  );
@@ -28810,7 +28810,37 @@
 /* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(234);
+	
+	var _uber_auth = __webpack_require__(273);
+	
+	var _uber_auth2 = _interopRequireDefault(_uber_auth);
+	
+	var _auth_actions = __webpack_require__(274);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    requestUberToken: function requestUberToken(code) {
+	      return dispatch((0, _auth_actions.requestUberToken)(code));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_uber_auth2.default);
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -28821,6 +28851,10 @@
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(179);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28840,20 +28874,15 @@
 	  }
 	
 	  _createClass(UberAuth, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
-	      this.props.requestUberToken(this.props.params.uberAuthCode);
-	    }
-	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "auth-actions jawbone" },
+	        'div',
+	        { className: 'auth-actions jawbone' },
 	        _react2.default.createElement(
-	          "h1",
+	          'h1',
 	          null,
-	          "test page"
+	          'uber test page'
 	        )
 	      );
 	    }
@@ -28865,7 +28894,7 @@
 	exports.default = UberAuth;
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28875,7 +28904,7 @@
 	});
 	exports.requestLyftToken = exports.requestUberToken = exports.receiveLyftToken = exports.receiveUberToken = exports.RECEIVE_LYFT_TOKEN = exports.RECEIVE_UBER_TOKEN = undefined;
 	
-	var _auth_api = __webpack_require__(285);
+	var _auth_api = __webpack_require__(275);
 	
 	var AuthAPIUtil = _interopRequireWildcard(_auth_api);
 	
@@ -28914,8 +28943,59 @@
 	};
 
 /***/ },
-/* 274 */,
 /* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.requestLyftToken = exports.requestUberToken = undefined;
+	
+	var _config = __webpack_require__(271);
+	
+	var _jquery = __webpack_require__(276);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var requestUberToken = exports.requestUberToken = function requestUberToken(authCode) {
+	
+	  debugger;
+	  return _jquery2.default.ajax({
+	    url: "https://login.uber.com/v2/token",
+	    method: "POST",
+	
+	    data: {
+	      client_id: _config.UBER_CLIENT_ID,
+	      client_secret: _config.UBER_CLIENT_SECRET,
+	      grant_type: 'authorization_code',
+	      redirect_uri: 'http://localhost:3000',
+	      code: authCode,
+	      scope: 'profile'
+	    }
+	  });
+	};
+	
+	var requestLyftToken = exports.requestLyftToken = function requestLyftToken(authCode) {
+	  return _jquery2.default.ajax({
+	    url: "https://api.lyft.com/oauth/token",
+	    method: "POST",
+	    headers: {
+	      "Authorization": 'Basic base64(' + _config.LYFT_CLIENT_ID + ':' + _config.LYFT_CLIENT_SECRET + ')',
+	      "Content-Type": "application/json"
+	    },
+	    data: {
+	      "grant_type": "authorization_code",
+	      "code": authCode
+	    }
+	  });
+	};
+
+/***/ },
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -39141,7 +39221,95 @@
 
 
 /***/ },
-/* 276 */
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(234);
+	
+	var _lyft_auth = __webpack_require__(278);
+	
+	var _lyft_auth2 = _interopRequireDefault(_lyft_auth);
+	
+	var _auth_actions = __webpack_require__(274);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    requestLyftToken: function requestLyftToken(code) {
+	      return dispatch((0, _auth_actions.requestLyftToken)(code));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_lyft_auth2.default);
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var LyftAuth = function (_React$Component) {
+	  _inherits(LyftAuth, _React$Component);
+	
+	  function LyftAuth(props) {
+	    _classCallCheck(this, LyftAuth);
+	
+	    return _possibleConstructorReturn(this, (LyftAuth.__proto__ || Object.getPrototypeOf(LyftAuth)).call(this, props));
+	  }
+	
+	  _createClass(LyftAuth, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      this.props.requestLyftToken(this.props.params.lyftAuthCode);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "auth-actions jawbone" },
+	        _react2.default.createElement(
+	          "h1",
+	          null,
+	          "lyft test page"
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return LyftAuth;
+	}(_react2.default.Component);
+	
+	exports.default = LyftAuth;
+
+/***/ },
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39151,7 +39319,7 @@
 	});
 	exports.getDrivers = exports.getEta = exports.getCost = exports.getRideTypes = undefined;
 	
-	var _jQuery = __webpack_require__(277);
+	var _jQuery = __webpack_require__(280);
 	
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 	
@@ -39229,7 +39397,7 @@
 	// end lat 37.7713254, end long -122.5110340
 
 /***/ },
-/* 277 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -49455,7 +49623,7 @@
 
 
 /***/ },
-/* 278 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49466,11 +49634,11 @@
 	
 	var _redux = __webpack_require__(243);
 	
-	var _root_reducer = __webpack_require__(279);
+	var _root_reducer = __webpack_require__(282);
 	
 	var _root_reducer2 = _interopRequireDefault(_root_reducer);
 	
-	var _reduxThunk = __webpack_require__(280);
+	var _reduxThunk = __webpack_require__(283);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -49484,7 +49652,7 @@
 	exports.default = configureStore;
 
 /***/ },
-/* 279 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49500,7 +49668,7 @@
 	exports.default = RootReducer;
 
 /***/ },
-/* 280 */
+/* 283 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -49526,175 +49694,6 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
-
-/***/ },
-/* 281 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _reactRedux = __webpack_require__(234);
-	
-	var _uber_auth = __webpack_require__(272);
-	
-	var _uber_auth2 = _interopRequireDefault(_uber_auth);
-	
-	var _auth_actions = __webpack_require__(273);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    requestUberToken: function requestUberToken(code) {
-	      return dispatch((0, _auth_actions.requestUberToken)(code));
-	    }
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_uber_auth2.default);
-
-/***/ },
-/* 282 */,
-/* 283 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _reactRedux = __webpack_require__(234);
-	
-	var _lyft_auth = __webpack_require__(284);
-	
-	var _lyft_auth2 = _interopRequireDefault(_lyft_auth);
-	
-	var _auth_actions = __webpack_require__(273);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    requestLyftToken: function requestLyftToken(code) {
-	      return dispatch((0, _auth_actions.requestLyftToken)(code));
-	    }
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_lyft_auth2.default);
-
-/***/ },
-/* 284 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var LyftAuth = function (_React$Component) {
-	  _inherits(LyftAuth, _React$Component);
-	
-	  function LyftAuth(props) {
-	    _classCallCheck(this, LyftAuth);
-	
-	    return _possibleConstructorReturn(this, (LyftAuth.__proto__ || Object.getPrototypeOf(LyftAuth)).call(this, props));
-	  }
-	
-	  _createClass(LyftAuth, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
-	      this.props.requestLyftToken(this.props.params.lyftAuthCode);
-	    }
-	  }, {
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "auth-actions jawbone" },
-	        _react2.default.createElement(
-	          "h1",
-	          null,
-	          "lyft test page"
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return LyftAuth;
-	}(_react2.default.Component);
-	
-	exports.default = LyftAuth;
-
-/***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.requestLyftToken = exports.requestUberToken = undefined;
-	
-	var _config = __webpack_require__(271);
-	
-	var _jquery = __webpack_require__(275);
-	
-	var _jquery2 = _interopRequireDefault(_jquery);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var requestUberToken = exports.requestUberToken = function requestUberToken(authCode) {
-	  return _jquery2.default.ajax({
-	    url: "https://login.uber.com/v2/token",
-	    method: "POST",
-	
-	    data: {
-	      client_id: _config.UBER_CLIENT_ID,
-	      client_secret: _config.UBER_CLIENT_SECRET,
-	      grant_type: 'authorization_code',
-	      redirect_uri: 'http://localhost:3000',
-	      code: authCode,
-	      scope: 'profile'
-	    }
-	  });
-	};
-	
-	var requestLyftToken = exports.requestLyftToken = function requestLyftToken(authCode) {
-	  return _jquery2.default.ajax({
-	    url: "https://api.lyft.com/oauth/token",
-	    method: "POST",
-	    headers: {
-	      "Authorization": 'Basic base64(' + _config.LYFT_CLIENT_ID + ':' + _config.LYFT_CLIENT_SECRET + ')',
-	      "Content-Type": "application/json"
-	    },
-	    data: {
-	      "grant_type": "authorization_code",
-	      "code": authCode
-	    }
-	  });
-	};
 
 /***/ }
 /******/ ]);

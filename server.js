@@ -35,20 +35,21 @@ app.use('/app', express.static(path.join(__dirname, './app')));
 
 app.get('/uberCallback', (req, res) => {
   console.log('callback');
+  let userinfo;
+
   uberAuth.code.getToken(req.originalUrl)
     .then(user => {
-      user.refresh().then(function (updatedUser) {
-        console.log(updatedUser !== user); //=> true
-        console.log(updatedUser.accessToken);
-      });
+      user.refresh();
 
       user.sign({
         method: 'get',
         url: 'http://localhost:3000'
       });
+      userinfo = user.data;
 
-      return res.send(user.accessToken);
-    });
+      return res.json({ user: user.data });
+    })
+    .then(() => console.log(userinfo));
 });
 
 app.get('/lyft', (req, res) => {
@@ -58,7 +59,6 @@ app.get('/lyft', (req, res) => {
 
 app.get('/uber', (req, res) => {
   let uri = uberAuth.code.getUri();
-  console.log(uri);
   res.redirect(uri);
 });
 

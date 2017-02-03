@@ -1,8 +1,10 @@
 import { UBER_SERVER_TOKEN, UBER_CLIENT_ID, UBER_CLIENT_SECRET, LYFT_CLIENT_ID, LYFT_CLIENT_SECRET } from '../../config.js';
 import $ from 'jquery';
 
-export const requestUberToken = (authCode) => (
-  $.ajax({
+export const requestUberToken = (authCode) => {
+
+  debugger
+  return $.ajax({
     url: "https://login.uber.com/v2/token",
     method: "POST",
 
@@ -14,8 +16,8 @@ export const requestUberToken = (authCode) => (
       code: authCode,
       scope: 'profile'
     }
-  })
-);
+  });
+};
 
 export const requestLyftToken = (authCode) => (
   $.ajax({
