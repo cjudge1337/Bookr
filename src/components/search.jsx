@@ -66,15 +66,15 @@ class Search extends React.Component {
     // this.setState({destination_geolocation: });
   }
 
+
+
   handleSelectOrigin(place){
     this.props.updateCurrentAddress(place.formatted_address);
     this.props.getCurrentGeolocation(this.props.quotes.address.current);
-    // this.setState({destination_geolocation: });
   }
 
   renderDestinationAutocomplete(){
     return <Autocomplete
-      // style={{width: '90%'}}
       onPlaceSelected={ (place) => this.handleSelectDestination(place) }
       types={'address'}/>;
   }
@@ -89,8 +89,9 @@ class Search extends React.Component {
 
   getUberResults(){
       return this.props.quotes.prices.uber.map(productObj => {
+
         if(productObj.high_estimate > 0  && productObj.display_name !== "ASSIST" && productObj.display_name !== "WAV"){
-          return <li key={productObj.display_name}>Uber {productObj.display_name} costs {productObj.estimate} and can pick you up in {this.getUberTime(productObj.display_name)} minutes</li>;
+          return <li key={productObj.display_name} className="uber-lineitem">Uber {productObj.display_name} costs {productObj.estimate} and can pick you up in {this.getUberTime(productObj.display_name)} minutes</li>;
         }
       });
   }
@@ -111,7 +112,7 @@ class Search extends React.Component {
   getLyftResults(){
       return this.props.quotes.prices.lyft.map(productObj => {
         if(productObj.estimated_cost_cents_max > 0){
-          return <li key={productObj.display_name}>{productObj.display_name} costs {this.centsToDollars(productObj.estimated_cost_cents_min,
+          return <li key={productObj.display_name} className="lyft-lineitem">{productObj.display_name} costs {this.centsToDollars(productObj.estimated_cost_cents_min,
             productObj.estimated_cost_cents_max)}</li>;
         }
       });
@@ -119,16 +120,18 @@ class Search extends React.Component {
 
   renderResults(){
     if(this.props.quotes.prices.uber && this.props.quotes.prices.lyft){
-      return (<div>
-        <section>
+      return (<div className="quotes-container">
+        <section className="ride-info">
           <h3>{this.props.quotes.prices.uber[0].distance} Mile Ride</h3>
           <h3>Should take {this.props.quotes.prices.uber[0].duration / 60} Minutes</h3>
         </section>
-        <section>
-          {this.getUberResults()}
-        </section>
-        <section>
-          {this.getLyftResults()}
+        <section className="results-container">
+          <section className="uber-results">
+            {this.getUberResults()}
+          </section>
+          <section className="lyft-results">
+            {this.getLyftResults()}
+          </section>
         </section>
       </div>);
     }else{
@@ -140,8 +143,10 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        {this.renderOriginAutocomplete()}
-        {this.renderDestinationAutocomplete()}
+        <div className="search-container">
+          {this.renderOriginAutocomplete()}
+          {this.renderDestinationAutocomplete()}
+        </div>
         {this.renderResults()}
       </div>
     );
