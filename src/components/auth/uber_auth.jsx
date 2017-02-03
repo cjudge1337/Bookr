@@ -1,9 +1,9 @@
 import React from 'react';
-import Router from 'react-router';
 
 class UberAuth extends React.Component {
   constructor(props) {
     super(props);
+    debugger
   }
 
   render() {

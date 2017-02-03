@@ -45,11 +45,13 @@ app.get('/uberCallback', (req, res) => {
         method: 'get',
         url: 'http://localhost:3000'
       });
-      userinfo = user.data;
 
-      return res.json({ user: user.data });
+      userinfo = user.data;
+      return;
     })
-    .then(() => console.log(userinfo));
+    .then(() => {
+      return res.redirect('/#/uberAuth/' + userinfo.access_token);
+    });
 });
 
 app.get('/lyft', (req, res) => {

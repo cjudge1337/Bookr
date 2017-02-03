@@ -21563,7 +21563,7 @@
 	      _reactRouter.Router,
 	      { history: _reactRouter.hashHistory },
 	      _react2.default.createElement(_reactRouter.Route, { path: '/', component: _open2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/uberAuth', component: _uber_auth_container2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/uberAuth/:uberToken', component: _uber_auth_container2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/lyftAuth/:lyftAuthCode', component: _lyft_auth_container2.default })
 	    )
 	  );
@@ -28840,7 +28840,7 @@
 /* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -28851,10 +28851,6 @@
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(179);
-	
-	var _reactRouter2 = _interopRequireDefault(_reactRouter);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28870,19 +28866,22 @@
 	  function UberAuth(props) {
 	    _classCallCheck(this, UberAuth);
 	
-	    return _possibleConstructorReturn(this, (UberAuth.__proto__ || Object.getPrototypeOf(UberAuth)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (UberAuth.__proto__ || Object.getPrototypeOf(UberAuth)).call(this, props));
+	
+	    debugger;
+	    return _this;
 	  }
 	
 	  _createClass(UberAuth, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
-	        { className: 'auth-actions jawbone' },
+	        "div",
+	        { className: "auth-actions jawbone" },
 	        _react2.default.createElement(
-	          'h1',
+	          "h1",
 	          null,
-	          'uber test page'
+	          "uber test page"
 	        )
 	      );
 	    }
