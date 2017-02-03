@@ -18,7 +18,7 @@ const uberAuth = new OauthClient({
   clientSecret: 'vA7uZtzuIgfnvwLHlDPQsp3utkd564B45XlwcgZU',
   accessTokenUri: 'https://login.uber.com/oauth/v2/token',
   authorizationUri: 'https://login.uber.com/oauth/v2/authorize',
-  redirectUri: 'http://localhost:3000/callback',
+  redirectUri: 'http://localhost:3000/uberCallback',
   scopes: ['profile']
 });
 
@@ -33,17 +33,21 @@ app.use((req, res, next) => {
 
 app.use('/app', express.static(path.join(__dirname, './app')));
 
-app.get('/callback', (req, res) => {
+app.get('/uberCallback', (req, res) => {
   console.log('callback');
   uberAuth.code.getToken(req.originalUrl)
     .then(user => {
-      console.log(user); //=> { accessToken: '...', tokenType: 'bearer', ... }
-
-      // Refresh the current users access token.
       user.refresh().then(function (updatedUser) {
         console.log(updatedUser !== user); //=> true
         console.log(updatedUser.accessToken);
       });
+
+      user.sign({
+        method: 'get',
+        url: 'http://localhost:3000'
+      });
+
+      return res.send(user.accessToken);
     });
 });
 
