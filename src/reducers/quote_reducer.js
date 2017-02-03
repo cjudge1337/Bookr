@@ -13,17 +13,13 @@ const QuoteReducer = (state = _noProducts, action) => {
   Object.freeze(state);
   switch (action.type) {
     case ADD_UBER_QUOTES:
-      const newUberProducts = merge({}, state.prices, action.quotesObj);
-      return merge({}, state, {prices: {uber: newUberProducts}});
+      return merge({}, state, {prices: {uber: action.prices}});
     case ADD_LYFT_QUOTES:
-      const newLyftProducts = merge({}, state.prices, action.quotesObj);
-      return merge({}, state, {prices: {lyft: newLyftProducts}});
+      return merge({}, state, {prices: {lyft: action.prices}});
     case ADD_UBER_ETAS:
-      const newUberTimes = merge({}, state.times, action.timesObj);
-      return merge({}, state, {times: {uber: newUberTimes}});
+      return merge({}, state, {times: {uber: action.times}});
     case ADD_LYFT_ETAS:
-      const newLyftTimes = merge({}, state.times, action.timesObj);
-      return merge({}, state, {times: {lyft: newLyftTimes}});
+      return merge({}, state, {times: {lyft: action.times}});
     case UPDATE_CURRENT_ADDRESS:
       const newCurrentAdresses = merge({}, state.address, {current: action.address});
       return merge({}, state, {address: newCurrentAdresses});

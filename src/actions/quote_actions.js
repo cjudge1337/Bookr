@@ -41,42 +41,50 @@ export const updateDestinationAddress = address => ({
   address
 });
 
-export const addUberQuotes = quotesObj => ({
-  type: ADD_UBER_QUOTES,
-  quotesObj
-});
+export const addUberQuotes = quotesObj => {
+  return {
+    type: ADD_UBER_QUOTES,
+    prices: quotesObj.prices
+  };
+};
 
 export const getUberQuotes = (startLat, startLong, endLat, endLong) => dispatch => (
   UberAPIUtil.getAllProductQuotes(startLat, startLong, endLat, endLong)
     .then(response => dispatch(addUberQuotes(response)))
 );
 
-export const addLyftQuotes = quotesObj => ({
-  type: ADD_LYFT_QUOTES,
-  quotesObj
-});
+export const addLyftQuotes = quotesObj => {
+  return {
+    type: ADD_LYFT_QUOTES,
+    prices: quotesObj.cost_estimates
+  };
+};
 
 export const getLyftQuotes = (startLat, startLong, endLat, endLong) => dispatch => (
   LyftAPIUtil.getAllProductQuotes(startLat, startLong, endLat, endLong)
     .then(response => dispatch(addLyftQuotes(response)))
 );
 
-export const addUberETAs = timesObj => ({
-  type: ADD_UBER_ETAS,
-  timesObj
-});
+export const addUberETAs = timesObj => {
+  return {
+    type: ADD_UBER_ETAS,
+    times: timesObj.times
+  };
+};
 
 export const getUberETAs = (Lat, Long) => dispatch => (
-  UberAPIUtil.getAllProductQuotes(Lat, Long)
-    .then(response => dispatch(addUberQuotes(response)))
+  UberAPIUtil.getAllProductTimes(Lat, Long)
+    .then(response => dispatch(addUberETAs(response)))
 );
 
-export const addLyftETAs = timesObj => ({
-  type: ADD_LYFT_ETAS,
-  timesObj
-});
+export const addLyftETAs = timesObj => {
+  return {
+    type: ADD_LYFT_ETAS,
+    times: timesObj.eta_estimates
+  };
+};
 
 export const getLyftETAs = (Lat, Long) => dispatch => (
-  LyftAPIUtil.getAllProductQuotes(Lat, Long)
-    .then(response => dispatch(addLyftQuotes(response)))
+  LyftAPIUtil.getEta(Lat, Long)
+    .then(response => dispatch(addLyftETAs(response)))
 );

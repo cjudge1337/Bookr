@@ -3,21 +3,21 @@ import { UBER_SERVER_TOKEN } from '../../../config.js';
 import $ from "jquery";
 
 // get quotes for all uber products given a trip
-export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => (
-  $.ajax({
+export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => {
+  return $.ajax({
     method: 'GET',
     url: "https://api.uber.com/v1.2/estimates/price",
     headers: {
-        Authorization: "Token " + UBER_SERVER_TOKEN
+      Authorization: "Token " + UBER_SERVER_TOKEN
     },
     data: {
-        start_latitude: startLat,
-        start_longitude: startLong,
-        end_latitude: endLat,
-        end_longitude: endLong
+      start_latitude: startLat,
+      start_longitude: startLong,
+      end_latitude: endLat,
+      end_longitude: endLong
     },
-  })
-);
+  });
+};
 
 // Get Estimated time of pickup for different uber products
 export const getAllProductTimes = (startLat, startLong) => (
