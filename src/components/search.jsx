@@ -7,9 +7,6 @@ class Search extends React.Component {
   constructor(props){
     super(props);
     bindAll(this, 'handleSelectDestination', 'getUserLocation');
-    this.state = {
-      userLocation: ""
-    };
   }
 
   componentDidMount(){
