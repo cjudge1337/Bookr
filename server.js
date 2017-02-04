@@ -42,7 +42,7 @@ app.get('/uber', (req, res) => {
 
 app.get('/uberCallback', (req, res) => {
   let uberUserInfo;
-  console.log(req.originalUrl);
+
   uberAuth.code.getToken(req.originalUrl)
     .then(user => {
       user.refresh();
@@ -73,7 +73,7 @@ app.get('/uberCallback', (req, res) => {
 app.get('/lyft', (req, res) => {
   const authorizationUri = lyftAuth.authorizationCode.authorizeURL({
     redirect_uri: 'http://localhost:3000/lyftCallback',
-    scope: 'profile',
+    scope: 'rides.request',
     state: 'randomstuff'
   });
   res.redirect(authorizationUri);
