@@ -22,7 +22,7 @@ BOLD_FONT = "Gotham Bold";*/
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100% - 97px);
+  height: calc(100% - 95px);
 }
 
 .null{
@@ -91,7 +91,7 @@ BOLD_FONT = "Gotham Bold";*/
   display: flex;
   flex-direction: row;
   font-family: "Gotham Bold", sans-serif;
-
+  border-top: solid 5px white;
 }
 
 
@@ -165,7 +165,7 @@ BOLD_FONT = "Gotham Bold";*/
   align-items: center;
   background-color: black;
   color: white;
-  border: solid 1px white;
+  border-right: solid 5px white;
 }
 
 .lyft-results {

@@ -22,6 +22,10 @@ span, article, footer, time, small {
   height: 100%;
 }
 
+img{
+  z-index: 10000;
+}
+
 input{
   text-align: center;
   vertical-align: middle;
