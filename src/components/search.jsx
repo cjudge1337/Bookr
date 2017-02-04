@@ -2,7 +2,7 @@ import {bindAll} from 'lodash';
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import { getUserGeo, geoToAddress } from '../util/google_maps/location_api';
-import {Icon} from 'react-fa'
+import {Icon} from 'react-fa';
 
 class Search extends React.Component {
   constructor(props){
@@ -141,7 +141,12 @@ class Search extends React.Component {
         </section>
       </div>);
     }else if(this.props.quotes.geolocations.current !== "" && this.props.quotes.geolocations.destination !== ""){
-      return <Icon spin name="spinner" size="5x"/>;
+      return (
+      // <Icon spin name="spinner" size="5x"/>;
+        <div>
+          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+        </div>);
     }else{
       return <div></div>;
     }
