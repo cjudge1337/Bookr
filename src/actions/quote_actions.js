@@ -77,7 +77,7 @@ export const addLyftQuotes = quotesObj => {
   }else{
     return {
       type: ADD_LYFT_ERRORS,
-      error: "No rides available at this time between those locations."
+      error: "Lyft is not yet available in this region."
     };
   }
 };

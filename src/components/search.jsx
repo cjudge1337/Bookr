@@ -6,11 +6,14 @@ import {Icon} from 'react-fa';
 // import Spinner from 'react-icons/lib/fa/spinner';
 // const { FaIcon, FaStack } = require('react-fa');
 
+const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
+
+
 class Search extends React.Component {
   constructor(props){
     super(props);
 
-    bindAll(this, 'getUberTime','handleSelectDestination','renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
+    bindAll(this, 'createETA', 'getUberTime','handleSelectDestination','renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
 
 
   }
@@ -80,6 +83,7 @@ class Search extends React.Component {
   renderDestinationAutocomplete(){
     return <Autocomplete
       onPlaceSelected={ (place) => this.handleSelectDestination(place) }
+      placeholder="Enter a destination"
       types={'address'}/>;
   }
 
@@ -95,15 +99,46 @@ class Search extends React.Component {
     console.log(that);
     return this.props.quotes.prices.uber.map(productObj => {
 
-      if(productObj.high_estimate > 0){
+      if(productObj.high_estimate > 0 && UBER_PRODUCTS.includes(productObj.display_name)){
         return (<li key={productObj.display_name} className="uber-lineitem">
-          <h3>{productObj.display_name}</h3>
-          <h3>{productObj.estimate}</h3>
-          <h5>{that.getUberTime(productObj.display_name)}</h5>
-          <h5>{that.getUberTime(productObj.display_name) + (productObj.duration / 60)}</h5>
+          <h3 className="uber-key-data">{productObj.display_name}</h3>
+          <h3 className="uber-key-data">{productObj.estimate}</h3>
+          <div className="uber-lineitem-times">
+            <div className="time-inner-div">
+              <h5>{that.getUberTime(productObj.display_name)} min</h5>
+              <h5>away</h5>
+            </div>
+            <div className="time-inner-div">
+              <h5>ETA:</h5>
+              <h5>{this.createETA(that.getUberTime(productObj.display_name) + (productObj.duration / 60))}</h5>
+            </div>
+          </div>
         </li>);
       }
     });
+  }
+
+  createETA(rideLength){
+    const now = new Date();
+    let hrs = now.getHours();
+    let mins = now.getMinutes();
+    let indicator;
+    mins = (mins + rideLength) % 60;
+    if(now.getMinutes() + rideLength > 59){
+      hrs = (hrs + 1) % 24;
+    }
+    if(hrs > 12){
+      hrs -= 12;
+      indicator = "PM";
+    }else if(hrs === 12){
+      indicator = "PM";
+    } else if(hrs > 0){
+      indicator = "AM";
+    } else {
+      hrs = 12;
+      indicator = "AM";
+    }
+    return `${hrs}:${mins} ${indicator}`;
   }
 
   getUberTime(displayName){
@@ -138,9 +173,11 @@ class Search extends React.Component {
         </section>
         <section className="results-container">
           <section className="uber-results">
+            <h1 className="company-titles">UBER</h1>
             {this.getUberResults()}
           </section>
           <section className="lyft-results">
+            <h1 className="company-titles">LYFT</h1>
             {this.getLyftResults()}
           </section>
         </section>
@@ -154,19 +191,19 @@ class Search extends React.Component {
     }
     else if(this.props.quotes.geolocations.current !== "" && this.props.quotes.geolocations.destination !== ""){
       return (
-        // <Spinner className="fa-spin"/>
-        // <FaIcon icon="spinner" spin />
-      <Icon spin name="spinner" size="5x"/>
+      <div className="spinner">
+        <Icon spin name="spinner" size="5x"/>
+      </div>
       );
     }else{
-      return <div></div>;
+      return <div className="null"></div>;
     }
   }
 
   // TODO add location bias based on user's location https://github.com/ErrorPro/react-google-autocomplete https://developers.google.com/places/web-service/autocomplete#location_biasing
   render() {
     return (
-      <div>
+      <div className="search-page">
         <div className="search-container">
           {this.renderOriginAutocomplete()}
           {this.renderDestinationAutocomplete()}
