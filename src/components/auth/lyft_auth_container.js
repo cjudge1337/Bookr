@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import LyftAuth from './lyft_auth';
-import { requestLyftToken } from '../../actions/auth_actions';
+import { receiveLyftCreds } from '../../actions/auth_actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  requestLyftToken: (code) => dispatch(requestLyftToken(code))
+  receiveLyftCreds: (creds) => dispatch(receiveLyftCreds(creds))
 });
 
 export default connect(
