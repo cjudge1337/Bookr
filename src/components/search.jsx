@@ -3,6 +3,8 @@ import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import { getUserGeo, geoToAddress } from '../util/google_maps/location_api';
 import {Icon} from 'react-fa';
+// import Spinner from 'react-icons/lib/fa/spinner';
+// const { FaIcon, FaStack } = require('react-fa');
 
 class Search extends React.Component {
   constructor(props){
@@ -82,7 +84,6 @@ class Search extends React.Component {
 
   renderOriginAutocomplete(){
     return <Autocomplete
-      // style={{width: '90%'}}
       onPlaceSelected={ (place) => this.handleSelectOrigin(place) }
       placeholder={this.props.quotes.address.current}
       types={'address'}/>;
@@ -105,7 +106,7 @@ class Search extends React.Component {
   getUberTime(displayName){
     this.props.quotes.times.uber.forEach(timeObj => {
       if(timeObj.display_name === displayName){
-        console.log(timeObj.estimate / 60);
+        // console.log(timeObj.estimate / 60);
         return timeObj.estimate / 60;
       }
     });
@@ -140,13 +141,19 @@ class Search extends React.Component {
           </section>
         </section>
       </div>);
-    }else if(this.props.quotes.geolocations.current !== "" && this.props.quotes.geolocations.destination !== ""){
-      return (
-      // <Icon spin name="spinner" size="5x"/>;
-        <div>
-          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
+    }
+    else if(this.props.quotes.errors.uber && this.props.quotes.errors.lyft){
+      return (<div>
+          <h6>{this.props.quotes.errors.uber}</h6>
+          <h6>{this.props.quotes.errors.lyft}</h6>
         </div>);
+    }
+    else if(this.props.quotes.geolocations.current !== "" && this.props.quotes.geolocations.destination !== ""){
+      return (
+        // <Spinner className="fa-spin"/>
+        // <FaIcon icon="spinner" spin />
+      <Icon spin name="spinner" size="5x"/>
+      );
     }else{
       return <div></div>;
     }
