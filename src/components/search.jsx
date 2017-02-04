@@ -40,7 +40,6 @@ class Search extends React.Component {
         ||
         newGeos.destination.lng !== oldGeos.destination.lng)){
           this.props.clearStuff();
-          debugger
           this.props.getLyftQuotes(newGeos.current.lat, newGeos.current.lng, newGeos.destination.lat, newGeos.destination.lng);
           this.props.getUberQuotes(newGeos.current.lat, newGeos.current.lng, newGeos.destination.lat, newGeos.destination.lng);
           this.props.getLyftETAs(newGeos.current.lat, newGeos.current.lng);
@@ -92,26 +91,29 @@ class Search extends React.Component {
   }
 
   getUberResults(){
-      return this.props.quotes.prices.uber.map(productObj => {
+    const that = this;
+    console.log(that);
+    return this.props.quotes.prices.uber.map(productObj => {
 
-        if(productObj.high_estimate > 0  && productObj.display_name !== "ASSIST" && productObj.display_name !== "WAV"){
-          return <li key={productObj.display_name} className="uber-lineitem">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Uber {productObj.display_name} costs {productObj.estimate} and can pick you up in {this.getUberTime(productObj.display_name)} minutes</li>;
-        }
-      });
+      if(productObj.high_estimate > 0){
+        return (<li key={productObj.display_name} className="uber-lineitem">
+          <h3>{productObj.display_name}</h3>
+          <h3>{productObj.estimate}</h3>
+          <h5>{that.getUberTime(productObj.display_name)}</h5>
+          <h5>{that.getUberTime(productObj.display_name) + (productObj.duration / 60)}</h5>
+        </li>);
+      }
+    });
   }
 
   getUberTime(displayName){
+    let time;
     this.props.quotes.times.uber.forEach(timeObj => {
       if(timeObj.display_name === displayName){
-        // console.log(timeObj.estimate / 60);
-        return timeObj.estimate / 60;
+        time = timeObj.estimate / 60;
       }
     });
+    return time;
   }
 
   centsToDollars(min, max){
