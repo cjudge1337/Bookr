@@ -173,11 +173,14 @@ class Search extends React.Component {
         </section>
         <section className="results-container">
           <section className="uber-results">
-            <h1 className="company-titles">UBER</h1>
+            <div className="uber-header">
+              <img id="uber-logo" src={require('../../app/images/uber_rides_api_icon_2x_78px.png')}/>
+              <h1 className="company-titles">UBER</h1>
+            </div>
             {this.getUberResults()}
           </section>
           <section className="lyft-results">
-            <h1 className="company-titles">LYFT</h1>
+            <img id="lyft-logo" src={require('../../app/images/lyft_header.png')}/>
             {this.getLyftResults()}
           </section>
         </section>
@@ -193,6 +196,7 @@ class Search extends React.Component {
       return (
       <div className="spinner">
         <Icon spin name="spinner" size="5x"/>
+        <h6> </h6>
       </div>
       );
     }else{
