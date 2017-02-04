@@ -39,6 +39,8 @@ class Search extends React.Component {
         newGeos.destination.lat !== oldGeos.destination.lat
         ||
         newGeos.destination.lng !== oldGeos.destination.lng)){
+          this.props.clearStuff();
+          debugger
           this.props.getLyftQuotes(newGeos.current.lat, newGeos.current.lng, newGeos.destination.lat, newGeos.destination.lng);
           this.props.getUberQuotes(newGeos.current.lat, newGeos.current.lng, newGeos.destination.lat, newGeos.destination.lng);
           this.props.getLyftETAs(newGeos.current.lat, newGeos.current.lng);

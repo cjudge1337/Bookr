@@ -3,6 +3,7 @@ import * as LyftAPIUtil from '../util/lyft/quotes.js';
 import * as GoogleAPIUtil from '../util/google_maps/location_api.js';
 
 export const ADD_UBER_QUOTES = "ADD_UBER_QUOTES";
+export const CLEAR_STUFF = "CLEAR_STUFF";
 export const ADD_UBER_ERRORS = "ADD_UBER_ERRORS";
 export const ADD_LYFT_ERRORS = "ADD_LYFT_ERRORS";
 export const ADD_LYFT_QUOTES = "ADD_LYFT_QUOTES";
@@ -12,6 +13,10 @@ export const UPDATE_CURRENT_ADDRESS = "UPDATE_CURRENT_ADDRESS";
 export const UPDATE_DESTINATION_ADDRESS = "UPDATE_DESTINATION_ADDRESS";
 export const UPDATE_CURRENT_GEOLOCATION = "UPDATE_CURRENT_GEOLOCATION";
 export const UPDATE_DESTINATION_GEOLOCATION = "UPDATE_DESTINATION_GEOLOCATION";
+
+export const clearPricesErrors = () => ({
+  type: CLEAR_STUFF,
+});
 
 export const updateCurrentGeolocation = location => ({
   type: UPDATE_CURRENT_GEOLOCATION,
@@ -51,7 +56,6 @@ export const addUberQuotes = quotesObj => {
 };
 
 export const addUberErrors = error => {
-  debugger
   return {
     type: ADD_UBER_ERRORS,
     error: error.responseJSON.message
@@ -65,7 +69,6 @@ export const getUberQuotes = (startLat, startLong, endLat, endLong) => dispatch 
 );
 
 export const addLyftQuotes = quotesObj => {
-  debugger
   if(quotesObj.cost_estimates.length > 0){
     return {
       type: ADD_LYFT_QUOTES,
