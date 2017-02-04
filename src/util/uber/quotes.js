@@ -53,12 +53,12 @@ export const getProductQuote = (product_id, startLat, startLong, endLat, endLong
 );
 
 // initialize an uber ride
-export const createRide = (fare_id, product_id, startLat, startLong, endLat, endLong) => (
+export const createRide = (fare_id, product_id, startLat, startLong, endLat, endLong, authToken) => (
   $.ajax({
     method: 'POST',
     url: "https://api.uber.com/v1.2/requests",
     headers: {
-        Authorization: "Token " + UBER_SERVER_TOKEN
+        Authorization: "Bearer " + authToken
     },
     data: {
         fare_id: fare_id,
@@ -72,30 +72,30 @@ export const createRide = (fare_id, product_id, startLat, startLong, endLat, end
 );
 
 // get information about a ride created within the app
-export const getRideInfo = (requestId) => (
+export const getRideInfo = (requestId, authToken) => (
   $.ajax({
     method: 'GET',
     url: `https://api.uber.com/v1.2/requests/${requestId}`,
     headers: {
-        Authorization: "Token " + UBER_SERVER_TOKEN
+        Authorization: "Bearer " + authToken
     }
   })
 );
 
 
 // get map for a ride created within the app
-export const getRideMap = (requestId) => (
+export const getRideMap = (requestId, authToken) => (
   $.ajax({
     method: 'GET',
     url: `https://api.uber.com/v1.2/requests/${requestId}/map`,
     headers: {
-        Authorization: "Token " + UBER_SERVER_TOKEN
+        Authorization: "Bearer " + authToken
     }
   })
 );
 
 // cancel an uber ride
-export const deleteRide = (requestId) => (
+export const deleteRide = (requestId, authToken) => (
   $.ajax({
     method: 'DELETE',
     url: `https://api.uber.com/v1.2/requests/${requestId}`,
@@ -106,12 +106,12 @@ export const deleteRide = (requestId) => (
 );
 
 
-export const getUberProducts = (lat, longitude) => (
+export const getUberProducts = (lat, longitude, authToken) => (
   $.ajax({
     method: 'GET',
     url: `https://api.uber.com/v1.2/products`,
     headers: {
-        Authorization: "Token " + UBER_SERVER_TOKEN
+        Authorization: "Token " + authToken
     },
     data: {
       latitude: lat,
