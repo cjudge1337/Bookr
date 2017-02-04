@@ -12,6 +12,7 @@ class UberAuth extends React.Component {
   }
 
   render() {
+    sessionStorage.session = JSON.stringify(this.props.session);
     return (
       <div className="auth-actions jawbone">
         <h1>uber test page</h1>
