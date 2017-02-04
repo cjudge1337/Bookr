@@ -1,5 +1,6 @@
 import React from 'react';
 import qs from 'query-string';
+import { hashHistory } from 'react-router';
 
 class LyftAuth extends React.Component {
   constructor(props) {
@@ -9,6 +10,11 @@ class LyftAuth extends React.Component {
   componentDidMount() {
     let creds = qs.parse(this.props.params.lyftCreds);
     this.props.receiveLyftCreds(creds);
+  }
+
+  componentDidUpdate() {
+    sessionStorage.session = JSON.stringify(this.props.session);
+    hashHistory.push('/search');
   }
 
   render() {
