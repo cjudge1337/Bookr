@@ -11,7 +11,7 @@ const uberAuth = new OauthClient({
   accessTokenUri: 'https://login.uber.com/oauth/v2/token',
   authorizationUri: 'https://login.uber.com/oauth/v2/authorize',
   redirectUri: 'http://localhost:3000/uberCallback',
-  scopes: ['request']
+  scopes: ['profile']
 });
 
 const lyftAuth = SimpleOauth.create({
