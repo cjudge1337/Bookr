@@ -2,6 +2,7 @@ import {bindAll} from 'lodash';
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import { getUserGeo, geoToAddress } from '../util/google_maps/location_api';
+import {Icon} from 'react-fa';
 
 class Search extends React.Component {
   constructor(props){
@@ -91,7 +92,12 @@ class Search extends React.Component {
       return this.props.quotes.prices.uber.map(productObj => {
 
         if(productObj.high_estimate > 0  && productObj.display_name !== "ASSIST" && productObj.display_name !== "WAV"){
-          return <li key={productObj.display_name} className="uber-lineitem">Uber {productObj.display_name} costs {productObj.estimate} and can pick you up in {this.getUberTime(productObj.display_name)} minutes</li>;
+          return <li key={productObj.display_name} className="uber-lineitem">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Uber {productObj.display_name} costs {productObj.estimate} and can pick you up in {this.getUberTime(productObj.display_name)} minutes</li>;
         }
       });
   }
@@ -134,6 +140,13 @@ class Search extends React.Component {
           </section>
         </section>
       </div>);
+    }else if(this.props.quotes.geolocations.current !== "" && this.props.quotes.geolocations.destination !== ""){
+      return (
+      // <Icon spin name="spinner" size="5x"/>;
+        <div>
+          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+        </div>);
     }else{
       return <div></div>;
     }
