@@ -3,12 +3,17 @@ import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import { getUserGeo, geoToAddress } from '../util/google_maps/location_api';
 import {Icon} from 'react-fa';
+// import Spinner from 'react-icons/lib/fa/spinner';
+// const { FaIcon, FaStack } = require('react-fa');
+
+const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
+
 
 class Search extends React.Component {
   constructor(props){
     super(props);
 
-    bindAll(this, 'getUberTime','handleSelectDestination','renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
+    bindAll(this, 'createETA', 'getUberTime','handleSelectDestination','renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars', 'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
 
 
   }
@@ -37,6 +42,7 @@ class Search extends React.Component {
         newGeos.destination.lat !== oldGeos.destination.lat
         ||
         newGeos.destination.lng !== oldGeos.destination.lng)){
+          this.props.clearStuff();
           this.props.getLyftQuotes(newGeos.current.lat, newGeos.current.lng, newGeos.destination.lat, newGeos.destination.lng);
           this.props.getUberQuotes(newGeos.current.lat, newGeos.current.lng, newGeos.destination.lat, newGeos.destination.lng);
           this.props.getLyftETAs(newGeos.current.lat, newGeos.current.lng);
@@ -77,38 +83,72 @@ class Search extends React.Component {
   renderDestinationAutocomplete(){
     return <Autocomplete
       onPlaceSelected={ (place) => this.handleSelectDestination(place) }
+      placeholder="Enter a destination"
       types={'address'}/>;
   }
 
   renderOriginAutocomplete(){
     return <Autocomplete
-      // style={{width: '90%'}}
       onPlaceSelected={ (place) => this.handleSelectOrigin(place) }
       placeholder={this.props.quotes.address.current}
       types={'address'}/>;
   }
 
   getUberResults(){
-      return this.props.quotes.prices.uber.map(productObj => {
+    const that = this;
+    console.log(that);
+    return this.props.quotes.prices.uber.map(productObj => {
 
-        if(productObj.high_estimate > 0  && productObj.display_name !== "ASSIST" && productObj.display_name !== "WAV"){
-          return <li key={productObj.display_name} className="uber-lineitem">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Uber {productObj.display_name} costs {productObj.estimate} and can pick you up in {this.getUberTime(productObj.display_name)} minutes</li>;
-        }
-      });
+      if(productObj.high_estimate > 0 && UBER_PRODUCTS.includes(productObj.display_name)){
+        return (<li key={productObj.display_name} className="uber-lineitem">
+          <h3 className="uber-key-data">{productObj.display_name}</h3>
+          <h3 className="uber-key-data">{productObj.estimate}</h3>
+          <div className="uber-lineitem-times">
+            <div className="time-inner-div">
+              <h5>{that.getUberTime(productObj.display_name)} min</h5>
+              <h5>away</h5>
+            </div>
+            <div className="time-inner-div">
+              <h5>ETA:</h5>
+              <h5>{this.createETA(that.getUberTime(productObj.display_name) + (productObj.duration / 60))}</h5>
+            </div>
+          </div>
+        </li>);
+      }
+    });
+  }
+
+  createETA(rideLength){
+    const now = new Date();
+    let hrs = now.getHours();
+    let mins = now.getMinutes();
+    let indicator;
+    mins = (mins + rideLength) % 60;
+    if(now.getMinutes() + rideLength > 59){
+      hrs = (hrs + 1) % 24;
+    }
+    if(hrs > 12){
+      hrs -= 12;
+      indicator = "PM";
+    }else if(hrs === 12){
+      indicator = "PM";
+    } else if(hrs > 0){
+      indicator = "AM";
+    } else {
+      hrs = 12;
+      indicator = "AM";
+    }
+    return `${hrs}:${mins} ${indicator}`;
   }
 
   getUberTime(displayName){
+    let time;
     this.props.quotes.times.uber.forEach(timeObj => {
       if(timeObj.display_name === displayName){
-        console.log(timeObj.estimate / 60);
-        return timeObj.estimate / 60;
+        time = timeObj.estimate / 60;
       }
     });
+    return time;
   }
 
   centsToDollars(min, max){
@@ -133,29 +173,37 @@ class Search extends React.Component {
         </section>
         <section className="results-container">
           <section className="uber-results">
+            <h1 className="company-titles">UBER</h1>
             {this.getUberResults()}
           </section>
           <section className="lyft-results">
+            <h1 className="company-titles">LYFT</h1>
             {this.getLyftResults()}
           </section>
         </section>
       </div>);
-    }else if(this.props.quotes.geolocations.current !== "" && this.props.quotes.geolocations.destination !== ""){
-      return (
-      // <Icon spin name="spinner" size="5x"/>;
-        <div>
-          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
+    }
+    else if(this.props.quotes.errors.uber && this.props.quotes.errors.lyft){
+      return (<div>
+          <h6>{this.props.quotes.errors.uber}</h6>
+          <h6>{this.props.quotes.errors.lyft}</h6>
         </div>);
+    }
+    else if(this.props.quotes.geolocations.current !== "" && this.props.quotes.geolocations.destination !== ""){
+      return (
+      <div className="spinner">
+        <Icon spin name="spinner" size="5x"/>
+      </div>
+      );
     }else{
-      return <div></div>;
+      return <div className="null"></div>;
     }
   }
 
   // TODO add location bias based on user's location https://github.com/ErrorPro/react-google-autocomplete https://developers.google.com/places/web-service/autocomplete#location_biasing
   render() {
     return (
-      <div>
+      <div className="search-page">
         <div className="search-container">
           {this.renderOriginAutocomplete()}
           {this.renderDestinationAutocomplete()}

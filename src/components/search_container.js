@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import { updateCurrentAddress, updateDestinationAddress, getDestinationGeolocation, getCurrentGeolocation, getLyftQuotes, getUberQuotes, getLyftETAs, getUberETAs } from '../actions/quote_actions.js';
+import { clearPricesErrors, updateCurrentAddress, updateDestinationAddress, getDestinationGeolocation, getCurrentGeolocation, getLyftQuotes, getUberQuotes, getLyftETAs, getUberETAs } from '../actions/quote_actions.js';
 import Search from './search';
 
 const mapStateToProps = store => ({
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, {location}) => (
     getCurrentGeolocation: (address) => dispatch(getCurrentGeolocation(address)),
     updateCurrentAddress: address => dispatch(updateCurrentAddress(address)),
     updateDestinationAddress: address => dispatch(updateDestinationAddress(address)),
-
+    clearStuff: () => dispatch(clearPricesErrors()),
   }
 );
 
