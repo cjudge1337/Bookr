@@ -14,6 +14,8 @@ class Enroute extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = { timer: 0 };
+
     this.currentRide = this.currentRide.bind(this);
     this.acceptedRide = this.acceptedRide.bind(this);
     this.arrivedRide = this.arrivedRide.bind(this);
@@ -21,41 +23,56 @@ class Enroute extends React.Component {
     this.driverCancel = this.driverCancel.bind(this);
   }
 
-  componentDidMount() {
-    // debugger
-    let fareId = getFareId();
-    sandboxRequestRide(fareId)
-    .then(res => this.props.getUberUpdate(res));
+  updateStatus() {
+    this.props.checkSandboxStatus();
   }
 
-  currentRide() {
+  componentDidMount() {
+    sandboxRequestRide()
+    .then(res => this.props.getUberUpdate(res));
+
+    const newTimer = setInterval(this.updateStatus.bind(this), 5000);
+    this.setState({ timer: newTimer });
+  }
+
+  currentRide(e) {
+    e.preventDefault();
     sandboxCurrentRide().then(res => console.log(res));
   }
 
-  acceptedRide() {
+  acceptedRide(e) {
+    e.preventDefault();
     sandboxAcceptedRide()
     .then(res => this.props.getUberUpdate(res));
   }
 
-  arrivedRide() {
+  arrivedRide(e) {
+    e.preventDefault();
     sandboxArrivedRide()
     .then(res => this.props.getUberUpdate(res));
   }
 
-  cancelRide() {
+  cancelRide(e) {
+    e.preventDefault();
     sandboxDeleteRide();
     this.props.deleteUberRide();
   }
 
-  driverCancel() {
+  driverCancel(e) {
+    e.preventDefault();
     sandboxDriverCancel();
     this.props.deleteUberRide();
   }
 
   render() {
+    let props = {};
+    if (this.props) {
+      props = this.props;
+    }
+debugger
     return (
       <div className="enroute-container">
-        <h2 className="driver-name">Test Driver</h2>
+        <h2 className="driver-name">{props.enroute.uber.info.status}</h2>
         <button className="cancel-ride" onClick={this.currentRide}>Current Ride</button>
         <button className="cancel-ride" onClick={this.acceptedRide}>Accepted Ride</button>
         <button className="cancel-ride" onClick={this.arrivedRide}>Arrived Ride</button>
