@@ -13,6 +13,18 @@ export const UPDATE_CURRENT_ADDRESS = "UPDATE_CURRENT_ADDRESS";
 export const UPDATE_DESTINATION_ADDRESS = "UPDATE_DESTINATION_ADDRESS";
 export const UPDATE_CURRENT_GEOLOCATION = "UPDATE_CURRENT_GEOLOCATION";
 export const UPDATE_DESTINATION_GEOLOCATION = "UPDATE_DESTINATION_GEOLOCATION";
+export const BOOK_UBER_RIDE = "BOOK_UBER_RIDE";
+export const BOOK_LYFT_RIDE = "BOOK_LYFT_RIDE";
+
+export const bookUberRide = rideData => ({
+  type: BOOK_UBER_RIDE,
+  rideData
+});
+
+export const bookLyftRide = rideData => ({
+  type: BOOK_LYFT_RIDE,
+  rideData
+});
 
 export const clearPricesErrors = () => ({
   type: CLEAR_STUFF,

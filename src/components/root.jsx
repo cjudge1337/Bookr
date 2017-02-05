@@ -5,7 +5,7 @@ import Open from './auth/open';
 import UberAuthContainer from './auth/uber_auth_container';
 import LyftAuthContainer from './auth/lyft_auth_container';
 import SearchContainer from './search/search_container';
-import Confirm from './search/confirm';
+import Confirm from './search/confirm_container';
 
 const Root = ({ store }) => {
   return (

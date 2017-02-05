@@ -2,20 +2,25 @@ import { merge } from 'lodash';
 import { CLEAR_STUFF, ADD_LYFT_ERRORS, ADD_UBER_ERRORS, UPDATE_CURRENT_GEOLOCATION,
   UPDATE_DESTINATION_GEOLOCATION, UPDATE_CURRENT_ADDRESS,
   UPDATE_DESTINATION_ADDRESS, ADD_UBER_QUOTES, ADD_LYFT_QUOTES,
-  ADD_UBER_ETAS, ADD_LYFT_ETAS } from '../actions/quote_actions';
+  ADD_UBER_ETAS, ADD_LYFT_ETAS, BOOK_UBER_RIDE, BOOK_LYFT_RIDE } from '../actions/quote_actions';
 
 const _noProducts = {
   errors: {},
   prices: {},
   times: {},
   address: {current: "", destination: ""},
-  geolocations: {current: "", destination: ""}
+  geolocations: {current: "", destination: ""},
+  booked_ride: {}
 };
 
 const QuoteReducer = (state = _noProducts, action) => {
   Object.freeze(state);
 
   switch (action.type) {
+    case BOOK_UBER_RIDE:
+      return merge({}, state, {booked_ride: {uber: action.rideData}});
+    case BOOK_LYFT_RIDE:
+      return merge({}, state, {booked_ride: {lyft: action.rideData}});
     case CLEAR_STUFF:
       return merge({}, _noProducts,
         {address: state.address, geolocations: state.geolocations});

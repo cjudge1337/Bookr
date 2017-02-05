@@ -11,7 +11,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    bindAll(this, 'orderRide', 'createETA', 'getTime','handleSelectDestination',
+    bindAll(this, 'orderUberRide', 'orderLyftRide', 'createETA', 'getTime','handleSelectDestination',
       'renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars',
       'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
   }
@@ -106,7 +106,13 @@ class Search extends React.Component {
       types={'address'}/>;
   }
 
-  orderRide(){
+  orderUberRide(rideData){
+    this.props.bookUberRide(rideData);
+    hashHistory.push('/confirm');
+  }
+
+  orderLyftRide(rideData){
+    this.props.bookLyftRide(rideData);
     hashHistory.push('/confirm');
   }
 
@@ -117,7 +123,7 @@ class Search extends React.Component {
       if (productObj.high_estimate > 0 &&
         UBER_PRODUCTS.includes(productObj.display_name)) {
         return (
-          <li onClick={() => this.orderRide()} key={productObj.display_name} className="uber-lineitem">
+          <li onClick={() => this.orderUberRide(productObj.product_id)} key={productObj.display_name} className="uber-lineitem">
             <h3 className="uber-key-data">{productObj.display_name}</h3>
             <h3 className="uber-key-data">{productObj.estimate}</h3>
             <div className="uber-lineitem-times">
@@ -144,7 +150,7 @@ class Search extends React.Component {
     return this.props.quotes.prices.lyft.map(productObj => {
       if (productObj.estimated_cost_cents_max > 0) {
         return (
-          <li key={productObj.display_name}
+          <li onClick={() => this.orderLyftRide(productObj.display_name)} key={productObj.display_name}
             className="uber-lineitem">
               <h3 className="uber-key-data">{productObj.display_name}</h3>
               <h3 className="uber-key-data">{that.centsToDollars(productObj.estimated_cost_cents_min,

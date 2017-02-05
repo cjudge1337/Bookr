@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Search from './search';
 import { clearPricesErrors, updateCurrentAddress, updateDestinationAddress,
   getDestinationGeolocation, getCurrentGeolocation, getLyftQuotes, getUberQuotes,
-  getLyftETAs, getUberETAs } from '../../actions/quote_actions.js';
+  getLyftETAs, getUberETAs, bookUberRide, bookLyftRide } from '../../actions/quote_actions.js';
 
 const mapStateToProps = store => ({
   quotes: store.quotes,
@@ -26,6 +26,8 @@ const mapDispatchToProps = (dispatch, {location}) => (
     updateDestinationAddress: address =>
       dispatch(updateDestinationAddress(address)),
     clearStuff: () => dispatch(clearPricesErrors()),
+    bookUberRide: rideData => dispatch(bookUberRide(rideData)),
+    bookLyftRide: rideData => dispatch(bookLyftRide(rideData)),
   }
 );
 
