@@ -3,6 +3,7 @@ import { bindAll } from 'lodash';
 import Autocomplete from 'react-google-autocomplete';
 import { getUserGeo, geoToAddress } from '../../util/google_maps/location_api';
 import Loading from '../loading';
+import { hashHistory } from 'react-router';
 
 const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
 
@@ -10,7 +11,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    bindAll(this, 'createETA', 'getTime','handleSelectDestination',
+    bindAll(this, 'orderUberRide', 'orderLyftRide', 'createETA', 'getTime','handleSelectDestination',
       'renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars',
       'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
   }
@@ -105,6 +106,25 @@ class Search extends React.Component {
       types={'address'}/>;
   }
 
+  orderUberRide(rideData){
+    if(this.props.session.uberCreds.access_token.length > 0){
+      this.props.bookUberRide(rideData);
+      hashHistory.push('/confirm');
+    }else if(confirm("You must be logged in to Uber to book this ride.") === true){
+      //redirect to uber login
+
+    }
+  }
+
+  orderLyftRide(rideData){
+    if(this.props.session.lyftCreds){
+      this.props.bookLyftRide(rideData);
+      hashHistory.push('/confirm');
+    } else{
+      alert("You must be logged in to Lyft to book this ride.");
+    }
+  }
+
   getUberResults() {
     const that = this;
 
@@ -112,7 +132,7 @@ class Search extends React.Component {
       if (productObj.high_estimate > 0 &&
         UBER_PRODUCTS.includes(productObj.display_name)) {
         return (
-          <li key={productObj.display_name} className="uber-lineitem">
+          <li onClick={() => this.orderUberRide(productObj.product_id)} key={productObj.display_name} className="uber-lineitem">
             <h3 className="uber-key-data">{productObj.display_name}</h3>
             <h3 className="uber-key-data">{productObj.estimate}</h3>
             <div className="uber-lineitem-times">
@@ -139,7 +159,7 @@ class Search extends React.Component {
     return this.props.quotes.prices.lyft.map(productObj => {
       if (productObj.estimated_cost_cents_max > 0) {
         return (
-          <li key={productObj.display_name}
+          <li onClick={() => this.orderLyftRide(productObj.display_name)} key={productObj.display_name}
             className="uber-lineitem">
               <h3 className="uber-key-data">{productObj.display_name}</h3>
               <h3 className="uber-key-data">{that.centsToDollars(productObj.estimated_cost_cents_min,
