@@ -90,8 +90,8 @@ BOLD_FONT = "Gotham Bold";*/
 .results-container {
   display: flex;
   flex-direction: row;
-  font-family: "Gotham Bold", sans-serif;
-
+  font-family: "Gotham Book", sans-serif;
+  border-top: solid 5px white;
 }
 
 
@@ -100,6 +100,13 @@ BOLD_FONT = "Gotham Bold";*/
 
 
 .spinner{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.fa{
   width: auto;
   height: auto;
 }
@@ -121,7 +128,27 @@ BOLD_FONT = "Gotham Bold";*/
 .company-titles{
   text-align: center;
   height: auto;
+  width: auto;
   margin-bottom: 15px;
+}
+
+.uber-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+#uber-logo{
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+#lyft-logo{
+  width: 100px;
+  height: 50px;
 }
 
 
@@ -138,6 +165,8 @@ BOLD_FONT = "Gotham Bold";*/
   align-items: center;
   background-color: black;
   color: white;
+  border-right: solid 5px white;
+  font-family: inherit;
 }
 
 .lyft-results {
@@ -147,6 +176,7 @@ BOLD_FONT = "Gotham Bold";*/
   align-items: center;
   background-color: #FF00BF;
   color: white;
+  font-family: inherit;
 }
 
 .uber-lineitem {
@@ -159,6 +189,7 @@ BOLD_FONT = "Gotham Bold";*/
   font-family: inherit;
   color: inherit;
   height: calc(20% - 13px);
+  border-top: solid 1px white;
 }
 
 .uber-lineitem-times{
@@ -168,6 +199,11 @@ BOLD_FONT = "Gotham Bold";*/
   font-family: inherit;
   color: inherit;
   height: auto;
+}
+
+.uber-lineitem:hover, .lyft-lineitem:hover{
+  cursor: pointer;
+
 }
 
 .company-titles{

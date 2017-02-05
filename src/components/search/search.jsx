@@ -10,7 +10,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    bindAll(this, 'createETA', 'getUberTime','handleSelectDestination',
+    bindAll(this, 'getCar', 'createETA', 'getUberTime','handleSelectDestination',
       'renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars',
       'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
   }
@@ -59,6 +59,23 @@ class Search extends React.Component {
           return coords.results[0].formatted_address;
         });
       });
+  }
+
+  getCar(name){
+    switch (name) {
+      case "POOL":
+        return <img className="uber-cars" src={require('../../../app/images/uberX.png')}/>;
+      case "uberX":
+        return <img className="uber-cars" src={require('../../../app/images/uberX.png')}/>;
+      case "BLACK":
+        return <img className="uber-cars" src={require('../../../app/images/black.png')}/>;
+      case "uberXL":
+        return <img className="uber-cars" src={require('../../../app/images/uberXL.png')}/>;
+      case "SUV":
+        return <img className="uber-cars" src={require('../../../app/images/SUV.png')}/>;
+      default:
+
+    }
   }
 
   // this.props.getCurrentGeolocation(this.state.current_address);
@@ -124,7 +141,9 @@ class Search extends React.Component {
     let mins = now.getMinutes();
     let indicator;
     mins = (mins + rideLength) % 60;
-
+    if(mins < 10){
+      mins = `0${mins}`;
+    }
     if (now.getMinutes() + rideLength > 59) {
       hrs = (hrs + 1) % 24;
     }
