@@ -1,8 +1,8 @@
 {
   "name": "app",
   "main": "bookr.js",
-  "productName": "App",
-  "version": "0.0.0",
+  "productName": "Bookr",
+  "version": "0.0.1",
   "description": "",
   "license": "MIT",
   "repository": "user/repo",
@@ -34,6 +34,7 @@
     "client-oauth2": "^3.4.1",
     "css-loader": "^0.26.1",
     "electron-debug": "^1.0.0",
+    "electron-packager": "^8.5.1",
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.10.0",
