@@ -10,7 +10,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    bindAll(this, 'getCar', 'createETA', 'getUberTime','handleSelectDestination',
+    bindAll(this, 'createETA', 'getTime','handleSelectDestination',
       'renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars',
       'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
   }
@@ -61,22 +61,22 @@ class Search extends React.Component {
       });
   }
 
-  getCar(name){
-    switch (name) {
-      case "POOL":
-        return <img className="uber-cars" src={require('../../../app/images/uberX.png')}/>;
-      case "uberX":
-        return <img className="uber-cars" src={require('../../../app/images/uberX.png')}/>;
-      case "BLACK":
-        return <img className="uber-cars" src={require('../../../app/images/black.png')}/>;
-      case "uberXL":
-        return <img className="uber-cars" src={require('../../../app/images/uberXL.png')}/>;
-      case "SUV":
-        return <img className="uber-cars" src={require('../../../app/images/SUV.png')}/>;
-      default:
-
-    }
-  }
+  // getCar(name){
+  //   switch (name) {
+  //     case "POOL":
+  //       return <img className="uber-cars" src={require('../../../app/images/uberX.png')}/>;
+  //     case "uberX":
+  //       return <img className="uber-cars" src={require('../../../app/images/uberX.png')}/>;
+  //     case "BLACK":
+  //       return <img className="uber-cars" src={require('../../../app/images/black.png')}/>;
+  //     case "uberXL":
+  //       return <img className="uber-cars" src={require('../../../app/images/uberXL.png')}/>;
+  //     case "SUV":
+  //       return <img className="uber-cars" src={require('../../../app/images/SUV.png')}/>;
+  //     default:
+  //
+  //   }
+  // }
 
   // this.props.getCurrentGeolocation(this.state.current_address);
 
@@ -107,7 +107,6 @@ class Search extends React.Component {
 
   getUberResults() {
     const that = this;
-    console.log(that);
 
     return this.props.quotes.prices.uber.map(productObj => {
       if (productObj.high_estimate > 0 &&
@@ -118,13 +117,13 @@ class Search extends React.Component {
             <h3 className="uber-key-data">{productObj.estimate}</h3>
             <div className="uber-lineitem-times">
               <div className="time-inner-div">
-                <h5>{that.getUberTime(productObj.display_name)} min</h5>
+                <h5>{that.getTime(productObj.display_name)} min</h5>
                 <h5>away</h5>
               </div>
               <div className="time-inner-div">
                 <h5>ETA:</h5>
                 <h5>
-                  {this.createETA(that.getUberTime(productObj.display_name)
+                  {this.createETA(that.getTime(productObj.display_name)
                     + (productObj.duration / 60))}
                 </h5>
               </div>
@@ -134,6 +133,36 @@ class Search extends React.Component {
       }
     });
   }
+
+  getLyftResults() {
+    const that = this;
+    return this.props.quotes.prices.lyft.map(productObj => {
+      if (productObj.estimated_cost_cents_max > 0) {
+        return (
+          <li key={productObj.display_name}
+            className="uber-lineitem">
+              <h3 className="uber-key-data">{productObj.display_name}</h3>
+              <h3 className="uber-key-data">{that.centsToDollars(productObj.estimated_cost_cents_min,
+                productObj.estimated_cost_cents_max)}</h3>
+              <div className="uber-lineitem-times">
+                <div className="time-inner-div">
+                  <h5>{that.getTime(productObj.display_name)} min</h5>
+                  <h5>away</h5>
+                </div>
+                <div className="time-inner-div">
+                  <h5>ETA:</h5>
+                  <h5>
+                    {that.createETA(that.getTime(productObj.display_name)
+                      + Math.ceil(productObj.estimated_duration_seconds / 60))}
+                  </h5>
+                </div>
+              </div>
+            </li>
+        );
+      }
+    });
+  }
+
 
   createETA(rideLength) {
     const now = new Date();
@@ -163,34 +192,56 @@ class Search extends React.Component {
     return `${hrs}:${mins} ${indicator}`;
   }
 
-  getUberTime(displayName) {
+  getTime(displayName) {
     let time;
     this.props.quotes.times.uber.forEach(timeObj => {
       if (timeObj.display_name === displayName) {
         time = timeObj.estimate / 60;
       }
     });
+    this.props.quotes.times.lyft.forEach(timeObj => {
+      if (timeObj.display_name === displayName) {
+        time = timeObj.eta_seconds / 60;
+      }
+    });
     return time;
   }
 
+  // getLyftTime(displayName) {
+  //   let time;
+  //   this.props.quotes.times.lyft.forEach(timeObj => {
+  //     if (timeObj.display_name === displayName) {
+  //       time = timeObj.estimate / 60;
+  //     }
+  //   });
+  //   return time;
+  // }
+
   centsToDollars(min, max) {
-    return `$${min / 100}-${max/100}`;
+    let newMin = min;
+    let newMax = max;
+    if(newMin % 100 === 0){
+      newMin = `$${newMin / 100}.00`;
+    }else if(newMin % 10 === 0){
+      newMin = `$${newMin / 100}0`;
+    }else{
+      newMin = `$${newMin / 100}`;
+    }
+    if(newMax % 100 === 0){
+      newMax = `${newMax / 100}.00`;
+    }else if(newMax % 10 === 0){
+      newMax = `${newMax / 100}0`;
+    }else{
+      newMax = `${newMax / 100}`;
+    }
+
+    if(min === max){
+      return `${newMin}`;
+    }
+
+    return `${newMin}-${newMax}`;
   }
 
-  getLyftResults() {
-    return this.props.quotes.prices.lyft.map(productObj => {
-      if (productObj.estimated_cost_cents_max > 0) {
-        return (
-          <li key={productObj.display_name}
-            className="lyft-lineitem">
-            {productObj.display_name} costs
-              {this.centsToDollars(productObj.estimated_cost_cents_min,
-              productObj.estimated_cost_cents_max)}
-          </li>
-        );
-      }
-    });
-  }
 
   renderResults() {
     if (this.props.quotes.prices.uber && this.props.quotes.prices.lyft) {
@@ -198,17 +249,21 @@ class Search extends React.Component {
         <div className="quotes-container">
           <section className="ride-info">
             <h3>{this.props.quotes.prices.uber[0].distance} Mile Ride</h3>
-            <h3>Should take {this.props.quotes.prices.uber[0].duration / 60} Minutes</h3>
           </section>
 
           <section className="results-container">
             <section className="uber-results">
-              <h1 className="company-titles">UBER</h1>
+              <div className="uber-header">
+                <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
+                <h1 className="company-titles">UBER</h1>
+              </div>
               {this.getUberResults()}
             </section>
 
             <section className="lyft-results">
-              <h1 className="company-titles">LYFT</h1>
+              <div className="uber-header">
+                <img id="lyft-logo" src="../../../app/images/lyft_standard_silver.png"/>
+              </div>
               {this.getLyftResults()}
             </section>
           </section>
@@ -223,7 +278,7 @@ class Search extends React.Component {
       );
     } else if (this.props.quotes.geolocations.current !== "" &&
         this.props.quotes.geolocations.destination !== "") {
-      return <Loading />;
+      return <Loading/>;
     } else {
       return <div className="null"></div>;
     }
