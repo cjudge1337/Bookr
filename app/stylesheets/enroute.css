@@ -1,0 +1,18 @@
+/*.test-button {
+  position: absolute;
+  left: 300px;
+}*/
+
+.status {
+  position: absolute;
+}
+
+.enroute-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.driver-pic {
+  height: 55px;
+  border-radius: 200px;
+}

@@ -68,27 +68,27 @@ class Enroute extends React.Component {
     if (this.props.enroute.uber) {
       return (
         <div className="enroute-container">
+          <h2 className="status">{this.props.enroute.uber.info.status}</h2>
           <div className="driver-info">
             <h2 className="driver-name">{this.props.enroute.uber.info.driver.name}</h2>
             <img src={this.props.enroute.uber.info.driver.picture_url} className="driver-pic"/>
-            <h2 className="driver-rating">{this.props.enroute.uber.info.driver.rating}</h2>
+            <h2 className="driver-rating">Rating: {this.props.enroute.uber.info.driver.rating}</h2>
+            <h2 className="eta">ETA: {this.props.enroute.uber.info.pickup.eta} Minutes</h2>
           </div>
-          <h2>{this.props.enroute.uber.info.status}</h2>
-          <button className="cancel-ride" onClick={this.currentRide}>Current Ride</button>
-          <button className="cancel-ride" onClick={this.acceptedRide}>Accepted Ride</button>
-          <button className="cancel-ride" onClick={this.arrivedRide}>Arrived Ride</button>
-          <button className="cancel-ride" onClick={this.cancelRide}>Cancel Ride</button>
-          <button className="cancel-ride" onClick={this.driverCancel}>Driver Cancel Ride</button>
           <EnrouteMap pickup={this.props.enroute.uber.info.pickup}
                       destination={this.props.enroute.uber.info.destination}
                       location={this.props.enroute.uber.info.location} />
 
-                    <h2 className="eta">{this.props.enroute.uber.info.pickup.eta}</h2>
+          <button className="test-button" onClick={this.currentRide}>Current Ride</button>
+          <button className="test-button" onClick={this.acceptedRide}>Accepted Ride</button>
+          <button className="test-button" onClick={this.arrivedRide}>Arrived Ride</button>
+          <button className="test-button" onClick={this.cancelRide}>Cancel Ride</button>
+          <button className="test-button" onClick={this.driverCancel}>Driver Cancel Ride</button>
         </div>
       );
     } else {
       //TODO put loading component
-      return <div>Loading</div>;
+      return <div>Requesting</div>;
     }
 
   }
