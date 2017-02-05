@@ -10,7 +10,7 @@ export const sandboxRequestRide = () => (
     },
     processData: false,
     data: JSON.stringify({
-      "fare_id": "e874b5045ad8297aa08febb19d04c278c801badbd241d6589adbf48d3eafde4e",
+      "fare_id": "ebb137d9d7b2eb84b833d0dd2fdf37ae48bb8ed193abc8bd83699dcc4a413e13",
       "product_id": "a1111c8c-c720-46c3-8534-2fcdd730040d",
       "start_latitude": 37.7752278,
       "start_longitude": -122.4197513,
@@ -22,7 +22,7 @@ export const sandboxRequestRide = () => (
 export const sandboxAcceptedRide = () => (
   $.ajax({
     method: 'PUT',
-    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/799271fb-2ac8-488f-8459-3189b4164b81`,
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/8b0ab0e3-a671-4c6a-82d9-55007bf2d6e8`,
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
@@ -38,7 +38,7 @@ export const sandboxAcceptedRide = () => (
 export const sandboxArrivedRide = () => (
   $.ajax({
     method: 'PUT',
-    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/799271fb-2ac8-488f-8459-3189b4164b81`,
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/8b0ab0e3-a671-4c6a-82d9-55007bf2d6e8`,
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
@@ -46,7 +46,23 @@ export const sandboxArrivedRide = () => (
     },
     processData: false,
     data: JSON.stringify({
-      'status': "arrived"
+      'status': "arriving"
+    })
+  })
+);
+
+export const sandboxDriverCancel = () => (
+  $.ajax({
+    method: 'PUT',
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/8b0ab0e3-a671-4c6a-82d9-55007bf2d6e8`,
+    headers: {
+      Authorization: "Bearer " +
+      "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
+      'Content-Type': "application/json"
+    },
+    processData: false,
+    data: JSON.stringify({
+      'status': "driver_canceled"
     })
   })
 );
@@ -55,6 +71,18 @@ export const sandboxDeleteRide = () => (
   $.ajax({
     method: 'DELETE',
     url: `https://sandbox-api.uber.com/v1.2/requests/current`,
+    headers: {
+      Authorization: "Bearer " +
+      "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
+      'Content-Type': "application/json"
+    }
+  })
+);
+
+export const sandboxDeleteRideId = () => (
+  $.ajax({
+    method: 'DELETE',
+    url: `https://sandbox-api.uber.com/v1.2/requests/8b0ab0e3-a671-4c6a-82d9-55007bf2d6e8`,
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
@@ -75,7 +103,7 @@ export const sandboxCurrentRide = () => (
   })
 );
 
-// 799271fb-2ac8-488f-8459-3189b4164b81
+// 88cd9f03-399d-4c7b-b54e-6b85574a0e36
 
 // cURL to get a fare_id
 // curl -X POST \

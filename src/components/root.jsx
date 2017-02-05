@@ -5,6 +5,7 @@ import Open from './auth/open';
 import UberAuthContainer from './auth/uber_auth_container';
 import LyftAuthContainer from './auth/lyft_auth_container';
 import SearchContainer from './search_container';
+import EnrouteContainer from './enroute/enroute_container';
 
 const Root = ({ store }) => {
   return (
@@ -14,6 +15,7 @@ const Root = ({ store }) => {
         <Route path="/search" component={SearchContainer}></Route>
         <Route path="/uberAuth/:uberCreds" component={UberAuthContainer}></Route>
         <Route path="/lyftAuth/:lyftCreds" component={LyftAuthContainer}></Route>
+        <Route path="/enroute" component={EnrouteContainer}></Route>
       </Router>
     </Provider>
   );

@@ -6,7 +6,7 @@ import { getUberRideInfo,
          getLyftRideInfo,
          getLyftUpdate,
          deleteLyftRide } from '../../actions/enroute_actions';
-import Enroute from '../enroute';
+import Enroute from './enroute';
 
 const mapStateToProps = ({ session, enroute }) => (
   session,

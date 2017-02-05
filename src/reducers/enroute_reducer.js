@@ -21,7 +21,8 @@ const EnrouteReducer = (state = {}, action) => {
     case REMOVE_LYFT_RIDE:
       return {};
     default:
-      console.log("returned default state");
       return state;
   }
 };
+
+export default EnrouteReducer;
