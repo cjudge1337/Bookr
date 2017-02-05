@@ -97,15 +97,6 @@ BOLD_FONT = "Gotham Bold";*/
 
 
 
-
-
-.spinner{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .fa{
   width: auto;
   height: auto;
@@ -129,7 +120,8 @@ BOLD_FONT = "Gotham Bold";*/
   text-align: center;
   height: auto;
   width: auto;
-  margin-bottom: 15px;
+  margin: 22.5px 0px;
+  font-size: 40px;
 }
 
 .uber-header{
@@ -141,14 +133,15 @@ BOLD_FONT = "Gotham Bold";*/
 }
 
 #uber-logo{
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
+  width: 78px;
+  height: 78px;
+  margin: 6px 10px 6px 0;
 }
 
 #lyft-logo{
   width: 100px;
-  height: 50px;
+  height: 70px;
+  margin: 10px;
 }
 
 
@@ -188,7 +181,7 @@ BOLD_FONT = "Gotham Bold";*/
   border-style: solid;
   font-family: inherit;
   color: inherit;
-  height: calc(20% - 13px);
+  height: calc(20% - 19px);
   border-top: solid 1px white;
 }
 
@@ -203,14 +196,7 @@ BOLD_FONT = "Gotham Bold";*/
 
 .uber-lineitem:hover, .lyft-lineitem:hover{
   cursor: pointer;
-
-}
-
-.company-titles{
-  font-size: 30px;
-  font-family: inherit;
-  color: inherit;
-  margin: 15px 0;
+  opacity: 0.5;
 }
 
 .time-inner-div{
