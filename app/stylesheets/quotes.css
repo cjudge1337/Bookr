@@ -90,7 +90,7 @@ BOLD_FONT = "Gotham Bold";*/
 .results-container {
   display: flex;
   flex-direction: row;
-  font-family: "Gotham Bold", sans-serif;
+  font-family: "Gotham Book", sans-serif;
   border-top: solid 5px white;
 }
 
@@ -166,6 +166,7 @@ BOLD_FONT = "Gotham Bold";*/
   background-color: black;
   color: white;
   border-right: solid 5px white;
+  font-family: inherit;
 }
 
 .lyft-results {
@@ -175,6 +176,7 @@ BOLD_FONT = "Gotham Bold";*/
   align-items: center;
   background-color: #FF00BF;
   color: white;
+  font-family: inherit;
 }
 
 .uber-lineitem {
@@ -197,6 +199,11 @@ BOLD_FONT = "Gotham Bold";*/
   font-family: inherit;
   color: inherit;
   height: auto;
+}
+
+.uber-lineitem:hover, .lyft-lineitem:hover{
+  cursor: pointer;
+
 }
 
 .company-titles{

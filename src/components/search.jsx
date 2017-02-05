@@ -2,9 +2,6 @@ import {bindAll} from 'lodash';
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import { getUserGeo, geoToAddress } from '../util/google_maps/location_api';
-import {Icon} from 'react-fa';
-// import Spinner from 'react-icons/lib/fa/spinner';
-// const { FaIcon, FaStack } = require('react-fa');
 
 const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
 
@@ -98,6 +95,8 @@ class Search extends React.Component {
     switch (name) {
       case "POOL":
         return <img className="uber-cars" src={require('../../app/images/uberX.png')}/>;
+        // return <img className="uber-cars" src={require("http:\\localhost\app\images\uberX.png")}/>;
+        // return <img id="uber-logo" src={require('../../app/images/uber_rides_api_icon_2x_50px.png')}/>;
       case "uberX":
         return <img className="uber-cars" src={require('../../app/images/uberX.png')}/>;
       case "BLACK":
@@ -113,7 +112,6 @@ class Search extends React.Component {
 
   getUberResults(){
     const that = this;
-    console.log(that);
     return this.props.quotes.prices.uber.map(productObj => {
 
       if(productObj.high_estimate > 0 && UBER_PRODUCTS.includes(productObj.display_name)){
@@ -217,11 +215,7 @@ class Search extends React.Component {
         </div>);
     }
     else if(this.props.quotes.geolocations.current !== "" && this.props.quotes.geolocations.destination !== ""){
-      return (
-      <div className="spinner">
-        <Icon spin name="spinner" size="5x"/>
-        <h6> </h6>
-      </div>
+      return (<div></div>
       );
     }else{
       return <div className="null"></div>;
