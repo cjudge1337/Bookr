@@ -65,23 +65,24 @@ class Enroute extends React.Component {
   }
 
   render() {
-    let props = {};
-    if (this.props) {
-      props = this.props;
+    if (this.props.enroute.uber) {
+      return (
+        <div className="enroute-container">
+          <h2 className="driver-name">{this.props.enroute.uber.info.status}</h2>
+          <button className="cancel-ride" onClick={this.currentRide}>Current Ride</button>
+          <button className="cancel-ride" onClick={this.acceptedRide}>Accepted Ride</button>
+          <button className="cancel-ride" onClick={this.arrivedRide}>Arrived Ride</button>
+          <button className="cancel-ride" onClick={this.cancelRide}>Cancel Ride</button>
+          <button className="cancel-ride" onClick={this.driverCancel}>Driver Cancel Ride</button>
+          <EnrouteMap />
+          <TimeDisplay />
+        </div>
+      );
+    } else {
+      //TODO put loading component
+      return <div></div>;
     }
-debugger
-    return (
-      <div className="enroute-container">
-        <h2 className="driver-name">{props.enroute.uber.info.status}</h2>
-        <button className="cancel-ride" onClick={this.currentRide}>Current Ride</button>
-        <button className="cancel-ride" onClick={this.acceptedRide}>Accepted Ride</button>
-        <button className="cancel-ride" onClick={this.arrivedRide}>Arrived Ride</button>
-        <button className="cancel-ride" onClick={this.cancelRide}>Cancel Ride</button>
-        <button className="cancel-ride" onClick={this.driverCancel}>Driver Cancel Ride</button>
-        <EnrouteMap />
-        <TimeDisplay />
-      </div>
-    );
+
   }
 
 }

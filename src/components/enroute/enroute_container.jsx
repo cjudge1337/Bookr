@@ -9,10 +9,10 @@ import { getUberRideInfo,
          checkSandboxStatus } from '../../actions/enroute_actions';
 import Enroute from './enroute';
 
-const mapStateToProps = ({ session, enroute }) => (
+const mapStateToProps = ({ session, enroute }) => ({
   session,
   enroute
-);
+});
 
 const mapDispatchToProps = (dispatch) => ({
   getUberRideInfo: requestId => dispatch(getUberRideInfo(requestId)),
