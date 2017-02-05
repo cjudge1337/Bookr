@@ -1,5 +1,7 @@
 import React from 'react';
 import qs from 'query-string';
+import { hashHistory } from 'react-router';
+import Loading from '../loading';
 
 class UberAuth extends React.Component {
   constructor(props) {
@@ -11,13 +13,13 @@ class UberAuth extends React.Component {
     this.props.receiveUberCreds(creds);
   }
 
-  render() {
+  componentDidUpdate() {
     sessionStorage.session = JSON.stringify(this.props.session);
-    return (
-      <div className="auth-actions jawbone">
-        <h1>uber test page</h1>
-      </div>
-    );
+    hashHistory.push('/search');
+  }
+
+  render() {
+    return <Loading />;
   }
 }
 

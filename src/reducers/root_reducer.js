@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import SessionReducer from './session_reducer';
 import QuoteReducer from './quote_reducer';
 import EnrouteReducer from './enroute_reducer';
