@@ -69,10 +69,19 @@ class Enroute extends React.Component {
       return (
         <div className="enroute-container">
           <h2 className="status">{this.props.enroute.uber.info.status}</h2>
-          <div className="driver-info">
-            <h2 className="driver-name">{this.props.enroute.uber.info.driver.name}</h2>
-            <img src={this.props.enroute.uber.info.driver.picture_url} className="driver-pic"/>
-            <h2 className="driver-rating">Rating: {this.props.enroute.uber.info.driver.rating}</h2>
+          <div className="driver-bar">
+            <div className="driver-container">
+              <div className="driver-info">
+                <img src={this.props.enroute.uber.info.driver.picture_url} className="driver-pic"/>
+                <h2 className="driver-name">{this.props.enroute.uber.info.driver.name}</h2>
+                <h2 className="driver-rating">{this.props.enroute.uber.info.driver.rating}</h2>
+              </div>
+              <div className="car-info">
+                <img src={this.props.enroute.uber.info.vehicle.picture_url} className="car-pic"/>
+                <h2 className="car-make">{this.props.enroute.uber.info.vehicle.make + " "}
+                                            {this.props.enroute.uber.info.vehicle.model}</h2>
+              </div>
+            </div>
             <h2 className="eta">ETA: {this.props.enroute.uber.info.pickup.eta} Minutes</h2>
           </div>
           <EnrouteMap pickup={this.props.enroute.uber.info.pickup}

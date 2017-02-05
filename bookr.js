@@ -6,7 +6,7 @@ const mb = menubar({
   showDockIcon: true,
   preloadWindow: true,
   alwaysOnTop: true,
-  width: 900,
+  width: 500,
   height: 600,
   x: 1000,
 
