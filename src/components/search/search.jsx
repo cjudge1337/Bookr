@@ -3,6 +3,7 @@ import { bindAll } from 'lodash';
 import Autocomplete from 'react-google-autocomplete';
 import { getUserGeo, geoToAddress } from '../../util/google_maps/location_api';
 import Loading from '../loading';
+import { hashHistory } from 'react-router';
 
 const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
 
@@ -10,7 +11,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    bindAll(this, 'createETA', 'getTime','handleSelectDestination',
+    bindAll(this, 'orderRide', 'createETA', 'getTime','handleSelectDestination',
       'renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars',
       'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
   }
@@ -105,6 +106,10 @@ class Search extends React.Component {
       types={'address'}/>;
   }
 
+  orderRide(){
+    hashHistory.push('/confirm');
+  }
+
   getUberResults() {
     const that = this;
 
@@ -112,7 +117,7 @@ class Search extends React.Component {
       if (productObj.high_estimate > 0 &&
         UBER_PRODUCTS.includes(productObj.display_name)) {
         return (
-          <li key={productObj.display_name} className="uber-lineitem">
+          <li onClick={() => this.orderRide()} key={productObj.display_name} className="uber-lineitem">
             <h3 className="uber-key-data">{productObj.display_name}</h3>
             <h3 className="uber-key-data">{productObj.estimate}</h3>
             <div className="uber-lineitem-times">
