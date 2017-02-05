@@ -95,7 +95,7 @@ class Search extends React.Component {
   renderDestinationAutocomplete() {
     return <Autocomplete
       onPlaceSelected={ (place) => this.handleSelectDestination(place) }
-      placeholder="Enter a destination"
+      placeholder={this.props.quotes.address.destination.length > 0 ? this.props.quotes.address.destination : "Enter a destination" }
       types={'address'}/>;
   }
 
@@ -120,8 +120,8 @@ class Search extends React.Component {
     if(this.props.session.lyftCreds){
       this.props.bookLyftRide(rideData);
       hashHistory.push('/confirm');
-    } else{
-      alert("You must be logged in to Lyft to book this ride.");
+    } else if(confirm("You must be logged in to Uber to book this ride.") === true){
+      // redirect to lyft login
     }
   }
 

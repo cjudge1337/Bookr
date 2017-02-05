@@ -1,4 +1,4 @@
-import { RECEIVE_SELECTED_RIDE} from '../actions/auth_actions';
+import { RECEIVE_SELECTED_RIDE} from '../actions/confirm_actions';
 
 const ConfirmReducer = (state = {}, action) => {
   Object.freeze(state);
