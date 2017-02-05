@@ -7,7 +7,7 @@ import Loading from '../loading';
 const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
 
 class Search extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     bindAll(this, 'createETA', 'getUberTime','handleSelectDestination',
@@ -173,7 +173,7 @@ class Search extends React.Component {
     });
   }
 
-  renderResults(){
+  renderResults() {
     if (this.props.quotes.prices.uber && this.props.quotes.prices.lyft) {
       return (
         <div className="quotes-container">
@@ -219,7 +219,7 @@ class Search extends React.Component {
           {this.renderOriginAutocomplete()}
           {this.renderDestinationAutocomplete()}
         </div>
-        
+
         {this.renderResults()}
       </div>
     );
