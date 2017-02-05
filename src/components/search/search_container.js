@@ -1,5 +1,7 @@
 import {connect} from 'react-redux';
-import { clearPricesErrors, updateCurrentAddress, updateDestinationAddress, getDestinationGeolocation, getCurrentGeolocation, getLyftQuotes, getUberQuotes, getLyftETAs, getUberETAs } from '../actions/quote_actions.js';
+import { clearPricesErrors, updateCurrentAddress, updateDestinationAddress,
+  getDestinationGeolocation, getCurrentGeolocation, getLyftQuotes, getUberQuotes,
+  getLyftETAs, getUberETAs } from '../../actions/quote_actions.js';
 import Search from './search';
 
 const mapStateToProps = store => ({
