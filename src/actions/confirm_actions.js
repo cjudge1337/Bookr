@@ -5,6 +5,7 @@ export const RECEIVE_SELECTED_RIDE = "RECEIVE_SELECTED_RIDE";
 
 
 export const receiveRide = ride => {
+  debugger
   return {
     type: RECEIVE_SELECTED_RIDE,
     ride

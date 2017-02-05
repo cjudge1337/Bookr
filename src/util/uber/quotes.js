@@ -36,10 +36,9 @@ export const getAllProductTimes = (startLat, startLong) => (
 
 // get quote for specific uber product type given a trip
 export const getProductQuote = (accessToken, product_id, startLat, startLong, endLat, endLong) => {
-  debugger
   return $.ajax({
-    method: 'GET',
-    url: "https://api.uber.com/v1.2/requests/estimates",
+    method: 'POST',
+    url: "https://api.uber.com/v1.2/requests/estimate",
     headers: {
       Authorization: "Bearer " + accessToken,
       "Content-Type": "application/json"
