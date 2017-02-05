@@ -33,7 +33,7 @@ export const removeLyftRide = rideId => ({
 export const getUberRideInfo = requestId => dispatch => (
   UberAPIUtil.getRideInfo(requestId)
   .then(info => dispatch(receiveUberRideInfo(info)),
-        error => console.log(error))
+    error => console.log(error))
 );
 
 export const getUberUpdate = info => dispatch => (
@@ -43,7 +43,7 @@ export const getUberUpdate = info => dispatch => (
 export const getUberMap = requestId => dispatch => (
   UberAPIUtil.getRideMap(requestId)
   .then(mapInfo => dispatch(receiveUberMap(mapInfo)),
-        error => console.log(error))
+    error => console.log(error))
 );
 
 export const deleteUberRide = requestId => dispatch => {
@@ -54,7 +54,7 @@ export const deleteUberRide = requestId => dispatch => {
 export const getLyftRideInfo = rideId => dispatch => (
   LyftAPIUtil.getRideDetails(rideId)
   .then(info => dispatch(receiveLyftRideInfo(info)),
-        error => console.log(error))
+    error => console.log(error))
 );
 
 export const getLyftUpdate = info => dispatch => (
