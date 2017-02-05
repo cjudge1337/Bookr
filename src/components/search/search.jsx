@@ -107,13 +107,22 @@ class Search extends React.Component {
   }
 
   orderUberRide(rideData){
-    this.props.bookUberRide(rideData);
-    hashHistory.push('/confirm');
+    if(this.props.session.uberCreds.access_token.length > 0){
+      this.props.bookUberRide(rideData);
+      hashHistory.push('/confirm');
+    }else if(confirm("You must be logged in to Uber to book this ride.") === true){
+      //redirect to uber login
+
+    }
   }
 
   orderLyftRide(rideData){
-    this.props.bookLyftRide(rideData);
-    hashHistory.push('/confirm');
+    if(this.props.session.lyftCreds){
+      this.props.bookLyftRide(rideData);
+      hashHistory.push('/confirm');
+    } else{
+      alert("You must be logged in to Lyft to book this ride.");
+    }
   }
 
   getUberResults() {

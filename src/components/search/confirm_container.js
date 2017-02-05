@@ -3,13 +3,14 @@ import Confirm from './confirm';
 import { getUberQuote} from '../../actions/confirm_actions.js';
 
 const mapStateToProps = store => ({
+  session: store.session,
   quotes: store.quotes,
   confirm: store.confirm
 });
 
 const mapDispatchToProps = dispatch => (
   {
-    getUberQuote: (product_id, startLat, startLong, endLat, endLong) => dispatch(getUberQuote(product_id, startLat, startLong, endLat, endLong))
+    getUberQuote: (accessToken, product_id, startLat, startLong, endLat, endLong) => dispatch(getUberQuote(accessToken, product_id, startLat, startLong, endLat, endLong))
   }
 );
 

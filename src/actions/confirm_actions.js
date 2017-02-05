@@ -11,8 +11,8 @@ export const receiveRide = ride => {
   };
 };
 
-export const getUberQuote = (product_id, startLat, startLong, endLat, endLong) => dispatch => (
-  UberAPIUtil.getProductQuote(product_id, startLat, startLong, endLat, endLong)
+export const getUberQuote = (accessToken, product_id, startLat, startLong, endLat, endLong) => dispatch => (
+  UberAPIUtil.getProductQuote(accessToken, product_id, startLat, startLong, endLat, endLong)
     .then(response => dispatch(receiveRide(response)))
 );
 

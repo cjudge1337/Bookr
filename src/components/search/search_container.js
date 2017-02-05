@@ -6,6 +6,7 @@ import { clearPricesErrors, updateCurrentAddress, updateDestinationAddress,
 
 const mapStateToProps = store => ({
   quotes: store.quotes,
+  session: store.session
 });
 
 const mapDispatchToProps = (dispatch, {location}) => (
