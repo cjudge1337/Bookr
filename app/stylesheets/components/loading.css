@@ -1,11 +1,7 @@
-.loading {
-    display: flex;
-    text-align: center;
-    height: calc(100% - 95px);
-    width: 100%;
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+#loading {
+  position: absolute;
+  margin-top: 50vh;
+  text-align: center;
+  font-size: 16px;
+  font-style: italic;
 }

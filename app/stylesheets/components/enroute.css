@@ -3,6 +3,11 @@
   left: 500px;
 }
 
+.requesting {
+  font-size: 40px;
+
+}
+
 .enroute-container {
   display: flex;
   flex-direction: column;

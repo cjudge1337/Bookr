@@ -1,5 +1,4 @@
 import React from 'react';
-import Loading from '../loading';
 import { bindAll } from 'lodash';
 import { hashHistory } from 'react-router';
 
@@ -42,15 +41,13 @@ class Confirm extends React.Component {
   }
 
   orderUber(){
-    console.log('Uber ordered!');
-    hashHistory.push('/enroute');
-    // TODO correct route?
+    this.props.createSandboxRide()
+    .then(() => hashHistory.push('/enroute'));
   }
 
   orderLyft(){
     console.log('Lyft ordered!');
     hashHistory.push('/enroute');
-    // TODO correct route?
   }
 
   backToSearch(){
@@ -114,7 +111,7 @@ class Confirm extends React.Component {
         </div>
       </div>);
     }else{
-      return <Loading/>;
+      return <div id='loading' className="requesting animated infinite pulse">Just a moment...</div>;
     }
   }
 

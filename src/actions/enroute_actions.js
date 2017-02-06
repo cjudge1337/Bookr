@@ -1,6 +1,6 @@
 import * as UberAPIUtil from '../util/uber/quotes';
 import * as LyftAPIUtil from '../util/lyft/rides';
-import { sandboxCurrentRide } from '../util/uber/sandbox';
+import { sandboxCurrentRide, sandboxRequestRide } from '../util/uber/sandbox';
 
 export const RECEIVE_UBER_RIDE_INFO = "RECEIVE_UBER_RIDE_INFO";
 export const RECEIVE_UBER_MAP = "RECEIVE_UBER_MAP";
@@ -33,6 +33,18 @@ export const removeLyftRide = rideId => ({
 
 export const getUberRideInfo = requestId => dispatch => (
   UberAPIUtil.getRideInfo(requestId)
+  .then(info => dispatch(receiveUberRideInfo(info)),
+    error => console.log(error))
+);
+
+export const createUberRide = (accessToken, fareId, productId, startLat, startLong, endLat, endLong) => dispatch => (
+  UberAPIUtil.createRide(accessToken, fareId, productId, startLat, startLong, endLat, endLong)
+  .then(info => dispatch(receiveUberRideInfo(info)),
+    error => console.log(error))
+);
+
+export const createSandboxRide = () => dispatch => (
+  sandboxRequestRide()
   .then(info => dispatch(receiveUberRideInfo(info)),
     error => console.log(error))
 );
