@@ -41,16 +41,10 @@
   background-color: transparent;
 }
 
-
-
 .pac-container{
   border-width: 0px;
   height: auto;
 }
-
-/*.pac-item-query{
-  font-family: "Gotham Light", sans-serif;
-}*/
 
 .pac-item{
   height: auto;
@@ -64,31 +58,9 @@
   cursor: pointer;
 }
 
-/*.pac-item-selected{
-  height: auto;
-  background-color: #333447;
-  color: white;
-  font-family: "Gotham Bold", sans-serif;
-  margin: 0;
-  padding: 5px;
-}*/
-
-
 .results-container {
   display: flex;
   flex-direction: row;
-}
-
-
-
-
-.fa{
-  width: auto;
-  height: auto;
-}
-
-.quotes-container{
-
 }
 
 .ride-info{
@@ -125,35 +97,10 @@
   height: 90px;
 }
 
-.login:hover{
-  opacity: 0.5;
-  cursor: pointer;
+#logo{
+  height: 40px;
+  width: auto;
 }
-
-#uber-logo{
-  width: 70px;
-  height: 70px;
-  margin: 10px;
-}
-
-#lyft-logo{
-  width: 100px;
-  height: 70px;
-  margin: 10px;
-}
-
-
-
-.divider{
-  border-right: solid 1px #352384;
-  position: absolute;
-  left: 250px;
-  top: 210px;
-  height: 330px;
-  width: 0px;
-}
-
-
 
 .uber-results {
   display: flex;

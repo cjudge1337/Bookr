@@ -112,7 +112,7 @@ class Search extends React.Component {
     const that = this;
     let count = 0;
     const uberLoggedIn = this.props.session.uberCreds;
-    
+
     return this.props.quotes.prices.uber.map((productObj, idx) => {
       if (productObj.high_estimate > 0 &&
         UBER_PRODUCTS.includes(productObj.display_name)) {
@@ -264,7 +264,7 @@ class Search extends React.Component {
           <section className="results-container">
             <section className="uber-results">
               <div className="uber-header">
-                <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_70px.png"/>
+                <img id="logo" src="https://res.cloudinary.com/dlhshbg79/image/upload/v1486390181/uber_rides_api_icon_2x_70px_gdxdim.png"/>
                 <h1 className="company-titles">UBER</h1>
               </div>
 
@@ -273,7 +273,7 @@ class Search extends React.Component {
 
             <section className="lyft-results">
               <div className="uber-header">
-                <img id="lyft-logo" src="../../../app/images/lyft_header.png"/>
+                <img id="logo" src="https://res.cloudinary.com/dlhshbg79/image/upload/v1486390221/lyft_header_oxhofm.png"/>
               </div>
 
               {this.getLyftResults()}
