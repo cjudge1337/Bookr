@@ -127,14 +127,15 @@ class Search extends React.Component {
             </span>
 
             <div className="uber-important">
-              <h3 className="uber-key-data">{productObj.display_name}</h3>
-              <h3 className="uber-key-data">{productObj.estimate}</h3>
+              <h3 className="key-data">{productObj.display_name}</h3>
+              <h3 className="key-data">{productObj.estimate}</h3>
             </div>
+
             <div className="time-inner-div">
-              <h5 className="uber-time-data">
+              <h5 className="time-data">
                 {that.getTime(productObj.display_name)} min away
               </h5>
-              <h5 className="uber-time-data">
+              <h5 className="time-data">
                 ETA: {this.createETA(that.getTime(productObj.display_name)
                   + (productObj.duration / 60))}
               </h5>
@@ -161,17 +162,18 @@ class Search extends React.Component {
             </span>
 
             <div className="uber-important">
-              <h3 className="uber-key-data">{productObj.display_name}</h3>
-              <h3 className="uber-key-data">
+              <h3 className="key-data">{productObj.display_name}</h3>
+              <h3 className="key-data">
                 {that.centsToDollars(productObj.estimated_cost_cents_min,
                 productObj.estimated_cost_cents_max)}
               </h3>
             </div>
+            
             <div className="time-inner-div">
-              <h5 className="uber-time-data">
+              <h5 className="time-data">
                 {that.getTime(productObj.display_name)} min away
               </h5>
-              <h5 className="uber-time-data">
+              <h5 className="time-data">
                 ETA: {that.createETA(that.getTime(productObj.display_name)
                   + Math.ceil(productObj.estimated_duration_seconds / 60))}
               </h5>

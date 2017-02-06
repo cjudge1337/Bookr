@@ -36,12 +36,18 @@
   align-items: center;
 }
 
-.results-header{
+.results-list > li {
+  font-size: 14px;
+}
+
+.results-header {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 90px;
+  height: 80px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #352384;
 }
 
 #uber-logo{
@@ -53,9 +59,6 @@
   height: 55px;
   width: auto;
 }
-
-
-/*-----------------------------------------------------*/
 
 .pac-container{
   border-width: 0px;
@@ -74,31 +77,14 @@
   cursor: pointer;
 }
 
-.ride-info{
-  height: 75px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #333447;
-  color: white;
-}
-
 .company-titles{
-  text-align: center;
-  height: auto;
-  width: auto;
-  margin: 22.5px 0px;
-  font-size: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  width: 75px;
+  margin-left: 15px;
 }
-
-.login-company-titles{
-  text-align: center;
-  height: auto;
-  width: auto;
-  margin: 22.5px 0px;
-  font-size: 20px;
-}
+/*-----------------------------------------------------*/
 
 .lineitem {
   display: flex;
@@ -106,15 +92,14 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-style: solid;
   font-family: inherit;
   color: inherit;
-  height: calc(20% - 18px);
-  /*border-top: solid 1px white;*/
+  height: calc(20% - 16px);
+  width: 50vw;
 }
 
 .lyft:hover{
-  background-color: #FF00BF;
+  background-color: #ff00bf;
   color: white;
   cursor: pointer;
 }
@@ -125,18 +110,16 @@
   cursor: pointer;
 }
 
-
-.tooltip{
+.tooltip {
   visibility: hidden;
-    width: 250px;
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    position: absolute;
-    z-index: 1;
-    height: 74px;
-    line-height: 74px;
-    font-family: 'Exo', sans-serif;
+  width: 50vw;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  z-index: 1;
+  height: 74px;
+  line-height: 74px;
 }
 
 .ub-tool{
@@ -145,6 +128,7 @@
 
 .ly-tool{
   background-color: #ff00bf;
+  width: 50vw;
 }
 
 .lineitem-tooltip:hover .tooltip{
@@ -165,30 +149,19 @@
   color: inherit;
 }
 
-.uber-key-data, .uber-time-data{
+.key-data, .time-data{
   width: auto;
   margin: 5px 0px;
-}
-
-
-.uber-key-data{
-  margin: 0px;
-  font-family: inherit;
-  color: inherit;
-  font-size: 20px;
-}
-
-.uber-time-data{
-  font-family: inherit;
-  color: inherit;
   font-size: 12px;
 }
 
-
-
-/*--------------------------------------------------------------------*/
-
-
+.key-data{
+  margin: 0px;
+  font-family: inherit;
+  color: inherit;
+  font-size: 17px;
+  font-weight: 400;
+}
 
 .search-logins {
   font-family: 'Syncopate', sans-serif;
