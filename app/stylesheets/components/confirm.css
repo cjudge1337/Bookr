@@ -1,0 +1,31 @@
+.uber-confirm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.uber-confirm-element{
+  width: auto;
+  height: auto;
+  font-family: "Gotham Book", sans-serif;
+  margin: 10px;
+}
+
+.buy-it:hover{
+  cursor: pointer;
+}
+
+.buy-it{
+  margin: 10px;
+}
+
+
+.options{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%
+}

@@ -10,7 +10,7 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => (
   {
-    getUberQuote: (accessToken, product_id, startLat, startLong, endLat, endLong) => dispatch(getUberQuote(accessToken, product_id, startLat, startLong, endLat, endLong))
+    getUberQuote: (accessToken, product_id, startLat, startLong, endLat, endLong) => dispatch(getUberQuote(accessToken, product_id, startLat, startLong, endLat, endLong)),
   }
 );
 
