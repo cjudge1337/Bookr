@@ -168,7 +168,7 @@ class Search extends React.Component {
                 productObj.estimated_cost_cents_max)}
               </h3>
             </div>
-            
+
             <div className="time-inner-div">
               <h5 className="time-data">
                 {that.getTime(productObj.display_name)} min away
@@ -237,11 +237,11 @@ class Search extends React.Component {
     let newMax = max;
 
     if (newMin % 100 === 0) {
-      newMin = `$${newMin / 100}.00`;
+      newMin = `$ ${newMin / 100}.00`;
     } else if (newMin % 10 === 0) {
-      newMin = `$${newMin / 100}0`;
+      newMin = `$ ${newMin / 100}0`;
     } else {
-      newMin = `$${newMin / 100}`;
+      newMin = `$ ${newMin / 100}`;
     }
 
     if (newMax % 100 === 0) {

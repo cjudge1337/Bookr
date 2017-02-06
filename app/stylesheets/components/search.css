@@ -84,7 +84,6 @@
   width: 75px;
   margin-left: 15px;
 }
-/*-----------------------------------------------------*/
 
 .lineitem {
   display: flex;
@@ -96,6 +95,12 @@
   color: inherit;
   height: calc(20% - 16px);
   width: 50vw;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f3f3f5;
+}
+
+.uber.lineitem {
+  border-right: 1px solid #f3f3f5;
 }
 
 .lyft:hover{
