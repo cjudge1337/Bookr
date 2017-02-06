@@ -62,29 +62,9 @@ class Search extends React.Component {
       });
   }
 
-  // getCar(name){
-  //   switch (name) {
-  //     case "POOL":
-  //       return <img className="uber-cars" src={require('../../../app/images/uberX.png')}/>;
-  //     case "uberX":
-  //       return <img className="uber-cars" src={require('../../../app/images/uberX.png')}/>;
-  //     case "BLACK":
-  //       return <img className="uber-cars" src={require('../../../app/images/black.png')}/>;
-  //     case "uberXL":
-  //       return <img className="uber-cars" src={require('../../../app/images/uberXL.png')}/>;
-  //     case "SUV":
-  //       return <img className="uber-cars" src={require('../../../app/images/SUV.png')}/>;
-  //     default:
-  //
-  //   }
-  // }
-
-  // this.props.getCurrentGeolocation(this.state.current_address);
-
   handleSelectDestination(place) {
     this.props.updateDestinationAddress(place.formatted_address);
     this.props.getDestinationGeolocation(this.props.quotes.address.destination);
-    // this.setState({destination_geolocation: });
   }
 
   handleSelectOrigin(place) {
@@ -107,7 +87,6 @@ class Search extends React.Component {
       types={'address'}
       id='dropoff-input'/>;
   }
-
 
   orderUberRide(rideData){
     if(this.props.session.uberCreds){
@@ -182,7 +161,6 @@ class Search extends React.Component {
     });
   }
 
-
   createETA(rideLength) {
     const now = new Date();
     let hrs = now.getHours();
@@ -226,16 +204,6 @@ class Search extends React.Component {
     return time;
   }
 
-  // getLyftTime(displayName) {
-  //   let time;
-  //   this.props.quotes.times.lyft.forEach(timeObj => {
-  //     if (timeObj.display_name === displayName) {
-  //       time = timeObj.estimate / 60;
-  //     }
-  //   });
-  //   return time;
-  // }
-
   centsToDollars(min, max) {
     let newMin = min;
     let newMax = max;
@@ -277,7 +245,6 @@ class Search extends React.Component {
       </div>
     );
   }
-
 
   renderResults() {
     if (this.props.quotes.prices.uber && this.props.quotes.prices.lyft) {
@@ -342,8 +309,6 @@ class Search extends React.Component {
       );
     }
   }
-
-  // TODO add location bias based on user's location https://github.com/ErrorPro/react-google-autocomplete https://developers.google.com/places/web-service/autocomplete#location_biasing
 
   render() {
     return (

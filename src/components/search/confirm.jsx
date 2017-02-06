@@ -134,7 +134,7 @@ class Confirm extends React.Component {
       return (
         <div className='confirm'>
           <div className='confirm-top'>
-            <img id='uber-confirm-logo' src='../../../app/images/uber_rides_api_icon_2x_78px.png'/>
+            <img id='uber-confirm-logo' src='../../../app/images/uber_rides_api_icon_2x_70px.png'/>
             <h2 id='service-title'>{this.getUberServiceName()}</h2>
             <h2>{this.props.confirm.trip.distance_estimate} Miles</h2>
             <h2>{this.props.confirm.fare.display}</h2>

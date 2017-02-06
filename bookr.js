@@ -4,7 +4,7 @@ require('babel-register');
 require('./server.js');
 
 const mb = menubar({
-  icon: path.join(__dirname, '/app/images/impala.png'),
+  icon: path.join(__dirname, '/app/images/Icon.png'),
   showDockIcon: true,
   preloadWindow: true,
   width: 500,
