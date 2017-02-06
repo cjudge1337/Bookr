@@ -16,10 +16,10 @@ class EnrouteMap extends React.Component {
       lng: this.props.location.longitude
     };
 
-    let destinationGeo = {
-      lat: this.props.destination.latitude,
-      lng: this.props.destination.longitude
-    };
+    // let destinationGeo = {
+    //   lat: this.props.destination.latitude,
+    //   lng: this.props.destination.longitude
+    // };
 
     this.map = new google.maps.Map(this.refs.map, {
       center: {
@@ -38,18 +38,15 @@ class EnrouteMap extends React.Component {
     const driverMarker = new google.maps.Marker({
       position: driverGeo,
       map: this.map,
-      title: 'Driver location'
+      title: 'Driver location',
+      icon: "http://maps.google.com/mapfiles/kml/pal2/icon47.png"
     });
 
-    const destinationMarker = new google.maps.Marker({
-      position: destinationGeo,
-      map: this.map,
-      title: 'Destination location'
-    });
-// debugger
-    // let currCenter = this.map.getCenter();
-    // google.maps.event.trigger(this.map, 'resize');
-    // this.map.setCenter(currCenter);
+    // const destinationMarker = new google.maps.Marker({
+    //   position: destinationGeo,
+    //   map: this.map,
+    //   title: 'Destination location'
+    // });
   }
 
   render() {
