@@ -1,4 +1,5 @@
 const menubar = require('menubar');
+const path = require('path');
 require('babel-register');
 require('./server.js');
 
@@ -13,5 +14,4 @@ const mb = menubar({
 
 mb.on('ready', function ready () {
   console.log('app is ready');
-  // your app code here
 });
