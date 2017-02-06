@@ -13,7 +13,6 @@ import configureStore from './store/store';
 process.env.GOOGLE_API_KEY = GOOGLE_API_KEY;
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.$ = $;
   window.getCost = LyftAPIUtil.getCost;
   window.addTrans = GoogleAPIUtil.addressToGeo("1600 Amphitheatre Parkway, Mountain View, CA");
   window.geoTrans = GoogleAPIUtil.geoToAddress(40.714224,-73.961452);
