@@ -129,10 +129,12 @@ class Search extends React.Component {
 
   getUberResults() {
     const that = this;
+    let count = 0;
     const uberLoggedIn = this.props.session.uberCreds;
-    return this.props.quotes.prices.uber.map(productObj => {
+    return this.props.quotes.prices.uber.map((productObj, idx) => {
       if (productObj.high_estimate > 0 &&
         UBER_PRODUCTS.includes(productObj.display_name)) {
+          count += 1;
         return (
           <li onClick={() => this.orderUberRide(productObj.product_id)}
             key={productObj.display_name}
@@ -284,6 +286,7 @@ class Search extends React.Component {
 
           <section className="results-container">
             <section className="uber-results">
+              <div className="divider"></div>
               {this.UberLoginCheck()}
               {this.getUberResults()}
             </section>
