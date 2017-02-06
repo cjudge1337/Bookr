@@ -4,7 +4,7 @@ li {
 
 html, input, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
-section, img, div, h2, p, form,
+section, img, div, h2, h3, h4, h5, h6, p, form,
 fieldset, label, textarea,
 span, article, footer, time, small {
   margin: 0;

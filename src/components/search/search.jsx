@@ -110,7 +110,7 @@ class Search extends React.Component {
 
 
   orderUberRide(rideData){
-    if(this.props.session.uberCreds.access_token.length > 0){
+    if(this.props.session.uberCreds){
       this.props.bookUberRide(rideData);
       hashHistory.push('/confirm');
     }else{
@@ -129,29 +129,26 @@ class Search extends React.Component {
 
   getUberResults() {
     const that = this;
+    let count = 0;
     const uberLoggedIn = this.props.session.uberCreds;
-    return this.props.quotes.prices.uber.map(productObj => {
+    return this.props.quotes.prices.uber.map((productObj, idx) => {
       if (productObj.high_estimate > 0 &&
         UBER_PRODUCTS.includes(productObj.display_name)) {
+          count += 1;
         return (
           <li onClick={() => this.orderUberRide(productObj.product_id)}
             key={productObj.display_name}
-            className={"uber-lineitem " + (uberLoggedIn ? "conditional-hover" : "lineitem-tooltip")}>
-            <span className="tooltip">Login Above With Uber to Book!</span>
-            <h3 className="uber-key-data">{productObj.display_name}</h3>
-            <h3 className="uber-key-data">{productObj.estimate}</h3>
-            <div className="uber-lineitem-times">
-              <div className="time-inner-div">
-                <h5>{that.getTime(productObj.display_name)} min</h5>
-                <h5>away</h5>
-              </div>
-              <div className="time-inner-div">
-                <h5>ETA:</h5>
-                <h5>
-                  {this.createETA(that.getTime(productObj.display_name)
-                    + (productObj.duration / 60))}
-                </h5>
-              </div>
+            className={"uber lineitem " + (uberLoggedIn ? "conditional-hover" : "lineitem-tooltip")}>
+            <span className="ub-tool tooltip">Login Below With Uber to Book!</span>
+            <div className="uber-important">
+              <h3 className="uber-key-data">{productObj.display_name}</h3>
+              <h3 className="uber-key-data">{productObj.estimate}</h3>
+            </div>
+            <div className="time-inner-div">
+              <h5 className="uber-time-data">{that.getTime(productObj.display_name)} min away</h5>
+              <h5 className="uber-time-data">ETA: {this.createETA(that.getTime(productObj.display_name)
+                  + (productObj.duration / 60))}
+              </h5>
             </div>
           </li>
         );
@@ -166,23 +163,18 @@ class Search extends React.Component {
       if (productObj.estimated_cost_cents_max > 0) {
         return (
           <li onClick={() => this.orderLyftRide(productObj.display_name)} key={productObj.display_name}
-            className={"uber-lineitem " + (lyftLoggedIn ? "conditional-hover" : "lineitem-tooltip")}>
-              <span className="tooltip">Login Above With Lyft to Book!</span>
-              <h3 className="uber-key-data">{productObj.display_name}</h3>
-              <h3 className="uber-key-data">{that.centsToDollars(productObj.estimated_cost_cents_min,
+            className={"lyft lineitem " + (lyftLoggedIn ? "conditional-hover" : "lineitem-tooltip")}>
+              <span className="ly-tool tooltip">Login Below With Lyft to Book!</span>
+              <div className="uber-important">
+                <h3 className="uber-key-data">{productObj.display_name}</h3>
+                <h3 className="uber-key-data">{that.centsToDollars(productObj.estimated_cost_cents_min,
                 productObj.estimated_cost_cents_max)}</h3>
-              <div className="uber-lineitem-times">
-                <div className="time-inner-div">
-                  <h5>{that.getTime(productObj.display_name)} min</h5>
-                  <h5>away</h5>
-                </div>
-                <div className="time-inner-div">
-                  <h5>ETA:</h5>
-                  <h5>
-                    {that.createETA(that.getTime(productObj.display_name)
-                      + Math.ceil(productObj.estimated_duration_seconds / 60))}
-                  </h5>
-                </div>
+              </div>
+              <div className="time-inner-div">
+                <h5 className="uber-time-data">{that.getTime(productObj.display_name)} min away</h5>
+                <h5 className="uber-time-data">ETA: {that.createETA(that.getTime(productObj.display_name)
+                    + Math.ceil(productObj.estimated_duration_seconds / 60))}
+                </h5>
               </div>
             </li>
         );
@@ -270,38 +262,20 @@ class Search extends React.Component {
   }
 
   UberLoginCheck(){
-    if(this.props.session.uberCreds){
-      return (
-        <div className="uber-header">
-          <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
-          <h1 className="company-titles">UBER</h1>
-        </div>
-      );
-    }else{
-      return (
-        <a href={'http://localhost:3000/uber'} className="login uber-header">
-          <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
-          <h1 className="login-company-titles">Login to UBER</h1>
-        </a>
-      );
-    }
+    return (
+      <div className="uber-header">
+        <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
+        <h1 className="company-titles">UBER</h1>
+      </div>
+    );
   }
 
   LyftLoginCheck(){
-    if(this.props.session.lyftCreds){
-      return (
-        <div className="uber-header">
-          <img id="lyft-logo" src="../../../app/images/lyft_standard_silver.png"/>
-        </div>
-      );
-    }else{
-      return (
-        <a href={'http://localhost:3000/lyft'} className="login uber-header">
-          <h1 className="login-company-titles">Login to </h1>
-          <img id="lyft-logo" src="../../../app/images/lyft_standard_silver.png"/>
-        </a>
-      );
-    }
+    return (
+      <div className="uber-header">
+        <img id="lyft-logo" src="../../../app/images/lyft_header.png"/>
+      </div>
+    );
   }
 
 
@@ -309,12 +283,10 @@ class Search extends React.Component {
     if (this.props.quotes.prices.uber && this.props.quotes.prices.lyft) {
       return (
         <div className="quotes-container">
-          <section className="ride-info">
-            <h3>{this.props.quotes.prices.uber[0].distance} Miles</h3>
-          </section>
 
           <section className="results-container">
             <section className="uber-results">
+              <div className="divider"></div>
               {this.UberLoginCheck()}
               {this.getUberResults()}
             </section>

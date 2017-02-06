@@ -10,7 +10,11 @@ export const sandboxRequestRide = () => (
     },
     processData: false,
     data: JSON.stringify({
+<<<<<<< HEAD
+      "fare_id": "633129fd93c4cbd5bc065127fa4e819570a729763db72e019bbcd4e83242d801",
+=======
       "fare_id": "5f3d2dafbe9effbec37dc41cf62ae0dff4a5c977aa25734521691077c036277e",
+>>>>>>> dd55afc94aa9cccac8897c0588a1a13cf212c294
       "product_id": "a1111c8c-c720-46c3-8534-2fcdd730040d",
       "start_latitude": 37.7752278,
       "start_longitude": -122.4197513,
@@ -22,7 +26,11 @@ export const sandboxRequestRide = () => (
 export const sandboxAcceptedRide = () => (
   $.ajax({
     method: 'PUT',
+<<<<<<< HEAD
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/fd7b6b5d-60fa-4f2a-bf14-4701b45f66b0`,
+=======
     url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/fb5c28d0-3343-46b1-a6d6-bbff79f52aa4`,
+>>>>>>> dd55afc94aa9cccac8897c0588a1a13cf212c294
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
@@ -38,7 +46,11 @@ export const sandboxAcceptedRide = () => (
 export const sandboxArrivedRide = () => (
   $.ajax({
     method: 'PUT',
+<<<<<<< HEAD
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/fd7b6b5d-60fa-4f2a-bf14-4701b45f66b0`,
+=======
     url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/fb5c28d0-3343-46b1-a6d6-bbff79f52aa4`,
+>>>>>>> dd55afc94aa9cccac8897c0588a1a13cf212c294
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
@@ -54,7 +66,11 @@ export const sandboxArrivedRide = () => (
 export const sandboxDriverCancel = () => (
   $.ajax({
     method: 'PUT',
+<<<<<<< HEAD
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/fd7b6b5d-60fa-4f2a-bf14-4701b45f66b0`,
+=======
     url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/fb5c28d0-3343-46b1-a6d6-bbff79f52aa4`,
+>>>>>>> dd55afc94aa9cccac8897c0588a1a13cf212c294
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
