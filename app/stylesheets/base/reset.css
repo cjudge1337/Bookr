@@ -37,7 +37,7 @@ input {
   background: #f3f3f5;
   font-size: 12px;
   box-sizing: border-box;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #352384;
 }
 
 input:focus {

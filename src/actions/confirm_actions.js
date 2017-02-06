@@ -22,9 +22,3 @@ export const getUberQuote = (accessToken, product_id, startLat, startLong, endLa
   UberAPIUtil.getProductQuote(accessToken, product_id, startLat, startLong, endLat, endLong)
     .then(response => dispatch(receiveRide(response)))
 );
-
-
-// export const getLyftQuote = (product_id, startLat, startLong, endLat, endLong) => dispatch => (
-//   UberAPIUtil.getProductQuote(product_id, startLat, startLong, endLat, endLong)
-//     .then(response => dispatch(receiveRide(response)))
-// );

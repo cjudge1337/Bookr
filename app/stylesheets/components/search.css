@@ -266,11 +266,11 @@ BOLD_FONT = "Gotham Bold";*/
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  border-top: 1px solid black;
+  border-top: 1px solid #352384;
   font-family: 'Syncopate', sans-serif;
 }
 
 #lone {
   border: 0px;
-  border-top: 1px solid black;
+  border-top: 1px solid #352384;
 }

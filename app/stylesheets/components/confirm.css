@@ -1,4 +1,4 @@
-.uber-confirm, .lyft-confirm{
+/*.uber-confirm, .lyft-confirm{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,6 @@
 .lyft-confirm{
   background-color: #FF00BF;
 }
-
 
 .uber-confirm-element, .lyft-confirm-element{
   width: auto;
@@ -39,7 +38,6 @@
   color: #FF00BF;
 }
 
-
 .options{
   display: flex;
   flex-direction: row;
@@ -57,4 +55,4 @@
 #lyft-confirm-logo {
   width: 100px;
   height: 70px;
-}
+}*/
