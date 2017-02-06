@@ -1,17 +1,19 @@
 .open {
-  font-family: 'Syncopate', sans-serif;
   text-align: center;
   background-image: url('https://res.cloudinary.com/dlhshbg79/image/upload/c_fill,e_auto_color,g_custom,h_600,w_500/v1486335927/8e2gal_gie8-why-kei_jovjrn.jpg');
+  overflow: hidden;
 }
 
 #login {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   position: absolute;
-  height: 60px;
+  height: 90px;
   bottom: 0;
   left: 0;
   background: #F3F3F5;
+  font-size: 12px;
+  font-weight: 200;
 }
 
 .open h1 {
@@ -19,18 +21,38 @@
   padding-top: 10vh;
 }
 
-.open a {
+#login-links {
+  display: flex;
+  height: 50px;
+}
+
+#login-links > a {
   color: white;
   display: flex;
-  font-size: 14px;
-  font-weight: 200;
   justify-content: center;
   align-items: center;
   color: black;
 }
 
+#skip {
+  border-top: 1px solid black;
+  height: 40px;
+}
+
+#skip-link {
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#skip:hover {
+  background: #352384;
+  color: white;
+}
+
 #uber-login {
-  border-right: 0.1px solid black;
+  border-right: 0.5px solid black;
   box-sizing: border-box;
 }
 
@@ -40,7 +62,7 @@
 }
 
 #lyft-login {
-  border-left: 0.1px solid black;
+  border-left: 0.5px solid black;
   box-sizing: border-box;
 }
 

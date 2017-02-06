@@ -6,8 +6,6 @@ LIGHT_FONT = "Gotham Light";
 FONT = "Gotham Book";
 BOLD_FONT = "Gotham Bold";*/
 
-
-
 #root, .body{
   width: 500px;
   height: 100%;
@@ -65,7 +63,6 @@ BOLD_FONT = "Gotham Bold";*/
 
 .pac-item{
   height: auto;
-  font-family: "Gotham Light", sans-serif;
   margin: 0;
   padding: 5px;
   border-width: 0px;
@@ -73,7 +70,6 @@ BOLD_FONT = "Gotham Bold";*/
 
 .pac-item:hover, .pac-item-selected{
   color: black;
-  font-family: "Gotham Bold", sans-serif;
   cursor: pointer;
 }
 
@@ -90,7 +86,6 @@ BOLD_FONT = "Gotham Bold";*/
 .results-container {
   display: flex;
   flex-direction: row;
-  font-family: "Gotham Book", sans-serif;
   border-top: solid 5px white;
 }
 
@@ -198,6 +193,7 @@ BOLD_FONT = "Gotham Bold";*/
   border-top: solid 1px white;
 }
 
+
 .tooltip{
   visibility: hidden;
     width: auto;
@@ -247,4 +243,22 @@ BOLD_FONT = "Gotham Bold";*/
   margin: 0px;
   font-family: inherit;
   color: inherit;
+}
+
+.search-logins {
+  font-family: 'Syncopate', sans-serif;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  max-height: 40px;
+}
+
+.search-logins > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border: 1px solid black;
 }
