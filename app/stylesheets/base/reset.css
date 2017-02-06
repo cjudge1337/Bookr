@@ -1,0 +1,110 @@
+li {
+  list-style: none;
+}
+
+html, input, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+input {
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  text-align: center;
+  font-family: "Gotham Bold", sans-serif;
+  color: white;
+}
+
+::-webkit-input-placeholder { /* Chrome */
+  color: #F3F3F5;
+  opacity: 1;
+}
+:focus::-webkit-input-placeholder {
+  opacity: 0.5;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  color: #F3F3F5;
+  opacity: 1;
+}
+:focus:-ms-input-placeholder {
+  opacity: 0.5;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  color: #F3F3F5;
+  opacity: 1;
+}
+:focus::-moz-placeholder {
+  opacity: 0.5;
+}
+
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: #F3F3F5;
+  opacity: 1;
+}
+:focus:-moz-placeholder {
+  opacity: 0.5;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  /*
+  Get rid of native styling. Read more here:
+  http://css-tricks.com/almanac/properties/a/appearance/
+  */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+/* Clearfix */
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+h1,h2,h3,h4,h5,h6{
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  margin: 0px;
+  padding: 0px;
+
+}

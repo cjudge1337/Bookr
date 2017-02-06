@@ -4,12 +4,31 @@ import * as GoogleAPIUtil from '../util/google_maps/location_api.js';
 
 export const ADD_UBER_QUOTES = "ADD_UBER_QUOTES";
 export const ADD_LYFT_QUOTES = "ADD_LYFT_QUOTES";
-export const ADD_LYFT_ETAS = "ADD_LYFT_ETAS";
 export const ADD_UBER_ETAS = "ADD_UBER_ETAS";
+export const ADD_LYFT_ETAS = "ADD_LYFT_ETAS";
+export const ADD_UBER_ERRORS = "ADD_UBER_ERRORS";
+export const ADD_LYFT_ERRORS = "ADD_LYFT_ERRORS";
+export const CLEAR_STUFF = "CLEAR_STUFF";
 export const UPDATE_CURRENT_ADDRESS = "UPDATE_CURRENT_ADDRESS";
 export const UPDATE_DESTINATION_ADDRESS = "UPDATE_DESTINATION_ADDRESS";
 export const UPDATE_CURRENT_GEOLOCATION = "UPDATE_CURRENT_GEOLOCATION";
 export const UPDATE_DESTINATION_GEOLOCATION = "UPDATE_DESTINATION_GEOLOCATION";
+export const BOOK_UBER_RIDE = "BOOK_UBER_RIDE";
+export const BOOK_LYFT_RIDE = "BOOK_LYFT_RIDE";
+
+export const bookUberRide = rideData => ({
+  type: BOOK_UBER_RIDE,
+  rideData
+});
+
+export const bookLyftRide = rideData => ({
+  type: BOOK_LYFT_RIDE,
+  rideData
+});
+
+export const clearPricesErrors = () => ({
+  type: CLEAR_STUFF,
+});
 
 export const updateCurrentGeolocation = location => ({
   type: UPDATE_CURRENT_GEOLOCATION,
@@ -48,16 +67,31 @@ export const addUberQuotes = quotesObj => {
   };
 };
 
+export const addUberErrors = error => {
+  return {
+    type: ADD_UBER_ERRORS,
+    error: error.responseJSON.message
+  };
+};
+
 export const getUberQuotes = (startLat, startLong, endLat, endLong) => dispatch => (
   UberAPIUtil.getAllProductQuotes(startLat, startLong, endLat, endLong)
-    .then(response => dispatch(addUberQuotes(response)))
+    .then(response => dispatch(addUberQuotes(response)),
+      error => dispatch(addUberErrors(error)))
 );
 
 export const addLyftQuotes = quotesObj => {
-  return {
-    type: ADD_LYFT_QUOTES,
-    prices: quotesObj.cost_estimates
-  };
+  if (quotesObj.cost_estimates.length > 0) {
+    return {
+      type: ADD_LYFT_QUOTES,
+      prices: quotesObj.cost_estimates
+    };
+  } else {
+    return {
+      type: ADD_LYFT_ERRORS,
+      error: "Lyft is not yet available in this region."
+    };
+  }
 };
 
 export const getLyftQuotes = (startLat, startLong, endLat, endLong) => dispatch => (

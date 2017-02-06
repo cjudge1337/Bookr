@@ -24,11 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getUserGeo = GoogleAPIUtil.getUserGeo;
   window.geoToAddress = GoogleAPIUtil.geoToAddress;
 
-  const store = configureStore();
+  let store;
+
+  if (sessionStorage.session) {
+    let preloadedState = { session: JSON.parse(sessionStorage.session) };
+    store = configureStore(preloadedState);
+  } else {
+    store = configureStore();
+  }
   window.store = store;
+
   const root = document.getElementById('root');
-
-  window.store = store;
-
   ReactDOM.render(<Root store={ store }/>, root);
 });
