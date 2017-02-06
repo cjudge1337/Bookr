@@ -13,7 +13,6 @@
   left: 0;
   background: #F3F3F5;
   font-size: 12px;
-  font-weight: 200;
 }
 
 .open h1 {
@@ -37,7 +36,7 @@
 }
 
 #skip {
-  border-top: 1px solid black;
+  border-top: 1px solid #352384;
   height: 40px;
 }
 
@@ -55,7 +54,7 @@
 }
 
 .uber-login {
-  border-right: 1px solid black;
+  border-right: 1px solid #352384;
   box-sizing: border-box;
 }
 
@@ -65,7 +64,7 @@
 }
 
 .lyft-login {
-  border-left: 1px solid black;
+  border-left: 1px solid #352384;
   box-sizing: border-box;
 }
 

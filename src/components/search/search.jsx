@@ -95,7 +95,7 @@ class Search extends React.Component {
   renderOriginAutocomplete() {
     return <Autocomplete
       onPlaceSelected={ (place) => this.handleSelectOrigin(place) }
-      placeholder={this.props.quotes.address.current}
+      placeholder={this.props.quotes.address.current ? this.props.quotes.address.current : 'Pickup Location'}
       types={'address'}
       id='pickup-input'/>;
   }
