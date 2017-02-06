@@ -2,13 +2,19 @@ import * as UberAPIUtil from '../util/uber/quotes.js';
 import * as LyftAPIUtil from '../util/lyft/quotes.js';
 
 export const RECEIVE_SELECTED_RIDE = "RECEIVE_SELECTED_RIDE";
+export const CLEAR_CONFIRM_STATE = "CLEAR_CONFIRM_STATE";
 
 
 export const receiveRide = ride => {
-  debugger
   return {
     type: RECEIVE_SELECTED_RIDE,
     ride
+  };
+};
+
+export const clearConfirmState = () => {
+  return {
+    type: CLEAR_CONFIRM_STATE,
   };
 };
 
