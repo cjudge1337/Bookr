@@ -122,6 +122,7 @@ class Search extends React.Component {
       hashHistory.push('/confirm');
     } else if(confirm("You must be logged in to Uber to book this ride.") === true){
       // redirect to lyft login
+      
     }
   }
 

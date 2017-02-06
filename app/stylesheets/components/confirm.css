@@ -1,12 +1,20 @@
-.uber-confirm{
+.uber-confirm, .lyft-confirm{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.uber-confirm{
   background-color: black;
 }
 
-.uber-confirm-element{
+.lyft-confirm{
+  background-color: #FF00BF;
+}
+
+
+.uber-confirm-element, .lyft-confirm-element{
   width: auto;
   height: auto;
   font-family: "Gotham Book", sans-serif;
@@ -15,14 +23,20 @@
   color: white;
 }
 
-.buy-it:hover{
+.uber-buy-it:hover, .lyft-buy-it:hover{
   cursor: pointer;
 }
 
-.buy-it{
+.uber-buy-it{
   padding: 10px;
   background-color: white;
   color: black;
+}
+
+.lyft-buy-it{
+  padding: 10px;
+  background-color: white;
+  color: #FF00BF;
 }
 
 
@@ -38,4 +52,9 @@
 #uber-confirm-logo {
   width: 78px;
   height: 78px;
+}
+
+#lyft-confirm-logo {
+  width: 100px;
+  height: 70px;
 }
