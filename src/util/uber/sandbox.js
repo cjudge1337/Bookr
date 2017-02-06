@@ -1,5 +1,5 @@
 // TODO: Add access token variable interpolation
-export const sandboxRequestRide = (fareId) => (
+export const sandboxRequestRide = () => (
   $.ajax({
     method: 'POST',
     url: `https://sandbox-api.uber.com/v1.2/requests`,
@@ -10,7 +10,7 @@ export const sandboxRequestRide = (fareId) => (
     },
     processData: false,
     data: JSON.stringify({
-      "fare_id": "383242b2fae22dc99057bf2fa65ada62a9d9fc3be589d44d32f56a1dda6efa5f",
+      "fare_id": "630e93768746561e50f67e40ea2a406088202c5275dbf1f6c658cc4542e42473",
       "product_id": "a1111c8c-c720-46c3-8534-2fcdd730040d",
       "start_latitude": 37.7752278,
       "start_longitude": -122.4197513,
@@ -22,7 +22,7 @@ export const sandboxRequestRide = (fareId) => (
 export const sandboxAcceptedRide = () => (
   $.ajax({
     method: 'PUT',
-    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/cd8957c2-85f0-4ce4-b5a4-a5414112b37d`,
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/d531a7fd-ccb1-43aa-956a-99dd17f6c863`,
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
@@ -38,7 +38,7 @@ export const sandboxAcceptedRide = () => (
 export const sandboxArrivedRide = () => (
   $.ajax({
     method: 'PUT',
-    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/cd8957c2-85f0-4ce4-b5a4-a5414112b37d`,
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/d531a7fd-ccb1-43aa-956a-99dd17f6c863`,
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
@@ -54,7 +54,7 @@ export const sandboxArrivedRide = () => (
 export const sandboxDriverCancel = () => (
   $.ajax({
     method: 'PUT',
-    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/cd8957c2-85f0-4ce4-b5a4-a5414112b37d`,
+    url: `https://sandbox-api.uber.com/v1.2/sandbox/requests/d531a7fd-ccb1-43aa-956a-99dd17f6c863`,
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",
@@ -82,7 +82,7 @@ export const sandboxDeleteRide = () => (
 export const sandboxDeleteRideId = () => (
   $.ajax({
     method: 'DELETE',
-    url: `https://sandbox-api.uber.com/v1.2/requests/cd8957c2-85f0-4ce4-b5a4-a5414112b37d`,
+    url: `https://sandbox-api.uber.com/v1.2/requests/d531a7fd-ccb1-43aa-956a-99dd17f6c863`,
     headers: {
       Authorization: "Bearer " +
       "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmVxdWVzdCJdLCJzdWIiOiI2MWRlM2E2ZS1jM2ViLTRhMzAtOWJkOS0xNWQ5Y2Y1NjEyNzgiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImVjZmVjYTA1LWM1MjQtNGM2Zi05YjljLTk5Zjk1NzFiMzBiNCIsImV4cCI6MTQ4ODc3Mjk3MywiaWF0IjoxNDg2MTgwOTczLCJ1YWN0Ijoibkt5WERCTEFqa0dsekZsbWplY0R4MXNmMFFOVmlKIiwibmJmIjoxNDg2MTgwODgzLCJhdWQiOiJpVW1fcmhUT0xuWkxud3E0THl6UUxxMXBJMkJkMGEzUSJ9.nITy3IUeZwt4kffV9Cw3v5KTCFK75Ls_A3CxIYU7k32aAImCIaepVXQTZJ5D1RAxnotKUESmcJJwE_e-WFh7LWdfZ8Gtx7-NYLCWuDOmPoY_wDEG8nyNKgIGLWubyskcqyaE0YgHHp7wa_ZCTg-C-_2weBXaEjkfKU1YjQME4Hp0VeOhOZ6kSaGtXiec1orhfg2VthaZRwa9op9Nrl6Kk2nw6K2xuo7wMAZYw4rqXENYlG64j5YyxtIykfBdctKkul1EZoheWRCvVlShUsQE9Gz2DmeVJci9V_-uKOFlqdPttjB1hOjwV2qcJOWJh7TwHNpddbxjUvkWeASL6Ym7pA",

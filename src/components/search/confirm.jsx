@@ -42,15 +42,13 @@ class Confirm extends React.Component {
   }
 
   orderUber(){
-    console.log('Uber ordered!');
-    hashHistory.push('/enroute');
-    // TODO correct route?
+    this.props.createSandboxRide()
+    .then(() => hashHistory.push('/enroute'));
   }
 
   orderLyft(){
     console.log('Lyft ordered!');
     hashHistory.push('/enroute');
-    // TODO correct route?
   }
 
   backToSearch(){
