@@ -2,7 +2,6 @@ import React from 'react';
 import { bindAll } from 'lodash';
 import Autocomplete from 'react-google-autocomplete';
 import { getUserGeo, geoToAddress } from '../../util/google_maps/location_api';
-import Loading from '../loading';
 import { hashHistory } from 'react-router';
 
 const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
@@ -93,19 +92,22 @@ class Search extends React.Component {
     this.props.getCurrentGeolocation(this.props.quotes.address.current);
   }
 
-  renderDestinationAutocomplete() {
-    return <Autocomplete
-      onPlaceSelected={ (place) => this.handleSelectDestination(place) }
-      placeholder={this.props.quotes.address.destination.length > 0 ? this.props.quotes.address.destination : "Enter a destination" }
-      types={'address'}/>;
-  }
-
   renderOriginAutocomplete() {
     return <Autocomplete
       onPlaceSelected={ (place) => this.handleSelectOrigin(place) }
       placeholder={this.props.quotes.address.current}
-      types={'address'}/>;
+      types={'address'}
+      id='pickup-input'/>;
   }
+
+  renderDestinationAutocomplete() {
+    return <Autocomplete
+      onPlaceSelected={ (place) => this.handleSelectDestination(place) }
+      placeholder={this.props.quotes.address.destination.length > 0 ? this.props.quotes.address.destination : "Enter a destination" }
+      types={'address'}
+      id='dropoff-input'/>;
+  }
+
 
   orderUberRide(rideData){
     if(this.props.session.uberCreds.access_token.length > 0){
@@ -308,7 +310,7 @@ class Search extends React.Component {
       return (
         <div className="quotes-container">
           <section className="ride-info">
-            <h3>{this.props.quotes.prices.uber[0].distance} Mile Ride</h3>
+            <h3>{this.props.quotes.prices.uber[0].distance} Miles</h3>
           </section>
 
           <section className="results-container">
@@ -326,16 +328,16 @@ class Search extends React.Component {
       );
     } else if (this.props.quotes.errors.uber && this.props.quotes.errors.lyft) {
       return (
-        <div>
+        <div className='errors'>
           <h6>{this.props.quotes.errors.uber}</h6>
           <h6>{this.props.quotes.errors.lyft}</h6>
         </div>
       );
     } else if (this.props.quotes.geolocations.current !== "" &&
         this.props.quotes.geolocations.destination !== "") {
-      return <Loading/>;
+      return <div id='loading' className="requesting animated infinite pulse">Searching...</div>;
     } else {
-      return <div className="null"></div>;
+      return <div className="quotes-container"></div>;
     }
   }
 
@@ -350,20 +352,20 @@ class Search extends React.Component {
     } else if (this.props.session.uberCreds) {
       return (
         <div className='search-logins'>
-          <a href={'http://localhost:3000/lyft'} id="lyft-login">Log In Lyft</a>
+          <a id='lone' href={'http://localhost:3000/lyft'} className="lyft-login">Log In Lyft</a>
         </div>
       );
     } else if (this.props.session.lyftCreds) {
       return (
         <div className='search-logins'>
-          <a href={'http://localhost:3000/uber'} id="uber-login">Log In Uber</a>
+          <a id='lone' href={'http://localhost:3000/uber'} className="uber-login">Log In Uber</a>
         </div>
       );
     } else {
       return (
         <div className='search-logins'>
-          <a href={'http://localhost:3000/uber'} id="uber-login">Log In Uber</a>
-          <a href={'http://localhost:3000/lyft'} id="lyft-login">Log In Lyft</a>
+          <a href={'http://localhost:3000/uber'} className="uber-login">Log In Uber</a>
+          <a href={'http://localhost:3000/lyft'} className="lyft-login">Log In Lyft</a>
         </div>
       );
     }
@@ -379,8 +381,8 @@ class Search extends React.Component {
           {this.renderDestinationAutocomplete()}
         </div>
 
-        {this.renderLogins()}
         {this.renderResults()}
+        {this.renderLogins()}
       </div>
     );
   }

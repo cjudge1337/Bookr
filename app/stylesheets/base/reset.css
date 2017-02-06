@@ -21,6 +21,11 @@ span, article, footer, time, small {
   width: 100%;
   height: 100%;
   font-family: 'Exo', sans-serif;
+  font-weight: 200;
+}
+
+html {
+  overflow: hidden;
 }
 
 input {
@@ -28,39 +33,48 @@ input {
   vertical-align: middle;
   width: 100%;
   text-align: center;
-  color: white;
+  color: black;
+  background: #f3f3f5;
+  font-size: 12px;
+  box-sizing: border-box;
+  border-bottom: 1px solid grey;
+}
+
+input:focus {
+  background: white;
+  border-bottom: 1px solid #352384;
 }
 
 ::-webkit-input-placeholder { /* Chrome */
-  color: #F3F3F5;
-  opacity: 1;
+  color: #352384;
+  opacity: 0.3;
 }
 :focus::-webkit-input-placeholder {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 :-ms-input-placeholder { /* IE 10+ */
-  color: #F3F3F5;
-  opacity: 1;
+  color: #352384;
+  opacity: 0.3;
 }
 :focus:-ms-input-placeholder {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #F3F3F5;
-  opacity: 1;
+  color: #352384;
+  opacity: 0.3;
 }
 :focus::-moz-placeholder {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 :-moz-placeholder { /* Firefox 4 - 18 */
-  color: #F3F3F5;
-  opacity: 1;
+  color: #352384;
+  opacity: 0.3;
 }
 :focus:-moz-placeholder {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 ul {

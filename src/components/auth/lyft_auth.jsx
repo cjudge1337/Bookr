@@ -1,7 +1,6 @@
 import React from 'react';
 import qs from 'query-string';
 import { hashHistory } from 'react-router';
-import Loading from '../loading';
 
 class LyftAuth extends React.Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class LyftAuth extends React.Component {
   }
 
   render() {
-    return <Loading />;
+    return <div id='loading' className="requesting animated infinite pulse">Authorizing...</div>;
   }
 }
 
