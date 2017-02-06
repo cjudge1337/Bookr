@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { CLEAR_STUFF, ADD_LYFT_ERRORS, ADD_UBER_ERRORS, UPDATE_CURRENT_GEOLOCATION,
+import { CLEAR_PRICE_ERRORS, ADD_LYFT_ERRORS, ADD_UBER_ERRORS, UPDATE_CURRENT_GEOLOCATION,
   UPDATE_DESTINATION_GEOLOCATION, UPDATE_CURRENT_ADDRESS,
   UPDATE_DESTINATION_ADDRESS, ADD_UBER_QUOTES, ADD_LYFT_QUOTES,
   ADD_UBER_ETAS, ADD_LYFT_ETAS, BOOK_UBER_RIDE, BOOK_LYFT_RIDE } from '../actions/quote_actions';
@@ -26,7 +26,7 @@ const QuoteReducer = (state = _noProducts, action) => {
       return merge({}, state, {booked_ride: {uber: action.rideData}});
     case BOOK_LYFT_RIDE:
       return merge({}, state, {booked_ride: {lyft: action.rideData}});
-    case CLEAR_STUFF:
+    case CLEAR_PRICE_ERRORS:
       return merge({}, _noProducts,
         {address: state.address, geolocations: state.geolocations});
     case ADD_UBER_QUOTES:

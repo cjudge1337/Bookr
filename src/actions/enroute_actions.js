@@ -37,8 +37,10 @@ export const getUberRideInfo = requestId => dispatch => (
     error => console.log(error))
 );
 
-export const createUberRide = (accessToken, fareId, productId, startLat, startLong, endLat, endLong) => dispatch => (
-  UberAPIUtil.createRide(accessToken, fareId, productId, startLat, startLong, endLat, endLong)
+export const createUberRide = (accessToken, fareId, productId, startLat,
+  startLong, endLat, endLong) => dispatch => (
+  UberAPIUtil.createRide(accessToken, fareId, productId, startLat,
+    startLong, endLat, endLong)
   .then(info => dispatch(receiveUberRideInfo(info)),
     error => console.log(error))
 );

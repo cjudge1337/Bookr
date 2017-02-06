@@ -41,7 +41,7 @@ class Enroute extends React.Component {
 
   render() {
     if (this.props.enroute.uber.info.status === "processing") {
-      return <div className="requesting animated infinite pulse">Requesting</div>;
+      return <div id='loading' className="requesting animated infinite pulse">Requesting...</div>;
     } else {
       return (
           <div className="enroute-container">
