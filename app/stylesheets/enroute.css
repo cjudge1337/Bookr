@@ -70,10 +70,14 @@
 
 .enroute-map-container {
   width: 100%;
-  height: 50%;
+  height: 85%;
   background-color: blue;
 }
 
-#map {
+.map {
   height: 100%;
+}
+
+.gmnoprint {
+  display: none;
 }
