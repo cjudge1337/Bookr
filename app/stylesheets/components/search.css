@@ -258,7 +258,6 @@ BOLD_FONT = "Gotham Bold";*/
   display: flex;
   justify-content: center;
   max-height: 40px;
-  background: #f3f3f5;
 }
 
 .search-logins > a {
@@ -268,6 +267,7 @@ BOLD_FONT = "Gotham Bold";*/
   font-size: 12px;
   border-top: 1px solid #352384;
   font-family: 'Syncopate', sans-serif;
+  background: #f3f3f5;
 }
 
 #lone {
