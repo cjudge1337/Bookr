@@ -23,11 +23,18 @@
 		<title>Bookr</title>
 	</head>
 
-	<body>
+	<body onkeydown="KeyDownFn(event)">
 		<div id='root'>
 		</div>
 
 		<script type="application/javascript" src="app/bundle.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8U3D6mrBdh95jtZ6EnkP-kDkt2oBCHaA&libraries=places"></script>
+		<script>
+
+		// function KeyDownFn(evt) {
+		// 	debugger
+		// 	if (evt.keyCode == 73 && evt.altKey && evt.metaKey) evt.preventDefault();
+		// }
+		</script>
 	</body>
 </html>
