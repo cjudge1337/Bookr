@@ -264,7 +264,7 @@ class Search extends React.Component {
   UberLoginCheck(){
     return (
       <div className="uber-header">
-        <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
+        <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_70px.png"/>
         <h1 className="company-titles">UBER</h1>
       </div>
     );
