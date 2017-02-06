@@ -8,7 +8,7 @@ const mb = menubar({
   width: 500,
   height: 600,
   movable: false,
-  resizable: false
+  resizable: false,
 });
 
 mb.on('ready', function ready () {
