@@ -10,17 +10,62 @@ class Confirm extends React.Component {
   }
 
   componentDidMount() {
-    const geos = this.props.quotes.geolocations;
+    const geos = this.props.geos;
+    let pickuplat = geos.current.lat;
+    let pickuplng = geos.current.lng;
+    let destlat = geos.destination.lat;
+    let destlng = geos.destination.lng;
 
-    if (this.props.quotes.booked_ride.uber) {
+    if (this.props.booked_ride.uber) {
       this.props.getUberQuote(this.props.session.uberCreds.access_token,
-        this.props.quotes.booked_ride.uber, geos.current.lat, geos.current.lng,
-        geos.destination.lat, geos.destination.lng);
+        this.props.booked_ride.uber, pickuplat, pickuplng,
+        destlat, destlng);
     }
   }
 
+  componentDidUpdate() {
+    const geos = this.props.geos;
+    let pickuplat = geos.current.lat;
+    let pickuplng = geos.current.lng;
+    let destlat = geos.destination.lat;
+    let destlng = geos.destination.lng;
+
+    let pickupGeo = {
+      lat: pickuplat,
+      lng: pickuplng
+    };
+
+    let destGeo = {
+      lat: destlat,
+      lng: destlng
+    };
+
+    let centerGeo = {
+      lat: (pickuplat + destlat) / 2,
+      lng: (pickuplng + destlng) / 2
+    };
+
+    this.map = new google.maps.Map(this.refs.confmap, {
+      center: centerGeo,
+      zoom: 13,
+      zoomControl: true
+    });
+
+    const pickupMarker = new google.maps.Marker({
+      position: pickupGeo,
+      map: this.map,
+      title: 'Pickup location'
+    });
+
+    const destMarker = new google.maps.Marker({
+      position: destGeo,
+      map: this.map,
+      title: 'Destination location'
+    });
+  }
+
   getUberServiceName() {
-    const correctCode = this.props.quotes.booked_ride.uber;
+    const correctCode = this.props.booked_ride.uber;
     let name;
 
     this.props.quotes.prices.uber.forEach(priceObj => {
@@ -32,7 +77,7 @@ class Confirm extends React.Component {
   }
 
   getLyftObj() {
-    const correctName = this.props.quotes.booked_ride.lyft;
+    const correctName = this.props.booked_ride.lyft;
     let obj;
     this.props.quotes.prices.lyft.forEach(priceObj => {
       if (correctName === priceObj.display_name) {
@@ -84,7 +129,7 @@ class Confirm extends React.Component {
     return `${newMin}-${newMax}`;
   }
 
-  renderConfirmation(){
+  renderConfirmation() {
     if (this.props.confirm.trip) {
       return (
         <div className='confirm'>
@@ -97,9 +142,9 @@ class Confirm extends React.Component {
           </div>
 
           <div className='confirm-bottom'>
-            <h2>{this.props.quotes.address.current}</h2>
+            <h2>{this.props.addresses.current}</h2>
             <p id='to'>to...</p>
-            <h2>{this.props.quotes.address.destination}</h2>
+            <h2>{this.props.addresses.destination}</h2>
           </div>
 
           <a className='book-ride' onClick={() => this.orderUber()}>
@@ -107,7 +152,7 @@ class Confirm extends React.Component {
           </a>
 
           <div className='confirm-map'>
-
+            <div ref="confmap" className="conf-map"></div>
           </div>
 
           <a className='back-to-search' onClick={() => this.backToSearch()}>
@@ -115,13 +160,13 @@ class Confirm extends React.Component {
           </a>
         </div>
       );
-    } else if (this.props.quotes.booked_ride.lyft) {
+    } else if (this.props.booked_ride.lyft) {
       const lyftObj = this.getLyftObj();
 
       return (
         <div className='confirm'>
           <div className='confirm-top'>
-            <img id='lyft-confirm-logo' src='../../../app/images/lyft_standard_silver.png'/>
+            <img id='lyft-confirm-logo' src='../../../app/images/lyft_header.png'/>
             <h2 id='service-title'>{lyftObj.display_name}</h2>
             <h2>{lyftObj.estimated_distance_miles} Miles</h2>
             <h2>{this.centsToDollars(lyftObj.estimated_cost_cents_min, lyftObj.estimated_cost_cents_max)}</h2>
@@ -129,9 +174,9 @@ class Confirm extends React.Component {
           </div>
 
           <div className='confirm-bottom'>
-            <h2>{this.props.quotes.address.current}</h2>
+            <h2>{this.props.addresses.current}</h2>
             <p id='to'>to...</p>
-            <h2>{this.props.quotes.address.destination}</h2>
+            <h2>{this.props.addresses.destination}</h2>
           </div>
 
           <a className='book-ride' onClick={() => this.orderLyft()}>
@@ -139,7 +184,7 @@ class Confirm extends React.Component {
           </a>
 
           <div className='confirm-map'>
-
+            <div ref="confmap" className="conf-map"></div>
           </div>
 
           <a className='back-to-search' onClick={() => this.backToSearch()}>
@@ -148,6 +193,7 @@ class Confirm extends React.Component {
         </div>
       );
     } else {
+
       return (
         <div id='loading' className="requesting animated infinite pulse">
           Just a moment...
