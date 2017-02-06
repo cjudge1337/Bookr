@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getUserGeo = GoogleAPIUtil.getUserGeo;
   window.geoToAddress = GoogleAPIUtil.geoToAddress;
 
+
   let store;
 
   if (sessionStorage.session) {
