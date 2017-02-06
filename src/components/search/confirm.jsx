@@ -137,7 +137,6 @@ class Confirm extends React.Component {
             <img id='uber-confirm-logo' src='../../../app/images/uber_rides_api_icon_2x_70px.png'/>
             <h2 id='service-title'>{this.getUberServiceName()}</h2>
             <h2>{this.props.confirm.trip.distance_estimate} Miles</h2>
-            <h2>{this.props.confirm.fare.display}</h2>
             <h2>{this.props.confirm.trip.duration_estimate / 60} Minutes</h2>
           </div>
 
@@ -169,7 +168,6 @@ class Confirm extends React.Component {
             <img id='lyft-confirm-logo' src='../../../app/images/lyft_header.png'/>
             <h2 id='service-title'>{lyftObj.display_name}</h2>
             <h2>{lyftObj.estimated_distance_miles} Miles</h2>
-            <h2>{this.centsToDollars(lyftObj.estimated_cost_cents_min, lyftObj.estimated_cost_cents_max)}</h2>
             <h2>{Math.ceil(lyftObj.estimated_duration_seconds / 60)} Minutes</h2>
           </div>
 

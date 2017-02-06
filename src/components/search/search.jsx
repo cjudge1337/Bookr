@@ -10,10 +10,10 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    bindAll(this, 'UberLoginCheck', 'orderUberRide', 'orderLyftRide', 'createETA',
-      'getTime','handleSelectDestination',
-      'renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars',
-      'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
+    bindAll(this, 'orderUberRide', 'orderLyftRide',
+    'createETA', 'getTime','handleSelectDestination', 'renderOriginAutocomplete',
+    'renderDestinationAutocomplete', 'centsToDollars', 'renderResults',
+    'getUberResults','getLyftResults', 'getUserLocation');
   }
 
   componentDidMount() {
@@ -112,6 +112,7 @@ class Search extends React.Component {
     const that = this;
     let count = 0;
     const uberLoggedIn = this.props.session.uberCreds;
+    
     return this.props.quotes.prices.uber.map((productObj, idx) => {
       if (productObj.high_estimate > 0 &&
         UBER_PRODUCTS.includes(productObj.display_name)) {
@@ -147,6 +148,7 @@ class Search extends React.Component {
   getLyftResults() {
     const that = this;
     const lyftLoggedIn = this.props.session.lyftCreds;
+
     return this.props.quotes.prices.lyft.map(productObj => {
       if (productObj.estimated_cost_cents_max > 0) {
         return (
@@ -255,36 +257,25 @@ class Search extends React.Component {
     return `${newMin}-${newMax}`;
   }
 
-  UberLoginCheck() {
-    return (
-      <div className="uber-header">
-        <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_70px.png"/>
-        <h1 className="company-titles">UBER</h1>
-      </div>
-    );
-  }
-
-  LyftLoginCheck() {
-    return (
-      <div className="uber-header">
-        <img id="lyft-logo" src="../../../app/images/lyft_header.png"/>
-      </div>
-    );
-  }
-
   renderResults() {
     if (this.props.quotes.prices.uber && this.props.quotes.prices.lyft) {
       return (
         <div className="quotes-container">
           <section className="results-container">
             <section className="uber-results">
-              <div className="divider"></div>
-              {this.UberLoginCheck()}
+              <div className="uber-header">
+                <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_70px.png"/>
+                <h1 className="company-titles">UBER</h1>
+              </div>
+
               {this.getUberResults()}
             </section>
 
             <section className="lyft-results">
-              {this.LyftLoginCheck()}
+              <div className="uber-header">
+                <img id="lyft-logo" src="../../../app/images/lyft_header.png"/>
+              </div>
+
               {this.getLyftResults()}
             </section>
           </section>
@@ -299,7 +290,8 @@ class Search extends React.Component {
       );
     } else if (this.props.quotes.geolocations.current !== "" &&
         this.props.quotes.geolocations.destination !== "") {
-      return <div id='loading' className="requesting animated infinite pulse">Searching...</div>;
+      return <div id='loading' className="requesting animated infinite pulse">
+        Searching...</div>;
     } else {
       return <div className="quotes-container"></div>;
     }
