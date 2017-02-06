@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 import EnrouteMap from './enroute_map';
-import TimeDisplay from './time_display';
+import { hashHistory } from 'react-router';
 import { sandboxRequestRide,
          sandboxCurrentRide,
          sandboxAcceptedRide,
@@ -15,12 +15,7 @@ class Enroute extends React.Component {
     super(props);
 
     this.state = { timer: 0 };
-
-    // this.currentRide = this.currentRide.bind(this);
-    // this.acceptedRide = this.acceptedRide.bind(this);
-    // this.arrivedRide = this.arrivedRide.bind(this);
-    // this.cancelRide = this.cancelRide.bind(this);
-    // this.driverCancel = this.driverCancel.bind(this);
+    this.cancelRide = this.cancelRide.bind(this);
   }
 
   updateStatus() {
@@ -32,38 +27,20 @@ class Enroute extends React.Component {
     this.setState({ timer: newTimer });
   }
 
-  // currentRide(e) {
-  //   e.preventDefault();
-  //   sandboxCurrentRide().then(res => console.log(res));
-  // }
-  //
-  // acceptedRide(e) {
-  //   e.preventDefault();
-  //   sandboxAcceptedRide()
-  //   .then(res => this.props.getUberUpdate(res));
-  // }
-  //
-  // arrivedRide(e) {
-  //   e.preventDefault();
-  //   sandboxArrivedRide()
-  //   .then(res => this.props.getUberUpdate(res));
-  // }
-  //
-  // cancelRide(e) {
-  //   e.preventDefault();
-  //   sandboxDeleteRide();
-  //   this.props.deleteUberRide();
-  // }
-  //
-  // driverCancel(e) {
-  //   e.preventDefault();
-  //   sandboxDriverCancel();
-  //   this.props.deleteUberRide();
-  // }
+  componentWillReceiveProps(newProps) {
+    if (newProps.enroute.uber.info.status === "completed") {
+      hashHistory.push('/search');
+    }
+  }
+
+  cancelRide(e) {
+    e.preventDefault();
+    sandboxDeleteRide();
+    hashHistory.push('/search');
+  }
 
   render() {
     if (this.props.enroute.uber.info.status === "processing") {
-      //TODO put loading component
       return <div className="requesting animated infinite pulse">Requesting</div>;
     } else {
       return (
@@ -90,15 +67,10 @@ class Enroute extends React.Component {
                         destination={this.props.enroute.uber.info.destination}
                         location={this.props.enroute.uber.info.location} />
 
+            <button className="cancel-button" onClick={this.cancelRide}>Cancel Ride</button>
           </div>
       );
     }
-    // <button className="test-button" onClick={this.currentRide}>Current Ride</button>
-    // <button className="test-button" onClick={this.acceptedRide}>Accepted Ride</button>
-    // <button className="test-button" onClick={this.arrivedRide}>Arrived Ride</button>
-    // <button className="test-button" onClick={this.cancelRide}>Cancel Ride</button>
-    // <button className="test-button" onClick={this.driverCancel}>Driver Cancel Ride</button>
-
   }
 
 }
