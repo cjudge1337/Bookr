@@ -19,7 +19,7 @@ class LyftAuth extends React.Component {
   }
 
   render() {
-    return <Loading />;
+    return <div id='loading' className="requesting animated infinite pulse">Authorizing...</div>;
   }
 }
 

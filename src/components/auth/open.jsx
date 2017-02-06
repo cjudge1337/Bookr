@@ -12,11 +12,11 @@ class Open extends React.Component {
 
         <div id='login'>
           <div id='login-links'>
-            <a href={'http://localhost:3000/uber'} id="uber-login">Log In Uber</a>
-            <a href={'http://localhost:3000/lyft'} id="lyft-login">Log In Lyft</a>
+            <a id='login-hover' href={'http://localhost:3000/uber'} className="uber-login">Log In Uber</a>
+            <a id='login-hover' href={'http://localhost:3000/lyft'} className="lyft-login">Log In Lyft</a>
           </div>
           <div id='skip'>
-            <Link id='skip-link' to={'/search'}>Skip to search</Link>
+            <Link id='skip-link' to={'/search'}>Skip to Search</Link>
           </div>
         </div>
       </div>

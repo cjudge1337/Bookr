@@ -19,6 +19,7 @@
 .open h1 {
   font-size: 60px;
   padding-top: 10vh;
+  font-family: 'Syncopate', sans-serif;
 }
 
 #login-links {
@@ -32,6 +33,7 @@
   justify-content: center;
   align-items: center;
   color: black;
+  font-family: 'Syncopate', sans-serif;
 }
 
 #skip {
@@ -44,6 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Syncopate', sans-serif;
 }
 
 #skip:hover {
@@ -51,22 +54,26 @@
   color: white;
 }
 
-#uber-login {
-  border-right: 0.5px solid black;
+.uber-login {
+  border-right: 1px solid black;
   box-sizing: border-box;
 }
 
-#uber-login:hover {
+.uber-login:hover {
   background: black;
   color: white;
 }
 
-#lyft-login {
-  border-left: 0.5px solid black;
+.lyft-login {
+  border-left: 1px solid black;
   box-sizing: border-box;
 }
 
-#lyft-login:hover {
+.lyft-login:hover {
   background: #FF00BF;
+  color: white;
+}
+
+#login-hover:hover {
   color: white;
 }

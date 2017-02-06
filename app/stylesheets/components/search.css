@@ -6,42 +6,34 @@ LIGHT_FONT = "Gotham Light";
 FONT = "Gotham Book";
 BOLD_FONT = "Gotham Bold";*/
 
-#root, .body{
-  width: 500px;
-  height: 100%;
+.search-container {
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.search-page{
-  width: 100%;
-  height: 100%;
+#pickup-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+}
+
+#dropoff-input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50px;
 }
 
 .quotes-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100% - 95px);
-}
-
-.null{
-  height: calc(100% - 95px);
-}
-
-
-
-
-
-
-
-.search-container {
-  height: 75px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0px;
-  background-color: #333447;
+  height: calc(100vh - 140px);
 }
 
 .search-container > div {
@@ -245,6 +237,12 @@ BOLD_FONT = "Gotham Bold";*/
   color: inherit;
 }
 
+
+
+/*--------------------------------------------------------------------*/
+
+
+
 .search-logins {
   font-family: 'Syncopate', sans-serif;
   position: absolute;
@@ -253,6 +251,7 @@ BOLD_FONT = "Gotham Bold";*/
   display: flex;
   justify-content: center;
   max-height: 40px;
+  background: #f3f3f5;
 }
 
 .search-logins > a {
@@ -260,5 +259,11 @@ BOLD_FONT = "Gotham Bold";*/
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  border: 1px solid black;
+  border-top: 1px solid black;
+  font-family: 'Syncopate', sans-serif;
+}
+
+#lone {
+  border: 0px;
+  border-top: 1px solid black;
 }
