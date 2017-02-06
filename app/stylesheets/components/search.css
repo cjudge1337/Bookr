@@ -6,8 +6,6 @@ LIGHT_FONT = "Gotham Light";
 FONT = "Gotham Book";
 BOLD_FONT = "Gotham Bold";*/
 
-
-
 #root, .body{
   width: 500px;
   height: 100%;
@@ -247,4 +245,22 @@ BOLD_FONT = "Gotham Bold";*/
   margin: 0px;
   font-family: inherit;
   color: inherit;
+}
+
+.search-logins {
+  font-family: 'Syncopate', sans-serif;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  max-height: 40px;
+}
+
+.search-logins > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border: 1px solid black;
 }
