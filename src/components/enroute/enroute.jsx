@@ -81,8 +81,10 @@ class Enroute extends React.Component {
                                               {this.props.enroute.uber.info.vehicle.model}</h2>
                 </div>
               </div>
-              <h2 className="status">{this.props.enroute.uber.info.status.toUpperCase()}</h2>
-              <h2 className="eta">{this.props.enroute.uber.info.pickup.eta} Minutes</h2>
+              <div className="ride-info">
+                <h2 className="status">Status: {this.props.enroute.uber.info.status.toUpperCase()}</h2>
+                <h2 className="eta">ETA: {this.props.enroute.uber.info.pickup.eta} Min</h2>
+              </div>
             </div>
             <EnrouteMap pickup={this.props.enroute.uber.info.pickup}
                         destination={this.props.enroute.uber.info.destination}
