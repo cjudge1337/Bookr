@@ -24,6 +24,10 @@ span, article, footer, time, small {
   font-weight: 200;
 }
 
+html {
+  overflow: hidden;
+}
+
 input {
   text-align: center;
   vertical-align: middle;
