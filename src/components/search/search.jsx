@@ -1,8 +1,8 @@
 import React from 'react';
-import { bindAll } from 'lodash';
 import Autocomplete from 'react-google-autocomplete';
-import { getUserGeo, geoToAddress } from '../../util/google_maps/location_api';
+import { bindAll } from 'lodash';
 import { hashHistory } from 'react-router';
+import { getUserGeo, geoToAddress } from '../../util/google_maps/location_api';
 
 const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
 
@@ -75,7 +75,8 @@ class Search extends React.Component {
   renderOriginAutocomplete() {
     return <Autocomplete
       onPlaceSelected={ (place) => this.handleSelectOrigin(place) }
-      placeholder={this.props.quotes.address.current ? this.props.quotes.address.current : 'Pickup Location'}
+      placeholder={this.props.quotes.address.current ?
+        this.props.quotes.address.current : 'Pickup Location'}
       types={'address'}
       id='pickup-input'/>;
   }
@@ -83,21 +84,22 @@ class Search extends React.Component {
   renderDestinationAutocomplete() {
     return <Autocomplete
       onPlaceSelected={ (place) => this.handleSelectDestination(place) }
-      placeholder={this.props.quotes.address.destination.length > 0 ? this.props.quotes.address.destination : "Enter a destination" }
+      placeholder={this.props.quotes.address.destination.length > 0 ?
+        this.props.quotes.address.destination : "Enter a destination" }
       types={'address'}
       id='dropoff-input'/>;
   }
 
-  orderUberRide(rideData){
-    if(this.props.session.uberCreds){
+  orderUberRide(rideData) {
+    if (this.props.session.uberCreds) {
       this.props.bookUberRide(rideData);
       hashHistory.push('/confirm');
-    }else{
+    } else {
       alert("You must be logged in to Uber to book this ride.");
     }
   }
 
-  orderLyftRide(rideData){
+  orderLyftRide(rideData) {
     if(this.props.session.lyftCreds){
       this.props.bookLyftRide(rideData);
       hashHistory.push('/confirm');
@@ -117,15 +119,22 @@ class Search extends React.Component {
         return (
           <li onClick={() => this.orderUberRide(productObj.product_id)}
             key={productObj.display_name}
-            className={"uber lineitem " + (uberLoggedIn ? "conditional-hover" : "lineitem-tooltip")}>
-            <span className="ub-tool tooltip">Login Below With Uber to Book!</span>
+            className={"uber lineitem " + (uberLoggedIn ?
+              "conditional-hover" : "lineitem-tooltip")}>
+            <span className="ub-tool tooltip">
+              Login Below With Uber to Book!
+            </span>
+
             <div className="uber-important">
               <h3 className="uber-key-data">{productObj.display_name}</h3>
               <h3 className="uber-key-data">{productObj.estimate}</h3>
             </div>
             <div className="time-inner-div">
-              <h5 className="uber-time-data">{that.getTime(productObj.display_name)} min away</h5>
-              <h5 className="uber-time-data">ETA: {this.createETA(that.getTime(productObj.display_name)
+              <h5 className="uber-time-data">
+                {that.getTime(productObj.display_name)} min away
+              </h5>
+              <h5 className="uber-time-data">
+                ETA: {this.createETA(that.getTime(productObj.display_name)
                   + (productObj.duration / 60))}
               </h5>
             </div>
@@ -141,21 +150,31 @@ class Search extends React.Component {
     return this.props.quotes.prices.lyft.map(productObj => {
       if (productObj.estimated_cost_cents_max > 0) {
         return (
-          <li onClick={() => this.orderLyftRide(productObj.display_name)} key={productObj.display_name}
-            className={"lyft lineitem " + (lyftLoggedIn ? "conditional-hover" : "lineitem-tooltip")}>
-              <span className="ly-tool tooltip">Login Below With Lyft to Book!</span>
-              <div className="uber-important">
-                <h3 className="uber-key-data">{productObj.display_name}</h3>
-                <h3 className="uber-key-data">{that.centsToDollars(productObj.estimated_cost_cents_min,
-                productObj.estimated_cost_cents_max)}</h3>
-              </div>
-              <div className="time-inner-div">
-                <h5 className="uber-time-data">{that.getTime(productObj.display_name)} min away</h5>
-                <h5 className="uber-time-data">ETA: {that.createETA(that.getTime(productObj.display_name)
-                    + Math.ceil(productObj.estimated_duration_seconds / 60))}
-                </h5>
-              </div>
-            </li>
+          <li onClick={() => this.orderLyftRide(productObj.display_name)}
+            key={productObj.display_name}
+            className={"lyft lineitem " + (lyftLoggedIn ?
+              "conditional-hover" : "lineitem-tooltip")}>
+            <span className="ly-tool tooltip">
+              Login Below With Lyft to Book!
+            </span>
+
+            <div className="uber-important">
+              <h3 className="uber-key-data">{productObj.display_name}</h3>
+              <h3 className="uber-key-data">
+                {that.centsToDollars(productObj.estimated_cost_cents_min,
+                productObj.estimated_cost_cents_max)}
+              </h3>
+            </div>
+            <div className="time-inner-div">
+              <h5 className="uber-time-data">
+                {that.getTime(productObj.display_name)} min away
+              </h5>
+              <h5 className="uber-time-data">
+                ETA: {that.createETA(that.getTime(productObj.display_name)
+                  + Math.ceil(productObj.estimated_duration_seconds / 60))}
+              </h5>
+            </div>
+          </li>
         );
       }
     });
@@ -167,9 +186,11 @@ class Search extends React.Component {
     let mins = now.getMinutes();
     let indicator;
     mins = (mins + rideLength) % 60;
-    if(mins < 10){
+
+    if (mins < 10){
       mins = `0${mins}`;
     }
+
     if (now.getMinutes() + rideLength > 59) {
       hrs = (hrs + 1) % 24;
     }
@@ -177,9 +198,9 @@ class Search extends React.Component {
     if (hrs > 12) {
       hrs -= 12;
       indicator = "PM";
-    } else if(hrs === 12) {
+    } else if (hrs === 12) {
       indicator = "PM";
-    } else if(hrs > 0) {
+    } else if (hrs > 0) {
       indicator = "AM";
     } else {
       hrs = 12;
@@ -191,45 +212,50 @@ class Search extends React.Component {
 
   getTime(displayName) {
     let time;
+
     this.props.quotes.times.uber.forEach(timeObj => {
       if (timeObj.display_name === displayName) {
         time = timeObj.estimate / 60;
       }
     });
+
     this.props.quotes.times.lyft.forEach(timeObj => {
       if (timeObj.display_name === displayName) {
         time = timeObj.eta_seconds / 60;
       }
     });
+
     return time;
   }
 
   centsToDollars(min, max) {
     let newMin = min;
     let newMax = max;
-    if(newMin % 100 === 0){
+
+    if (newMin % 100 === 0) {
       newMin = `$${newMin / 100}.00`;
-    }else if(newMin % 10 === 0){
+    } else if (newMin % 10 === 0) {
       newMin = `$${newMin / 100}0`;
-    }else{
+    } else {
       newMin = `$${newMin / 100}`;
     }
-    if(newMax % 100 === 0){
+
+    if (newMax % 100 === 0) {
       newMax = `${newMax / 100}.00`;
-    }else if(newMax % 10 === 0){
+    } else if (newMax % 10 === 0) {
       newMax = `${newMax / 100}0`;
-    }else{
+    } else {
       newMax = `${newMax / 100}`;
     }
 
-    if(min === max){
+    if (min === max) {
       return `${newMin}`;
     }
 
     return `${newMin}-${newMax}`;
   }
 
-  UberLoginCheck(){
+  UberLoginCheck() {
     return (
       <div className="uber-header">
         <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_70px.png"/>
@@ -238,7 +264,7 @@ class Search extends React.Component {
     );
   }
 
-  LyftLoginCheck(){
+  LyftLoginCheck() {
     return (
       <div className="uber-header">
         <img id="lyft-logo" src="../../../app/images/lyft_header.png"/>
@@ -250,7 +276,6 @@ class Search extends React.Component {
     if (this.props.quotes.prices.uber && this.props.quotes.prices.lyft) {
       return (
         <div className="quotes-container">
-
           <section className="results-container">
             <section className="uber-results">
               <div className="divider"></div>
@@ -291,20 +316,30 @@ class Search extends React.Component {
     } else if (this.props.session.uberCreds) {
       return (
         <div className='search-logins'>
-          <a id='lone' href={'http://localhost:3000/lyft'} className="lyft-login">Log In Lyft</a>
+          <a id='lone' href={'http://localhost:3000/lyft'}
+            className="lyft-login">
+            Log In Lyft
+          </a>
         </div>
       );
     } else if (this.props.session.lyftCreds) {
       return (
         <div className='search-logins'>
-          <a id='lone' href={'http://localhost:3000/uber'} className="uber-login">Log In Uber</a>
+          <a id='lone' href={'http://localhost:3000/uber'} c
+            lassName="uber-login">
+            Log In Uber
+          </a>
         </div>
       );
     } else {
       return (
         <div className='search-logins'>
-          <a href={'http://localhost:3000/uber'} className="uber-login">Log In Uber</a>
-          <a href={'http://localhost:3000/lyft'} className="lyft-login">Log In Lyft</a>
+          <a href={'http://localhost:3000/uber'} className="uber-login">
+            Log In Uber
+          </a>
+          <a href={'http://localhost:3000/lyft'} className="lyft-login">
+            Log In Lyft
+          </a>
         </div>
       );
     }

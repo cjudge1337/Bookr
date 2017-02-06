@@ -1,10 +1,10 @@
 import { UBER_SERVER_TOKEN } from '../../../config.js';
-
 import $ from "jquery";
 
-// get quotes for all uber products given a trip
-export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => {
-  return $.ajax({
+// Get quotes for all uber products given a trip
+
+export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => (
+  $.ajax({
     method: 'GET',
     url: "https://api.uber.com/v1.2/estimates/price",
     headers: {
@@ -16,10 +16,11 @@ export const getAllProductQuotes = (startLat, startLong, endLat, endLong) => {
       end_latitude: endLat,
       end_longitude: endLong
     },
-  });
-};
+  })
+);
 
 // Get Estimated time of pickup for different uber products
+
 export const getAllProductTimes = (startLat, startLong) => (
   $.ajax({
     method: 'GET',
@@ -34,9 +35,10 @@ export const getAllProductTimes = (startLat, startLong) => (
   })
 );
 
-// get quote for specific uber product type given a trip
-export const getProductQuote = (accessToken, product_id, startLat, startLong, endLat, endLong) => {
-  return $.ajax({
+// Get quote for specific uber product type given a trip
+
+export const getProductQuote = (accessToken, productId, startLat, startLong, endLat, endLong) => (
+  $.ajax({
     method: 'POST',
     url: "https://api.uber.com/v1.2/requests/estimate",
     headers: {
@@ -46,17 +48,17 @@ export const getProductQuote = (accessToken, product_id, startLat, startLong, en
     processData: false,
 
     data: JSON.stringify({
-      product_id: product_id,
+      productId: productId,
       start_latitude: startLat,
       start_longitude: startLong,
       end_latitude: endLat,
       end_longitude: endLong
     }),
-  });
+  })
+);
 
-};
+// Initialize an uber ride
 
-// initialize an uber ride
 export const createRide = (accessToken, fareId, productId, startLat, startLong, endLat, endLong) => (
   $.ajax({
     method: 'POST',
@@ -77,7 +79,8 @@ export const createRide = (accessToken, fareId, productId, startLat, startLong, 
   })
 );
 
-// get information about a ride created within the app
+// Get information about a ride created within the app
+
 export const getRideInfo = (requestId, accessToken) => (
   $.ajax({
     method: 'GET',
@@ -89,8 +92,8 @@ export const getRideInfo = (requestId, accessToken) => (
   })
 );
 
+// Get map for a ride created within the app
 
-// get map for a ride created within the app
 export const getRideMap = (requestId, accessToken) => (
   $.ajax({
     method: 'GET',
@@ -102,7 +105,8 @@ export const getRideMap = (requestId, accessToken) => (
   })
 );
 
-// cancel an uber ride
+// Cancel an uber ride
+
 export const deleteRide = (requestId, accessToken) => (
   $.ajax({
     method: 'DELETE',
@@ -113,7 +117,6 @@ export const deleteRide = (requestId, accessToken) => (
     }
   })
 );
-
 
 export const getUberProducts = (lat, longitude, authToken) => (
   $.ajax({

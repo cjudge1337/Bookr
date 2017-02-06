@@ -193,7 +193,6 @@ class Confirm extends React.Component {
         </div>
       );
     } else {
-
       return (
         <div id='loading' className="requesting animated infinite pulse">
           Just a moment...

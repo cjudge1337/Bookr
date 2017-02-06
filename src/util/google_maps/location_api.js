@@ -1,5 +1,4 @@
 import { GOOGLE_API_KEY } from '../../../config.js';
-
 import $ from "jquery";
 
 export const addressToGeo = addressStr => (
@@ -30,13 +29,3 @@ export const getUserGeo = () => (
     url: "https://maps.googleapis.com/maps/api/browserlocation/json?browser=chromium&sensor=true",
   })
 );
-
-// export const getUserGeo = () => (
-//   $.ajax({
-//     method: 'GET',
-//     url: "https://www.googleapis.com/geolocation/v1/geolocate",
-//     data: {
-//       key: GOOGLE_API_KEY
-//     }
-//   })
-// );

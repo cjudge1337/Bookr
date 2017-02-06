@@ -1,14 +1,10 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router';
 import EnrouteMap from './enroute_map';
+import { Link, withRouter } from 'react-router';
 import { hashHistory } from 'react-router';
-import { sandboxRequestRide,
-         sandboxCurrentRide,
-         sandboxAcceptedRide,
-         sandboxArrivedRide,
-         sandboxDeleteRide,
-         sandboxDriverCancel,
-         getFareId } from '../../util/uber/sandbox';
+import { sandboxRequestRide, sandboxCurrentRide, sandboxAcceptedRide,
+  sandboxArrivedRide, sandboxDeleteRide, sandboxDriverCancel,
+  getFareId } from '../../util/uber/sandbox';
 
 class Enroute extends React.Component {
   constructor(props) {
@@ -44,35 +40,51 @@ class Enroute extends React.Component {
       return <div id='loading' className="requesting animated infinite pulse">Requesting...</div>;
     } else {
       return (
-          <div className="enroute-container">
-            <div className="driver-bar">
-              <div className="driver-container">
-                <div className="driver-info">
-                  <img src={this.props.enroute.uber.info.driver.picture_url} className="driver-pic"/>
-                  <h2 className="driver-name">{this.props.enroute.uber.info.driver.name}</h2>
-                  <h2 className="driver-rating">{this.props.enroute.uber.info.driver.rating}</h2>
-                </div>
-                <div className="car-info">
-                  <img src={this.props.enroute.uber.info.vehicle.picture_url} className="car-pic"/>
-                  <h2 className="car-make">{this.props.enroute.uber.info.vehicle.make + " "}
-                                              {this.props.enroute.uber.info.vehicle.model}</h2>
-                </div>
+        <div className="enroute-container">
+          <div className="driver-bar">
+            <div className="driver-container">
+              <div className="driver-info">
+                <img src={this.props.enroute.uber.info.driver.picture_url}
+                  className="driver-pic"/>
+                <h2 className="driver-name">
+                  {this.props.enroute.uber.info.driver.name}
+                </h2>
+                <h2 className="driver-rating">
+                  {this.props.enroute.uber.info.driver.rating}
+                </h2>
               </div>
-              <div className="ride-info">
-                <h2 className="status">Status: {this.props.enroute.uber.info.status.toUpperCase()}</h2>
-                <h2 className="eta">ETA: {this.props.enroute.uber.info.pickup.eta} Min</h2>
+
+              <div className="car-info">
+                <img src={this.props.enroute.uber.info.vehicle.picture_url}
+                  className="car-pic"/>
+                <h2 className="car-make">
+                  {this.props.enroute.uber.info.vehicle.make + " "}
+                  {this.props.enroute.uber.info.vehicle.model}
+                </h2>
               </div>
             </div>
-            <EnrouteMap pickup={this.props.enroute.uber.info.pickup}
-                        destination={this.props.enroute.uber.info.destination}
-                        location={this.props.enroute.uber.info.location} />
 
-            <button className="cancel-button" onClick={this.cancelRide}>Cancel Ride</button>
+            <div className="ride-info">
+              <h2 className="status">
+                Status: {this.props.enroute.uber.info.status.toUpperCase()}
+              </h2>
+              <h2 className="eta">
+                ETA: {this.props.enroute.uber.info.pickup.eta} Min
+              </h2>
+            </div>
           </div>
+
+          <EnrouteMap pickup={this.props.enroute.uber.info.pickup}
+            destination={this.props.enroute.uber.info.destination}
+            location={this.props.enroute.uber.info.location} />
+
+          <button className="cancel-button" onClick={this.cancelRide}>
+            Cancel Ride
+          </button>
+        </div>
       );
     }
   }
-
 }
 
 export default Enroute;

@@ -1,13 +1,8 @@
 import { connect } from 'react-redux';
-import { getUberRideInfo,
-         getUberMap,
-         deleteUberRide,
-         getUberUpdate,
-         getLyftRideInfo,
-         getLyftUpdate,
-         deleteLyftRide,
-         checkSandboxStatus } from '../../actions/enroute_actions';
 import Enroute from './enroute';
+import { getUberRideInfo, getUberMap, deleteUberRide, getUberUpdate,
+  getLyftRideInfo, getLyftUpdate, deleteLyftRide,
+  checkSandboxStatus } from '../../actions/enroute_actions';
 
 const mapStateToProps = ({ session, enroute }) => ({
   session,

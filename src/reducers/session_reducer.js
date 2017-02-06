@@ -8,6 +8,7 @@ const _nullState = Object.freeze({
 
 const SessionReducer = (state = _nullState, action) => {
   Object.freeze(state);
+  
   switch(action.type) {
     case RECEIVE_UBER_CREDS:
       return merge({}, state, { uberCreds: action.uberCreds });
