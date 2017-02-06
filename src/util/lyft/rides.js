@@ -1,5 +1,5 @@
-import $ from 'jquery';
 import { LYFT_CLIENT_TOKEN, LYFT_CLIENT_SECRET } from '../../../config';
+import $ from 'jquery';
 
 export const createRideWithoutPrime = (origin, destination, rideType) => (
   $.ajax({

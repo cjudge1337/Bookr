@@ -8,6 +8,8 @@ export const REMOVE_UBER_RIDE = "REMOVE_UBER_RIDE";
 export const RECEIVE_LYFT_RIDE_INFO = "RECEIVE_LYFT_RIDE_INFO";
 export const REMOVE_LYFT_RIDE = "REMOVE_LYFT_RIDE";
 
+// Sync actions
+
 export const receiveUberRideInfo = info => ({
   type: RECEIVE_UBER_RIDE_INFO,
   info
@@ -30,6 +32,8 @@ export const receiveLyftRideInfo = info => ({
 export const removeLyftRide = rideId => ({
   type: REMOVE_LYFT_RIDE
 });
+
+// Async actions
 
 export const getUberRideInfo = requestId => dispatch => (
   UberAPIUtil.getRideInfo(requestId)
