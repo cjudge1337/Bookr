@@ -25,6 +25,7 @@
 
 .uber-buy-it:hover, .lyft-buy-it:hover{
   cursor: pointer;
+  opacity: 0.5;
 }
 
 .uber-buy-it{
