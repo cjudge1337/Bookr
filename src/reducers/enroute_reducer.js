@@ -2,6 +2,16 @@ import { merge } from 'lodash';
 import { RECEIVE_UBER_RIDE_INFO, RECEIVE_UBER_MAP, REMOVE_UBER_RIDE,
   RECEIVE_LYFT_RIDE_INFO, REMOVE_LYFT_RIDE } from '../actions/enroute_actions';
 
+// const nullState = {
+//   uber: {
+//     info: {
+//       status: ""
+//     },
+//     map: {}
+//   },
+//   lyft: {}
+// };
+
 const EnrouteReducer = (state = {}, action) => {
   Object.freeze(state);
 

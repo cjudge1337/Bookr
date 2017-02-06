@@ -5,13 +5,14 @@ import { getUberRideInfo,
          getUberUpdate,
          getLyftRideInfo,
          getLyftUpdate,
-         deleteLyftRide } from '../../actions/enroute_actions';
-import Enroute from '../enroute';
+         deleteLyftRide,
+         checkSandboxStatus } from '../../actions/enroute_actions';
+import Enroute from './enroute';
 
-const mapStateToProps = ({ session, enroute }) => (
+const mapStateToProps = ({ session, enroute }) => ({
   session,
   enroute
-);
+});
 
 const mapDispatchToProps = (dispatch) => ({
   getUberRideInfo: requestId => dispatch(getUberRideInfo(requestId)),
@@ -20,7 +21,8 @@ const mapDispatchToProps = (dispatch) => ({
   getUberUpdate: info => dispatch(getUberUpdate(info)),
   getLyftRideInfo: rideId => dispatch(getLyftRideInfo(rideId)),
   getLyftUpdate: info => dispatch(getLyftUpdate(info)),
-  deleteLyftRide: rideId => (deleteLyftRide(rideId))
+  deleteLyftRide: rideId => dispatch(deleteLyftRide(rideId)),
+  checkSandboxStatus: () => dispatch(checkSandboxStatus())
 });
 
 export default connect(
