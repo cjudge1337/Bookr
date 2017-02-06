@@ -198,6 +198,24 @@ BOLD_FONT = "Gotham Bold";*/
   border-top: solid 1px white;
 }
 
+.tooltip{
+  visibility: hidden;
+    width: auto;
+    background-color: white;
+    color: #333447;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    height: auto;
+    font-family: "Gotham Light", sans-serif;
+}
+
+.lineitem-tooltip:hover .tooltip{
+  visibility: visible;
+}
+
 .uber-lineitem-times{
   display: flex;
   flex-direction: row;
@@ -207,7 +225,7 @@ BOLD_FONT = "Gotham Bold";*/
   height: auto;
 }
 
-.uber-lineitem:hover, .lyft-lineitem:hover{
+.conditional-hover:hover{
   cursor: pointer;
   opacity: 0.5;
 }

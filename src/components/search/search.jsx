@@ -127,12 +127,15 @@ class Search extends React.Component {
 
   getUberResults() {
     const that = this;
-
+    const uberLoggedIn = this.props.session.uberCreds;
     return this.props.quotes.prices.uber.map(productObj => {
       if (productObj.high_estimate > 0 &&
         UBER_PRODUCTS.includes(productObj.display_name)) {
         return (
-          <li onClick={() => this.orderUberRide(productObj.product_id)} key={productObj.display_name} className="uber-lineitem">
+          <li onClick={() => this.orderUberRide(productObj.product_id)}
+            key={productObj.display_name}
+            className={"uber-lineitem " + (uberLoggedIn ? "conditional-hover" : "lineitem-tooltip")}>
+            <span className="tooltip">Login Above With Uber to Book!</span>
             <h3 className="uber-key-data">{productObj.display_name}</h3>
             <h3 className="uber-key-data">{productObj.estimate}</h3>
             <div className="uber-lineitem-times">
@@ -156,11 +159,13 @@ class Search extends React.Component {
 
   getLyftResults() {
     const that = this;
+    const lyftLoggedIn = this.props.session.lyftCreds;
     return this.props.quotes.prices.lyft.map(productObj => {
       if (productObj.estimated_cost_cents_max > 0) {
         return (
           <li onClick={() => this.orderLyftRide(productObj.display_name)} key={productObj.display_name}
-            className="uber-lineitem">
+            className={"uber-lineitem " + (lyftLoggedIn ? "conditional-hover" : "lineitem-tooltip")}>
+              <span className="tooltip">Login Above With Lyft to Book!</span>
               <h3 className="uber-key-data">{productObj.display_name}</h3>
               <h3 className="uber-key-data">{that.centsToDollars(productObj.estimated_cost_cents_min,
                 productObj.estimated_cost_cents_max)}</h3>
