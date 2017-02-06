@@ -14,6 +14,7 @@ process.env.GOOGLE_API_KEY = GOOGLE_API_KEY;
 
 document.addEventListener('DOMContentLoaded', () => {
 
+
   let store;
 
   if (sessionStorage.session) {
