@@ -63,7 +63,6 @@ BOLD_FONT = "Gotham Bold";*/
 
 .pac-item{
   height: auto;
-  font-family: "Gotham Light", sans-serif;
   margin: 0;
   padding: 5px;
   border-width: 0px;
@@ -71,7 +70,6 @@ BOLD_FONT = "Gotham Bold";*/
 
 .pac-item:hover, .pac-item-selected{
   color: black;
-  font-family: "Gotham Bold", sans-serif;
   cursor: pointer;
 }
 
@@ -88,7 +86,6 @@ BOLD_FONT = "Gotham Bold";*/
 .results-container {
   display: flex;
   flex-direction: row;
-  font-family: "Gotham Book", sans-serif;
   border-top: solid 5px white;
 }
 
@@ -195,6 +192,7 @@ BOLD_FONT = "Gotham Bold";*/
   height: calc(20% - 19px);
   border-top: solid 1px white;
 }
+
 
 .tooltip{
   visibility: hidden;
