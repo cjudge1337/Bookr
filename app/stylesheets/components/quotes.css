@@ -207,7 +207,7 @@ BOLD_FONT = "Gotham Bold";*/
   height: auto;
 }
 
-.uber-lineitem:hover, .lyft-lineitem:hover{
+.conditional-hover:hover{
   cursor: pointer;
   opacity: 0.5;
 }
