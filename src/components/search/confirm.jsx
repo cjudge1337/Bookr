@@ -6,7 +6,7 @@ import { hashHistory } from 'react-router';
 class Confirm extends React.Component {
   constructor(props) {
     super(props);
-    bindAll(this, 'getUberServiceName', 'orderUber', 'renderConfirmation');
+    bindAll(this, 'getUberServiceName', 'orderUber', 'renderConfirmation', 'backToSearch');
   }
 
   componentDidMount(){
@@ -20,11 +20,14 @@ class Confirm extends React.Component {
   }
 
   getUberServiceName(){
+    const correctCode = this.props.quotes.booked_ride.uber;
+    let name;
     this.props.quotes.prices.uber.forEach(priceObj => {
-      if(this.props.quotes.booked_ride.uber === priceObj.product_id){
-        return priceObj.product_id;
+      if(correctCode === priceObj.product_id){
+        name = priceObj.display_name;
       }
     });
+    return name;
   }
 
   orderUber(){
@@ -33,10 +36,16 @@ class Confirm extends React.Component {
     // TODO correct route?
   }
 
+  backToSearch(){
+    this.props.clearConfirmState();
+    hashHistory.push('/search');
+  }
+
   renderConfirmation(){
     if(this.props.confirm.trip){
       return (<div className="uber-confirm">
-        <h2 className="uber-confirm-element">Uber {this.getUberServiceName()}</h2>
+        <img id="uber-confirm-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
+        <h2 className="uber-confirm-element">{this.getUberServiceName()}</h2>
 
         <h2 className="uber-confirm-element">A {this.props.confirm.trip.distance_estimate} Mile Trip</h2>
         <h2 className="uber-confirm-element">From: {this.props.quotes.address.current}</h2>
@@ -44,10 +53,12 @@ class Confirm extends React.Component {
         <h2 className="uber-confirm-element">Should Cost: {this.props.confirm.fare.display}</h2>
         <h2 className="uber-confirm-element"> And Take: {this.props.confirm.trip.duration_estimate / 60} minutes </h2>
         <div className="options">
+          <h2 className="uber-confirm-element buy-it" onClick={() => this.backToSearch() }>Back to Rides</h2>
           <h2 className="uber-confirm-element buy-it" onClick={() => this.orderUber()}>Confirm Purchase</h2>
-          <h2 className="uber-confirm-element buy-it" onClick={() => hashHistory.push('/search')}>Back to Rides</h2>
         </div>
       </div>);
+    }else if(this.props.quotes.booked_ride.uber){
+      
     }else{
       return <Loading/>;
     }

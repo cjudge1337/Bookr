@@ -4,6 +4,8 @@ import { CLEAR_STUFF, ADD_LYFT_ERRORS, ADD_UBER_ERRORS, UPDATE_CURRENT_GEOLOCATI
   UPDATE_DESTINATION_ADDRESS, ADD_UBER_QUOTES, ADD_LYFT_QUOTES,
   ADD_UBER_ETAS, ADD_LYFT_ETAS, BOOK_UBER_RIDE, BOOK_LYFT_RIDE } from '../actions/quote_actions';
 
+import {CLEAR_CONFIRM_STATE} from '../actions/confirm_actions';
+
 const _noProducts = {
   errors: {},
   prices: {},
@@ -17,6 +19,9 @@ const QuoteReducer = (state = _noProducts, action) => {
   Object.freeze(state);
 
   switch (action.type) {
+    case CLEAR_CONFIRM_STATE:
+      return merge({}, {errors: {}, prices: state.prices, times: state.times,
+        address: state.address, geolocations: state.geolocations, booked_ride: {}});
     case BOOK_UBER_RIDE:
       return merge({}, state, {booked_ride: {uber: action.rideData}});
     case BOOK_LYFT_RIDE:

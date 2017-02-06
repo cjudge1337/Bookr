@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: black;
 }
 
 .uber-confirm-element{
@@ -10,6 +11,8 @@
   height: auto;
   font-family: "Gotham Book", sans-serif;
   margin: 10px;
+  font-size: 24px;
+  color: white;
 }
 
 .buy-it:hover{
@@ -17,7 +20,9 @@
 }
 
 .buy-it{
-  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  color: black;
 }
 
 
@@ -26,6 +31,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%
+  width: auto;
+  height: auto;
+}
+
+#uber-confirm-logo {
+  width: 78px;
+  height: 78px;
 }

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Confirm from './confirm';
-import { getUberQuote} from '../../actions/confirm_actions.js';
+import { getUberQuote, clearConfirmState } from '../../actions/confirm_actions.js';
 
 const mapStateToProps = store => ({
   session: store.session,
@@ -11,6 +11,7 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => (
   {
     getUberQuote: (accessToken, product_id, startLat, startLong, endLat, endLong) => dispatch(getUberQuote(accessToken, product_id, startLat, startLong, endLat, endLong)),
+    clearConfirmState: () => dispatch(clearConfirmState())
   }
 );
 
