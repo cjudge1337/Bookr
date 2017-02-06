@@ -68,7 +68,6 @@ class Enroute extends React.Component {
     if (this.props.enroute.uber) {
       return (
         <div className="enroute-container">
-          <h2 className="status">{this.props.enroute.uber.info.status}</h2>
           <div className="driver-bar">
             <div className="driver-container">
               <div className="driver-info">
@@ -82,23 +81,24 @@ class Enroute extends React.Component {
                                             {this.props.enroute.uber.info.vehicle.model}</h2>
               </div>
             </div>
-            <h2 className="eta">ETA: {this.props.enroute.uber.info.pickup.eta} Minutes</h2>
+            <h2 className="status">{this.props.enroute.uber.info.status.toUpperCase()}</h2>
+            <h2 className="eta">{this.props.enroute.uber.info.pickup.eta} Minutes</h2>
           </div>
           <EnrouteMap pickup={this.props.enroute.uber.info.pickup}
                       destination={this.props.enroute.uber.info.destination}
                       location={this.props.enroute.uber.info.location} />
 
-          <button className="test-button" onClick={this.currentRide}>Current Ride</button>
-          <button className="test-button" onClick={this.acceptedRide}>Accepted Ride</button>
-          <button className="test-button" onClick={this.arrivedRide}>Arrived Ride</button>
-          <button className="test-button" onClick={this.cancelRide}>Cancel Ride</button>
-          <button className="test-button" onClick={this.driverCancel}>Driver Cancel Ride</button>
         </div>
       );
     } else {
       //TODO put loading component
       return <div>Requesting</div>;
     }
+    // <button className="test-button" onClick={this.currentRide}>Current Ride</button>
+    // <button className="test-button" onClick={this.acceptedRide}>Accepted Ride</button>
+    // <button className="test-button" onClick={this.arrivedRide}>Arrived Ride</button>
+    // <button className="test-button" onClick={this.cancelRide}>Cancel Ride</button>
+    // <button className="test-button" onClick={this.driverCancel}>Driver Cancel Ride</button>
 
   }
 
