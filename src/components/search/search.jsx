@@ -339,6 +339,36 @@ class Search extends React.Component {
     }
   }
 
+  renderLogins() {
+    // TODO: add check to see if access token is expired
+
+    if (this.props.session.uberCreds && this.props.session.lyftCreds) {
+      return (
+        <div className='search-logins'>
+        </div>
+      );
+    } else if (this.props.session.uberCreds) {
+      return (
+        <div className='search-logins'>
+          <a href={'http://localhost:3000/lyft'} id="lyft-login">Log In Lyft</a>
+        </div>
+      );
+    } else if (this.props.session.lyftCreds) {
+      return (
+        <div className='search-logins'>
+          <a href={'http://localhost:3000/uber'} id="uber-login">Log In Uber</a>
+        </div>
+      );
+    } else {
+      return (
+        <div className='search-logins'>
+          <a href={'http://localhost:3000/uber'} id="uber-login">Log In Uber</a>
+          <a href={'http://localhost:3000/lyft'} id="lyft-login">Log In Lyft</a>
+        </div>
+      );
+    }
+  }
+
   // TODO add location bias based on user's location https://github.com/ErrorPro/react-google-autocomplete https://developers.google.com/places/web-service/autocomplete#location_biasing
 
   render() {
@@ -349,6 +379,7 @@ class Search extends React.Component {
           {this.renderDestinationAutocomplete()}
         </div>
 
+        {this.renderLogins()}
         {this.renderResults()}
       </div>
     );
