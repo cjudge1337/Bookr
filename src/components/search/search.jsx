@@ -260,24 +260,22 @@ class Search extends React.Component {
   renderResults() {
     if (this.props.quotes.prices.uber && this.props.quotes.prices.lyft) {
       return (
-        <div className="quotes-container">
-          <section className="results-container">
-            <section className="uber-results">
-              <div className="uber-header">
-                <img id="logo" src="https://res.cloudinary.com/dlhshbg79/image/upload/v1486390181/uber_rides_api_icon_2x_70px_gdxdim.png"/>
-                <h1 className="company-titles">UBER</h1>
-              </div>
+        <div className="results-container">
+          <section className="results-list">
+            <div className="results-header">
+              <img id="uber-logo" src="https://res.cloudinary.com/dlhshbg79/image/upload/v1486390181/uber_rides_api_icon_2x_70px_gdxdim.png"/>
+              <h1 className="company-titles">UBER</h1>
+            </div>
 
-              {this.getUberResults()}
-            </section>
+            {this.getUberResults()}
+          </section>
 
-            <section className="lyft-results">
-              <div className="uber-header">
-                <img id="logo" src="https://res.cloudinary.com/dlhshbg79/image/upload/v1486390221/lyft_header_oxhofm.png"/>
-              </div>
+          <section className="results-list">
+            <div className="results-header">
+              <img id="lyft-logo" src="https://res.cloudinary.com/dlhshbg79/image/upload/v1486390221/lyft_header_oxhofm.png"/>
+            </div>
 
-              {this.getLyftResults()}
-            </section>
+            {this.getLyftResults()}
           </section>
         </div>
       );
@@ -293,7 +291,7 @@ class Search extends React.Component {
       return <div id='loading' className="requesting animated infinite pulse">
         Searching...</div>;
     } else {
-      return <div className="quotes-container"></div>;
+      return <div className="results-container"></div>;
     }
   }
 
