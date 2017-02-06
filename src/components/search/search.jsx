@@ -11,7 +11,8 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    bindAll(this, 'orderUberRide', 'orderLyftRide', 'createETA', 'getTime','handleSelectDestination',
+    bindAll(this, 'UberLoginCheck', 'orderUberRide', 'orderLyftRide', 'createETA',
+      'getTime','handleSelectDestination',
       'renderOriginAutocomplete', 'renderDestinationAutocomplete', 'centsToDollars',
       'renderResults', 'getUberResults','getLyftResults', 'getUserLocation');
   }
@@ -110,9 +111,8 @@ class Search extends React.Component {
     if(this.props.session.uberCreds.access_token.length > 0){
       this.props.bookUberRide(rideData);
       hashHistory.push('/confirm');
-    }else if(confirm("You must be logged in to Uber to book this ride.") === true){
-      //redirect to uber login
-
+    }else{
+      alert("You must be logged in to Uber to book this ride.");
     }
   }
 
@@ -120,9 +120,8 @@ class Search extends React.Component {
     if(this.props.session.lyftCreds){
       this.props.bookLyftRide(rideData);
       hashHistory.push('/confirm');
-    } else if(confirm("You must be logged in to Uber to book this ride.") === true){
-      // redirect to lyft login
-      
+    } else{
+      alert("You must be logged in to Lyft to book this ride.");
     }
   }
 
@@ -263,6 +262,41 @@ class Search extends React.Component {
     return `${newMin}-${newMax}`;
   }
 
+  UberLoginCheck(){
+    if(this.props.session.uberCreds){
+      return (
+        <div className="uber-header">
+          <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
+          <h1 className="company-titles">UBER</h1>
+        </div>
+      );
+    }else{
+      return (
+        <a href={'http://localhost:3000/uber'} className="login uber-header">
+          <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
+          <h1 className="login-company-titles">Login to UBER</h1>
+        </a>
+      );
+    }
+  }
+
+  LyftLoginCheck(){
+    if(this.props.session.lyftCreds){
+      return (
+        <div className="uber-header">
+          <img id="lyft-logo" src="../../../app/images/lyft_standard_silver.png"/>
+        </div>
+      );
+    }else{
+      return (
+        <a href={'http://localhost:3000/lyft'} className="login uber-header">
+          <h1 className="login-company-titles">Login to </h1>
+          <img id="lyft-logo" src="../../../app/images/lyft_standard_silver.png"/>
+        </a>
+      );
+    }
+  }
+
 
   renderResults() {
     if (this.props.quotes.prices.uber && this.props.quotes.prices.lyft) {
@@ -274,17 +308,12 @@ class Search extends React.Component {
 
           <section className="results-container">
             <section className="uber-results">
-              <div className="uber-header">
-                <img id="uber-logo" src="../../../app/images/uber_rides_api_icon_2x_78px.png"/>
-                <h1 className="company-titles">UBER</h1>
-              </div>
+              {this.UberLoginCheck()}
               {this.getUberResults()}
             </section>
 
             <section className="lyft-results">
-              <div className="uber-header">
-                <img id="lyft-logo" src="../../../app/images/lyft_standard_silver.png"/>
-              </div>
+              {this.LyftLoginCheck()}
               {this.getLyftResults()}
             </section>
           </section>

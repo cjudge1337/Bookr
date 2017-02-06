@@ -124,12 +124,25 @@ BOLD_FONT = "Gotham Bold";*/
   font-size: 40px;
 }
 
+.login-company-titles{
+  text-align: center;
+  height: auto;
+  width: auto;
+  margin: 22.5px 0px;
+  font-size: 20px;
+}
+
 .uber-header{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: auto;
+}
+
+.login:hover{
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 #uber-logo{
