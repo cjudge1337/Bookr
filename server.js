@@ -1,16 +1,19 @@
 import express from 'express';
 import path from 'path';
-import { PORT, UBER_CLIENT_ID, UBER_CLIENT_SECRET, LYFT_CLIENT_ID, LYFT_CLIENT_SECRET } from './config.js';
 import OauthClient from 'client-oauth2';
 import SimpleOauth from 'simple-oauth2';
 import qs from 'query-string';
+import { PORT, REDIRECT_URI, UBER_CLIENT_ID, UBER_CLIENT_SECRET, LYFT_CLIENT_ID,
+  LYFT_CLIENT_SECRET } from './config.js';
+
+const app = express();
 
 const uberAuth = new OauthClient({
   clientId: UBER_CLIENT_ID,
   clientSecret: UBER_CLIENT_SECRET,
   accessTokenUri: 'https://login.uber.com/oauth/v2/token',
   authorizationUri: 'https://login.uber.com/oauth/v2/authorize',
-  redirectUri: 'http://localhost:3000/uberCallback',
+  redirectUri: `http://localhost:${PORT}/uberCallback`,
   scopes: ['request']
 });
 
@@ -24,10 +27,8 @@ const lyftAuth = SimpleOauth.create({
   }
 });
 
-const app = express();
-
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+  res.header('Access-Control-Allow-Origin', REDIRECT_URI);
   res.header('Access-Control-Allow-Methods', 'DELETE');
   res.header('Access-Control-Allow-Credentials', true);
   next();
@@ -49,7 +50,7 @@ app.get('/uberCallback', (req, res) => {
 
       user.sign({
         method: 'get',
-        url: 'http://localhost:3000'
+        url: REDIRECT_URI
       });
 
       uberUserInfo = qs.stringify({
@@ -72,7 +73,7 @@ app.get('/uberCallback', (req, res) => {
 
 app.get('/lyft', (req, res) => {
   const authorizationUri = lyftAuth.authorizationCode.authorizeURL({
-    redirect_uri: 'http://localhost:3000/lyftCallback',
+    redirect_uri: `http://localhost:${PORT}/lyftCallback`,
     scope: 'rides.request',
     state: 'randomstuff'
   });
@@ -84,7 +85,7 @@ app.get('/lyftCallback', (req, res) => {
 
   const tokenConfig = {
     code: req.query.code,
-    redirect_uri: 'http://localhost:3000/lyftCallback'
+    redirect_uri: `http://localhost:${PORT}/lyftCallback`
   };
 
   lyftAuth.authorizationCode.getToken(tokenConfig)
