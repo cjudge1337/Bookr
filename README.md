@@ -56,7 +56,7 @@ app.get('/uberCallback', (req, res) => {
 
       user.sign({
         method: 'get',
-        url: 'http://localhost:3000'
+        url: 'http://localhost:5000'
       });
 
       uberUserInfo = qs.stringify({

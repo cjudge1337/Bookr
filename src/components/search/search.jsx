@@ -238,11 +238,11 @@ class Search extends React.Component {
     let newMax = max;
 
     if (newMin % 100 === 0) {
-      newMin = `$ ${newMin / 100}.00`;
+      newMin = `$${newMin / 100}.00`;
     } else if (newMin % 10 === 0) {
-      newMin = `$ ${newMin / 100}0`;
+      newMin = `$${newMin / 100}0`;
     } else {
-      newMin = `$ ${newMin / 100}`;
+      newMin = `$${newMin / 100}`;
     }
 
     if (newMax % 100 === 0) {
