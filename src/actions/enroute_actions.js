@@ -46,7 +46,7 @@ export const createUberRide = (accessToken, fareId, productId, startLat,
   UberAPIUtil.createRide(accessToken, fareId, productId, startLat,
     startLong, endLat, endLong)
   .then(info => dispatch(receiveUberRideInfo(info)),
-    error => console.log(error))
+    error => alert(error))
 );
 
 export const createSandboxRide = () => dispatch => (
