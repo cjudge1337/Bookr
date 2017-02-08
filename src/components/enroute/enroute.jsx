@@ -14,12 +14,12 @@ class Enroute extends React.Component {
     this.cancelRide = this.cancelRide.bind(this);
   }
 
-  updateStatus() {
-    this.props.checkSandboxStatus();
+  updateStatus(accessToken) {
+    this.props.getUberRideInfo(accessToken);
   }
 
   componentDidMount() {
-    const newTimer = setInterval(this.updateStatus.bind(this), 5000);
+    const newTimer = setInterval(this.updateStatus(this.props.session.uberCreds.access_token).bind(this), 5000);
     this.setState({ timer: newTimer });
   }
 

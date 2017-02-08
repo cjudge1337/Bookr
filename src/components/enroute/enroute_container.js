@@ -10,7 +10,7 @@ const mapStateToProps = ({ session, enroute }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getUberRideInfo: requestId => dispatch(getUberRideInfo(requestId)),
+  getUberRideInfo: accessToken => dispatch(getUberRideInfo(accessToken)),
   getUberMap: requestId => dispatch(getUberMap(requestId)),
   deleteUberRide: requestId => dispatch(deleteUberRide(requestId)),
   getUberUpdate: info => dispatch(getUberUpdate(info)),

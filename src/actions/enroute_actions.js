@@ -35,10 +35,10 @@ export const removeLyftRide = rideId => ({
 
 // Async actions
 
-export const getUberRideInfo = requestId => dispatch => (
-  UberAPIUtil.getRideInfo(requestId)
+export const getUberRideInfo = accessToken => dispatch => (
+  UberAPIUtil.getCurrentRide(accessToken)
   .then(info => dispatch(receiveUberRideInfo(info)),
-    error => console.log(error))
+    error => alert(error))
 );
 
 export const createUberRide = (accessToken, fareId, productId, startLat,
@@ -46,7 +46,7 @@ export const createUberRide = (accessToken, fareId, productId, startLat,
   UberAPIUtil.createRide(accessToken, fareId, productId, startLat,
     startLong, endLat, endLong)
   .then(info => dispatch(receiveUberRideInfo(info)),
-    error => console.log(error))
+    error => alert(error))
 );
 
 export const createSandboxRide = () => dispatch => (

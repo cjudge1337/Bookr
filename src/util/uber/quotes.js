@@ -92,6 +92,17 @@ export const getRideInfo = (requestId, accessToken) => (
   })
 );
 
+export const getCurrentRide = (accessToken) => (
+  $.ajax({
+    method: 'GET',
+    url: `https://api.uber.com/v1.2/requests/current`,
+    headers: {
+      Authorization: "Bearer " + accessToken,
+      'Content-Type': "application/json"
+    }
+  })
+);
+
 // Get map for a ride created within the app
 
 export const getRideMap = (requestId, accessToken) => (
