@@ -1,6 +1,5 @@
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
-import { bindAll } from 'lodash';
 import { hashHistory } from 'react-router';
 import { getUserGeo, geoToAddress } from '../../util/google_maps/location_api';
 import { PORT } from '../../../config.js';
@@ -10,11 +9,6 @@ const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
 class Search extends React.Component {
   constructor(props) {
     super(props);
-
-    bindAll(this, 'orderUberRide', 'orderLyftRide',
-    'createETA', 'getTime','handleSelectDestination', 'renderOriginAutocomplete',
-    'renderDestinationAutocomplete', 'centsToDollars', 'renderResults',
-    'getUberResults','getLyftResults', 'getUserLocation');
   }
 
   componentDidMount() {
@@ -238,11 +232,11 @@ class Search extends React.Component {
     let newMax = max;
 
     if (newMin % 100 === 0) {
-      newMin = `$ ${newMin / 100}.00`;
+      newMin = `$${newMin / 100}.00`;
     } else if (newMin % 10 === 0) {
-      newMin = `$ ${newMin / 100}0`;
+      newMin = `$${newMin / 100}0`;
     } else {
-      newMin = `$ ${newMin / 100}`;
+      newMin = `$${newMin / 100}`;
     }
 
     if (newMax % 100 === 0) {

@@ -1,12 +1,9 @@
 import React from 'react';
-import { bindAll } from 'lodash';
 import { hashHistory } from 'react-router';
 
 class Confirm extends React.Component {
   constructor(props) {
     super(props);
-    bindAll(this, 'centsToDollars', 'getLyftObj', 'getUberServiceName',
-    'orderUber', 'orderLyft', 'renderConfirmation', 'backToSearch');
   }
 
   componentDidMount() {
