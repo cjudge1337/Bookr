@@ -3,6 +3,7 @@ import Autocomplete from 'react-google-autocomplete';
 import { bindAll } from 'lodash';
 import { hashHistory } from 'react-router';
 import { getUserGeo, geoToAddress } from '../../util/google_maps/location_api';
+import { PORT } from '../../../config.js';
 
 const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
 
@@ -103,7 +104,7 @@ class Search extends React.Component {
     if(this.props.session.lyftCreds){
       this.props.bookLyftRide(rideData);
       hashHistory.push('/confirm');
-    } else{
+    } else {
       alert("You must be logged in to Lyft to book this ride.");
     }
   }
@@ -308,28 +309,26 @@ class Search extends React.Component {
     } else if (this.props.session.uberCreds) {
       return (
         <div className='search-logins'>
-          <a id='lone' href={'http://localhost:3000/lyft'}
-            className="lyft-login">
-            Log In Lyft
+          <a id='lone' href={`http://localhost:${PORT}/lyft`}
+            className="lyft-login">Log In Lyft
           </a>
         </div>
       );
     } else if (this.props.session.lyftCreds) {
       return (
         <div className='search-logins'>
-          <a id='lone' href={'http://localhost:3000/uber'} c
-            lassName="uber-login">
-            Log In Uber
+          <a id='lone' href={`http://localhost:${PORT}/uber`}
+            className="uber-login">Log In Uber
           </a>
         </div>
       );
     } else {
       return (
         <div className='search-logins'>
-          <a href={'http://localhost:3000/uber'} className="uber-login">
+          <a href={`http://localhost:${PORT}/uber`} className="uber-login">
             Log In Uber
           </a>
-          <a href={'http://localhost:3000/lyft'} className="lyft-login">
+          <a href={`http://localhost:${PORT}/lyft`} className="lyft-login">
             Log In Lyft
           </a>
         </div>
