@@ -20,7 +20,7 @@ const uberAuth = new OauthClient({
 const lyftAuth = SimpleOauth.create({
   client: {
     id: LYFT_CLIENT_ID,
-    secret: LYFT_CLIENT_SECRET
+    secret: "SANDBOX-" + LYFT_CLIENT_SECRET
   },
   auth: {
     tokenHost: 'https://api.lyft.com'
@@ -77,7 +77,7 @@ app.get('/uberCallback', (req, res) => {
 app.get('/lyft', (req, res) => {
   const authorizationUri = lyftAuth.authorizationCode.authorizeURL({
     redirect_uri: `http://localhost:${PORT}/lyftCallback`,
-    scope: 'rides.request',
+    scope: 'rides.request public',
     state: 'randomstuff'
   });
   res.redirect(authorizationUri);
