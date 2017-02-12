@@ -2,9 +2,8 @@ import React from 'react';
 import EnrouteMap from './enroute_map';
 import { Link, withRouter } from 'react-router';
 import { hashHistory } from 'react-router';
-import { sandboxRequestRide, sandboxCurrentRide, sandboxAcceptedRide,
-  sandboxArrivedRide, sandboxDeleteRide, sandboxDriverCancel,
-  getFareId } from '../../util/uber/sandbox';
+import { sandboxRequestRide, sandboxRideDetails, sandboxAcceptedRide,
+          sandboxArrivedRide, sandboxCancelRide } from '../../util/lyft/sandbox';
 
 class Enroute extends React.Component {
   constructor(props) {
@@ -14,24 +13,28 @@ class Enroute extends React.Component {
     this.cancelRide = this.cancelRide.bind(this);
   }
 
-  updateStatus(accessToken) {
-    this.props.getUberRideInfo(accessToken);
-  }
+  // updateStatus(accessToken) {
+  //   console.log(accessToken);
+  //   // this.props.getUberRideInfo(accessToken);
+  // }
 
   componentDidMount() {
-    const newTimer = setInterval(this.updateStatus(this.props.session.uberCreds.access_token).bind(this), 5000);
-    this.setState({ timer: newTimer });
+    const newTimer = setInterval(() => {
+      this.props.getUberRideInfo(this.props.session.uberCreds.access_token);
+      console.log(this.props.enroute.uber.info.status);
+    }, 5000);
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.enroute.uber.info.status === "completed") {
-      hashHistory.push('/search');
-    }
-  }
+
+  // componentWillReceiveProps(newProps) {
+  //   if (newProps.enroute.uber.info.status === "completed") {
+  //     hashHistory.push('/search');
+  //   }
+  // }
 
   cancelRide(e) {
     e.preventDefault();
-    sandboxDeleteRide();
+    // this.props.deleteUberRide()
     hashHistory.push('/search');
   }
 

@@ -7,6 +7,7 @@ const EnrouteReducer = (state = {}, action) => {
 
   switch(action.type) {
     case RECEIVE_UBER_RIDE_INFO:
+    console.log("action.info: ", action.info);
       return merge({}, state, { uber: { info: action.info } });
     case RECEIVE_LYFT_RIDE_INFO:
       return merge({}, state, { lyft: { info: action.info } });

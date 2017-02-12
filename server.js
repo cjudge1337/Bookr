@@ -77,7 +77,7 @@ app.get('/uberCallback', (req, res) => {
 app.get('/lyft', (req, res) => {
   const authorizationUri = lyftAuth.authorizationCode.authorizeURL({
     redirect_uri: `http://localhost:${PORT}/lyftCallback`,
-    scope: 'rides.request public',
+    scope: 'rides.request public rides.read',
     state: 'randomstuff'
   });
   res.redirect(authorizationUri);
