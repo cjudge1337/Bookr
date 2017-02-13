@@ -5,7 +5,7 @@ require('./server.js');
 
 const mb = menubar({
   index: `file://${__dirname}/webview.html`,
-  icon: path.join(__dirname, '/app/images/Icon.png'),
+  icon: path.join(__dirname, '/app/images/IconTemplate.png'),
   showDockIcon: true,
   preloadWindow: true,
   width: 500,

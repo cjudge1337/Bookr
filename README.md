@@ -6,6 +6,13 @@
 
 Bookr is a desktop application written in Electron for comparing and booking Uber and Lyft rides. It allows the user to view equivalent ride services side by side and choose the option that they prefer to book. Bookr was written in React.js with a Node.js server using Express to connect to Uber and Lyft's API's.
 
+## Installation
+
+Download the app [here.][demo] Once it has downloaded, unpack the dmg and run the file. A car icon should appear in the menubar.
+
+Here is what the menubar icon looks like.
+![MenubarExample](docs/screenshots/demo_download.png)
+
 ## Screenshots
 
 Login Page
