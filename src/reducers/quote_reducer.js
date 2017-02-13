@@ -17,7 +17,6 @@ const _noProducts = {
 
 const QuoteReducer = (state = _noProducts, action) => {
   Object.freeze(state);
-
   switch (action.type) {
     case CLEAR_CONFIRM_STATE:
       return merge({}, {errors: {}, prices: state.prices, times: state.times,
