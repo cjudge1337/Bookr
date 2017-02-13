@@ -11,6 +11,7 @@ Bookr is a desktop application written in Electron for comparing and booking Ube
 Download the app [here.][demo] Once it has downloaded, unpack the dmg and run the file. A car icon should appear in the menubar.
 
 Here is what the menubar icon looks like.
+
 ![MenubarExample](docs/screenshots/demo_download.png)
 
 ## Screenshots
