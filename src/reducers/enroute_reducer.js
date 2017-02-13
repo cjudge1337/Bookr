@@ -26,9 +26,9 @@ const EnrouteReducer = (state = nullState, action) => {
     case RECEIVE_UBER_MAP:
       return merge({}, state, { uber: { map: action.mapInfo } });
     case REMOVE_UBER_RIDE:
-      return {};
+      return nullState;
     case REMOVE_LYFT_RIDE:
-      return {};
+      return nullState;
     default:
       return state;
   }

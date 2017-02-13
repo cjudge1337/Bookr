@@ -20,7 +20,7 @@ export const receiveUberMap = mapInfo => ({
   mapInfo
 });
 
-export const removeUberRide = requestId => ({
+export const removeUberRide = () => ({
   type: REMOVE_UBER_RIDE
 });
 
@@ -71,9 +71,9 @@ export const getUberMap = requestId => dispatch => (
     error => console.log(error))
 );
 
-export const deleteUberRide = requestId => dispatch => {
-  UberAPIUtil.deleteRide(requestId);
-  return dispatch(removeUberRide(requestId));
+export const deleteUberRide = accessToken => dispatch => {
+  UberAPIUtil.deleteRide(accessToken);
+  return dispatch(removeUberRide());
 };
 
 export const getLyftRideInfo = rideId => dispatch => (
