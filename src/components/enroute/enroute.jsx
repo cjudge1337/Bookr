@@ -14,6 +14,7 @@ class Enroute extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     const newTimer = setInterval(() => {
       if (this.props.enroute.lyft.info.status === "") {
         this.props.getUberRideInfo(this.props.session.uberCreds.access_token);
