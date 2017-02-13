@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Enroute from './enroute';
 import { getUberRideInfo, getUberMap, deleteUberRide, getUberUpdate,
   getLyftRideInfo, getLyftUpdate, deleteLyftRide,
-  checkSandboxStatus, createSandboxRide } from '../../actions/enroute_actions';
+  checkSandboxStatus, createSandboxRide,  } from '../../actions/enroute_actions';
 
 const mapStateToProps = ({ session, enroute }) => ({
   session,
@@ -18,7 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
   getLyftUpdate: info => dispatch(getLyftUpdate(info)),
   deleteLyftRide: rideId => dispatch(deleteLyftRide(rideId)),
   checkSandboxStatus: rideId => dispatch(checkSandboxStatus(rideId)),
-  createSandboxRide: () => dispatch(createSandboxRide())
+  createSandboxRide: () => dispatch(createSandboxRide()),
+  deleteSandboxRide: () => dispatch(deleteSandboxRide())
 });
 
 export default connect(

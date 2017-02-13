@@ -37,7 +37,7 @@ class Enroute extends React.Component {
     if (this.props.enroute.lyft.info.status === "") {
       this.props.deleteUberRide(this.props.session.uberCreds.access_token);
     } else if (this.props.enroute.uber.info.status === "") {
-      // this.props.
+      this.props.deleteSandboxRide();
     }
     clearInterval(this.state.timer);
     hashHistory.push('/search');
