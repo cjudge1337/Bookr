@@ -231,25 +231,28 @@ class Search extends React.Component {
     let newMin = min;
     let newMax = max;
 
-    if (newMin % 100 === 0) {
-      newMin = `$${newMin / 100}.00`;
-    } else if (newMin % 10 === 0) {
-      newMin = `$${newMin / 100}0`;
-    } else {
-      newMin = `$${newMin / 100}`;
+    newMin = `$${Math.floor(newMin / 100)}`;
+    if(min === max){
+      newMax = `${Math.ceil(newMax / 100) + 1}`;
+    }else{
+      newMax = `${Math.ceil(newMax / 100)}`;
     }
 
-    if (newMax % 100 === 0) {
-      newMax = `${newMax / 100}.00`;
-    } else if (newMax % 10 === 0) {
-      newMax = `${newMax / 100}0`;
-    } else {
-      newMax = `${newMax / 100}`;
-    }
-
-    if (min === max) {
-      return `${newMin}`;
-    }
+    // if (newMin % 100 === 0) {
+    //   newMin = `$${newMin / 100}.00`;
+    // } else if (newMin % 10 === 0) {
+    //   newMin = `$${newMin / 100}0`;
+    // } else {
+    //   newMin = `$${newMin / 100}`;
+    // }
+    //
+    // if (newMax % 100 === 0) {
+    //   newMax = `${newMax / 100}.00`;
+    // } else if (newMax % 10 === 0) {
+    //   newMax = `${newMax / 100}0`;
+    // } else {
+    //   newMax = `${newMax / 100}`;
+    // }
 
     return `${newMin}-${newMax}`;
   }
