@@ -13,15 +13,13 @@ class Enroute extends React.Component {
     this.cancelRide = this.cancelRide.bind(this);
   }
 
-  // updateStatus(accessToken) {
-  //   console.log(accessToken);
-  //   // this.props.getUberRideInfo(accessToken);
-  // }
-
   componentDidMount() {
     const newTimer = setInterval(() => {
-      this.props.getUberRideInfo(this.props.session.uberCreds.access_token);
-      console.log(this.props.enroute.uber.info.status);
+      if (this.props.enroute.lyft.info.status === "") {
+        this.props.getUberRideInfo(this.props.session.uberCreds.access_token);
+      } else if (this.props.enroute.uber.info.status === "") {
+        this.props.checkSandboxStatus(this.props.enroute.lyft.info.ride_id);
+      }
     }, 5000);
   }
 
@@ -39,7 +37,9 @@ class Enroute extends React.Component {
   }
 
   render() {
-    if (this.props.enroute.uber.info.status === "processing") {
+    debugger
+    if (this.props.enroute.uber.info.status === "processing" ||
+        this.props.enroute.lyft.info.status === "pending") {
       return <div id='loading' className="requesting animated infinite pulse">Requesting...</div>;
     } else {
       return (
