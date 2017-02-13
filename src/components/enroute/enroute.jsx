@@ -14,7 +14,6 @@ class Enroute extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     const newTimer = setInterval(() => {
       if (this.props.enroute.lyft.info.status === "") {
         this.props.getUberRideInfo(this.props.session.uberCreds.access_token);
@@ -37,12 +36,8 @@ class Enroute extends React.Component {
     hashHistory.push('/search');
   }
 
-  render() {
-    debugger
-    if (this.props.enroute.uber.info.status === "processing" ||
-        this.props.enroute.lyft.info.status === "pending") {
-      return <div id='loading' className="requesting animated infinite pulse">Requesting...</div>;
-    } else {
+  renderService(service) {
+    if (service === "uber") {
       return (
         <div className="enroute-container">
           <div className="driver-bar">
@@ -87,6 +82,83 @@ class Enroute extends React.Component {
           </button>
         </div>
       );
+    } else if (service === "lyft") {
+      let pickup = {
+        latitude: this.props.enroute.lyft.info.origin.lat,
+        longitude: this.props.enroute.lyft.info.origin.lng
+      };
+      let destination = {
+        latitude: this.props.enroute.lyft.info.destination.lat,
+        longitude: this.props.enroute.lyft.info.destination.lng
+      };
+      let location = {
+        latitude: this.props.enroute.lyft.info.location.lat,
+        longitude: this.props.enroute.lyft.info.location.lng
+      };
+
+      return (
+        <div className="enroute-container">
+          <div className="driver-bar">
+            <div className="driver-container">
+              <div className="driver-info">
+                <img src={this.props.enroute.lyft.info.driver.image_url}
+                  className="driver-pic"/>
+                <h2 className="driver-name">
+                  {this.props.enroute.lyft.info.driver.first_name}
+                </h2>
+                <h2 className="driver-rating">
+                  {this.props.enroute.lyft.info.driver.rating}
+                </h2>
+              </div>
+
+              <div className="car-info">
+                <img src={this.props.enroute.lyft.info.vehicle.image_url}
+                  className="car-pic"/>
+                <h2 className="car-make">
+                  {this.props.enroute.lyft.info.vehicle.make + " "}
+                  {this.props.enroute.lyft.info.vehicle.model}
+                </h2>
+              </div>
+            </div>
+
+            <div className="ride-info">
+              <h2 className="status">
+                Status: {this.props.enroute.lyft.info.status.toUpperCase()}
+              </h2>
+              <h2 className="eta">
+                ETA: {Math.round(this.props.enroute.lyft.info.origin.eta_seconds / 60)} Min
+              </h2>
+            </div>
+          </div>
+
+          <EnrouteMap pickup={pickup}
+            destination={destination}
+            location={location} />
+
+          <button className="cancel-button" onClick={this.cancelRide}>
+            Cancel Ride
+          </button>
+        </div>
+      );
+    }
+  }
+
+  render() {
+    if (this.props.enroute.uber.info.status === "processing" ||
+        this.props.enroute.lyft.info.status === "pending") {
+      return <div id='loading' className="requesting animated infinite pulse">Requesting...</div>;
+    } else {
+      if (this.props.enroute.uber.info.status === "") {
+        return (
+          <div className="enroute-container">
+            {this.renderService("lyft")}
+          </div>
+        );
+      } else if (this.props.enroute.lyft.info.status === "") {
+        <div className="enroute-container">
+          {this.renderService("uber")}
+        </div>
+      }
     }
   }
 }

@@ -22,7 +22,6 @@ const EnrouteReducer = (state = nullState, action) => {
     case RECEIVE_UBER_RIDE_INFO:
       return merge({}, state, { uber: { info: action.info } });
     case RECEIVE_LYFT_RIDE_INFO:
-    debugger
       return merge({}, state, { lyft: { info: action.info } });
     case RECEIVE_UBER_MAP:
       return merge({}, state, { uber: { map: action.mapInfo } });
