@@ -118,10 +118,10 @@ export const getRideMap = (requestId, accessToken) => (
 
 // Cancel an uber ride
 
-export const deleteRide = (requestId, accessToken) => (
+export const deleteRide = (accessToken) => (
   $.ajax({
     method: 'DELETE',
-    url: `https://api.uber.com/v1.2/requests/${requestId}`,
+    url: `https://api.uber.com/v1.2/requests/current`,
     headers: {
         Authorization: "Bearer " + accessToken,
         'Content-Type': 'application/json'

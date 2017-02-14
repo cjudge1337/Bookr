@@ -1,6 +1,6 @@
 import * as UberAPIUtil from '../util/uber/quotes';
 import * as LyftAPIUtil from '../util/lyft/rides';
-import { sandboxCurrentRide, sandboxRequestRide } from '../util/uber/sandbox';
+import { sandboxRideDetails, sandboxRequestRide, sandboxCancelRide } from '../util/lyft/sandbox';
 
 export const RECEIVE_UBER_RIDE_INFO = "RECEIVE_UBER_RIDE_INFO";
 export const RECEIVE_UBER_MAP = "RECEIVE_UBER_MAP";
@@ -20,7 +20,7 @@ export const receiveUberMap = mapInfo => ({
   mapInfo
 });
 
-export const removeUberRide = requestId => ({
+export const removeUberRide = () => ({
   type: REMOVE_UBER_RIDE
 });
 
@@ -29,7 +29,7 @@ export const receiveLyftRideInfo = info => ({
   info
 });
 
-export const removeLyftRide = rideId => ({
+export const removeLyftRide = () => ({
   type: REMOVE_LYFT_RIDE
 });
 
@@ -38,7 +38,7 @@ export const removeLyftRide = rideId => ({
 export const getUberRideInfo = accessToken => dispatch => (
   UberAPIUtil.getCurrentRide(accessToken)
   .then(info => dispatch(receiveUberRideInfo(info)),
-    error => alert(error))
+    error => console.log(error))
 );
 
 export const createUberRide = (accessToken, fareId, productId, startLat,
@@ -51,7 +51,7 @@ export const createUberRide = (accessToken, fareId, productId, startLat,
 
 export const createSandboxRide = () => dispatch => (
   sandboxRequestRide()
-  .then(info => dispatch(receiveUberRideInfo(info)),
+  .then(info => dispatch(receiveLyftRideInfo(info)),
     error => console.log(error))
 );
 
@@ -59,9 +59,9 @@ export const getUberUpdate = info => dispatch => (
   dispatch(receiveUberRideInfo(info))
 );
 
-export const checkSandboxStatus = () => dispatch => (
-  sandboxCurrentRide()
-  .then(info => dispatch(receiveUberRideInfo(info)),
+export const checkSandboxStatus = rideId => dispatch => (
+  sandboxRideDetails(rideId)
+  .then(info => dispatch(receiveLyftRideInfo(info)),
         error => console.log(error))
 );
 
@@ -71,9 +71,9 @@ export const getUberMap = requestId => dispatch => (
     error => console.log(error))
 );
 
-export const deleteUberRide = requestId => dispatch => {
-  UberAPIUtil.deleteRide(requestId);
-  return dispatch(removeUberRide(requestId));
+export const deleteUberRide = accessToken => dispatch => {
+  UberAPIUtil.deleteRide(accessToken);
+  return dispatch(removeUberRide());
 };
 
 export const getLyftRideInfo = rideId => dispatch => (
@@ -89,4 +89,9 @@ export const getLyftUpdate = info => dispatch => (
 export const deleteLyftRide = rideId => dispatch => {
   LyftAPIUtil.cancelRide(rideId);
   return dispatch(removeLyftRide(rideId));
+};
+
+export const deleteSandboxRide = () => dispatch => {
+  sandboxCancelRide();
+  return dispatch(removeLyftRide());
 };

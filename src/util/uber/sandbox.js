@@ -1,4 +1,3 @@
-// TODO: Add access token variable interpolation
 export const sandboxRequestRide = () => (
   $.ajax({
     method: 'POST',
