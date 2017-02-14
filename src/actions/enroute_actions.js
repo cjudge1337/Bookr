@@ -38,7 +38,7 @@ export const removeLyftRide = () => ({
 export const getUberRideInfo = accessToken => dispatch => (
   UberAPIUtil.getCurrentRide(accessToken)
   .then(info => dispatch(receiveUberRideInfo(info)),
-    error => alert(error))
+    error => console.log(error))
 );
 
 export const createUberRide = (accessToken, fareId, productId, startLat,

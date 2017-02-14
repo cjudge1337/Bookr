@@ -11,16 +11,19 @@ class Enroute extends React.Component {
 
     this.state = { timer: 0 };
     this.cancelRide = this.cancelRide.bind(this);
+    console.log("constructor");
   }
 
   componentDidMount() {
     let newTimer = setInterval(() => {
       if (this.props.enroute.lyft.info.status === "") {
+        console.log("hit uber interval");
         this.props.getUberRideInfo(this.props.session.uberCreds.access_token);
       } else if (this.props.enroute.uber.info.status === "") {
+        console.log("hit lyft interval");
         this.props.checkSandboxStatus(this.props.enroute.lyft.info.ride_id);
       }
-      console.log(this.state);
+      // console.log(this.props.enroute.lyft.info.ride_id);
     }, 5000);
     this.setState({ timer: newTimer });
   }
@@ -45,6 +48,7 @@ class Enroute extends React.Component {
 
   renderService(service) {
     if (service === "uber") {
+      console.log("hit uber render");
       return (
         <div className="enroute-container">
           <div className="driver-bar">
@@ -90,6 +94,7 @@ class Enroute extends React.Component {
         </div>
       );
     } else if (service === "lyft") {
+      console.log("hit lyft render");
       let pickup = {
         latitude: this.props.enroute.lyft.info.origin.lat,
         longitude: this.props.enroute.lyft.info.origin.lng
@@ -133,7 +138,7 @@ class Enroute extends React.Component {
                 Status: {this.props.enroute.lyft.info.status.toUpperCase()}
               </h2>
               <h2 className="eta">
-                ETA: {Math.round(this.props.enroute.lyft.info.origin.eta_seconds / 60)} Min
+                ETA: { Math.round(this.props.enroute.lyft.info.origin.eta_seconds / 60) } Min
               </h2>
             </div>
           </div>
@@ -151,6 +156,9 @@ class Enroute extends React.Component {
   }
 
   render() {
+    // console.log("render", this.props);
+    console.log("uber", this.props.enroute.uber.info.status);
+    console.log("lyft", this.props.enroute.lyft.info.status);
     if (this.props.enroute.uber.info.status === "processing" ||
         this.props.enroute.lyft.info.status === "pending") {
       return <div id='loading' className="requesting animated infinite pulse">Requesting...</div>;
@@ -162,9 +170,11 @@ class Enroute extends React.Component {
           </div>
         );
       } else if (this.props.enroute.lyft.info.status === "") {
-        <div className="enroute-container">
-          {this.renderService("uber")}
-        </div>
+        return (
+          <div className="enroute-container">
+            {this.renderService("uber")}
+          </div>
+        );
       }
     }
   }
