@@ -2,7 +2,8 @@ import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import { hashHistory } from 'react-router';
 import { getUserGeo, geoToAddress } from '../../util/google_maps/location_api';
-import { PORT } from '../../../config.js';
+import { PORT, GOOGLE_API_KEY } from '../../../config.js';
+
 
 const UBER_PRODUCTS= ["uberX", "POOL", "uberXL", "BLACK", "SUV"];
 
@@ -10,7 +11,6 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
   }
-
   componentDidMount() {
     // TODO temporary fixed start point for testing until we can get user's geolocation with navigator.geolocation.getCurrentPosition()
 
@@ -238,22 +238,6 @@ class Search extends React.Component {
       newMax = `${Math.ceil(newMax / 100)}`;
     }
 
-    // if (newMin % 100 === 0) {
-    //   newMin = `$${newMin / 100}.00`;
-    // } else if (newMin % 10 === 0) {
-    //   newMin = `$${newMin / 100}0`;
-    // } else {
-    //   newMin = `$${newMin / 100}`;
-    // }
-    //
-    // if (newMax % 100 === 0) {
-    //   newMax = `${newMax / 100}.00`;
-    // } else if (newMax % 10 === 0) {
-    //   newMax = `${newMax / 100}0`;
-    // } else {
-    //   newMax = `${newMax / 100}`;
-    // }
-
     return `${newMin}-${newMax}`;
   }
 
@@ -288,8 +272,8 @@ class Search extends React.Component {
       );
     } else if (this.props.quotes.geolocations.current !== "" &&
         this.props.quotes.geolocations.destination !== "") {
-      return <div id='loading' className="requesting animated infinite pulse">
-        Searching...</div>;
+      return (<div id='loading' className="requesting animated infinite pulse">
+        Searching...</div>);
     } else {
       return <div className="results-container"></div>;
     }
