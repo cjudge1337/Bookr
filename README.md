@@ -188,6 +188,6 @@ Bookr is an app that we put a great amount of effort into and we hope to continu
 [uber]: https://developer.uber.com/
 [lyft]: https://developer.lyft.com/
 
-[index]: ,/index.html
+[index]: ./index.html
 [app]: ./app
-[webview]: ,/webview.html
+[webview]: ./webview.html
