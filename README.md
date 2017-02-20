@@ -23,9 +23,9 @@ Bookr is built using:
 - [Lyft API][lyft]
 - [Google Maps API][google]
 
-The app does not have a true backend because no data really needs to be persisted. Express is integrated because a server is required in order for the Uber and Lyft APIs to communicate back with the user. The information is taken from the Express routes and passed to React for rendering. This is in theory, a single-page app as React renders all it's content within the single [root html file][./index.html].
+The app does not have a true backend because no data really needs to be persisted. Express is integrated because a server is required in order for the Uber and Lyft APIs to communicate back with the user. The information is taken from the Express routes and passed to React for rendering. This is in theory, a single-page app as React renders all it's content within the single [root html file][index].
 
-Babel is used to transpile the jsx files to HTML. Because both Uber and Lyft use OAuth 2.0 to authenticate the app for users, a [webview][./webview.html] tag is used to host the guest content. All the static assets are stored in the [app folder][./app].
+Babel is used to transpile the jsx files to HTML. Because both Uber and Lyft use OAuth 2.0 to authenticate the app for users, a [webview][webview] tag is used to host the guest content. All the static assets are stored in the [app folder][app].
 
 ## Highlights
 
@@ -187,4 +187,7 @@ Bookr is an app that we put a great amount of effort into and we hope to continu
 [google]: https://developers.google.com/maps/
 [uber]: https://developer.uber.com/
 [lyft]: https://developer.lyft.com/
-[oauth]: https://www.npmjs.com/package/client-oauth2
+
+[index]: ,/index.html
+[app]: ./app
+[webview]: ,/webview.html
