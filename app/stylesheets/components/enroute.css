@@ -21,7 +21,6 @@
   justify-content: space-between;
   flex-direction: column;
   height: 100px;
-
   border-bottom: 1px solid #352834;
 }
 
@@ -34,26 +33,35 @@
 
 .driver-info {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   width: auto;
   height: auto;
   margin-left: 30px;
 }
 
 .driver-name {
+  position: absolute;
+  top: -13px;
+  left: 57px;
   margin-left: 10px;
   margin-top: 28px;
-  display: inline-block;
+  display: block;
   align-self: center;
 }
 .driver-rating {
+  position: absolute;
+  top: -13px;
+  left: 112px;
   margin-left: 10px;
   margin-top: 28px;
-  display: inline-block;
+  display: block;
   align-self: center;
 }
 
 .driver-pic {
+  position: absolute;
+  top: 6px;
+  left: 28px;
   height: 30px;
   width: 30px;
   border-radius: 18px;
@@ -69,15 +77,20 @@
 }
 
 .car-pic {
+  position: absolute;
+  left: 330px;
   height: 30px;
   width: 60px;
   border-radius: 200px;
   border: 1px solid #352834;
-  display: inline-block;
+  display: block;
   align-self: center;
 }
 
 .car-make {
+  position: absolute;
+  top: -13px;
+  left: 400px;
   margin-left: 10px;
   align-self: center;
   display: inline-block;

@@ -4,7 +4,7 @@ export const sandboxRequestRide = () => (
     url: `https://api.lyft.com/v1/rides`,
     headers: {
       Authorization: "Bearer " +
-      "SANDBOX-gAAAAABYpKJ1yGivkSCmhbNEKAvBOPphdGOIEQwEe4-Ed26xBWelix73qIv7GixccJjG378YZ6H6nGx32PHSeY28nrOqq0zecDoGVCAb6Fh4jdihguQO1G1U9G9Lj4YOX2zhnZ5cddizeLcdqcwjHlxmEcxdG4El9XdVZtF72DwrdusAzA9Q7SsKWNeH4EnWmwCPJbua6sFAwtv5FfaZMivWWX_U8MrM1t6-Y-X78os1Tk2So5DCQw-5HU1zJucjcbGh_msaAXrNueSxU-7chy26sLgPJsAKFMBzp_4r9PYVgpt7unWEk80ahEODHYENkYVsH03ZQBuj",
+      "SANDBOX-gAAAAABYrM2o_f1CtIyKqN8rvFbYUODqSPIuGH-cvJhpT6oZmxBmBe1tPkNaG31cIScy5hs2xGEDEUgXUjQBy-7X3CKZtEjLI58VRTKBaq-tEatsGEOW09rGXOy5FAjXibCR0fcm5SxIp390y1EB0FClggHAfyip9ibmgW-ufYlLprW2bpu-Fpw6-UNdZZOc7s8S1NbmBYpOClpXkdxJzQMc9unkN8233yeaIWPXGbRa647--7K5_OqpkLQxwh1b2ToYzU4ftIIivNjXeUDOWWorfOA7gP3b6qi4b99DwI_958rHusEE6poHFc7M5ySQ4nq7NEqYE-GL",
       'Content-Type': "application/json"
     },
     processData: false,
@@ -28,7 +28,7 @@ export const sandboxRideDetails = rideId => (
     url: `https://api.lyft.com/v1/rides/${rideId}`,
     headers: {
       Authorization: "Bearer " +
-      "SANDBOX-gAAAAABYpKJ1yGivkSCmhbNEKAvBOPphdGOIEQwEe4-Ed26xBWelix73qIv7GixccJjG378YZ6H6nGx32PHSeY28nrOqq0zecDoGVCAb6Fh4jdihguQO1G1U9G9Lj4YOX2zhnZ5cddizeLcdqcwjHlxmEcxdG4El9XdVZtF72DwrdusAzA9Q7SsKWNeH4EnWmwCPJbua6sFAwtv5FfaZMivWWX_U8MrM1t6-Y-X78os1Tk2So5DCQw-5HU1zJucjcbGh_msaAXrNueSxU-7chy26sLgPJsAKFMBzp_4r9PYVgpt7unWEk80ahEODHYENkYVsH03ZQBuj",
+      "SANDBOX-gAAAAABYrM2o_f1CtIyKqN8rvFbYUODqSPIuGH-cvJhpT6oZmxBmBe1tPkNaG31cIScy5hs2xGEDEUgXUjQBy-7X3CKZtEjLI58VRTKBaq-tEatsGEOW09rGXOy5FAjXibCR0fcm5SxIp390y1EB0FClggHAfyip9ibmgW-ufYlLprW2bpu-Fpw6-UNdZZOc7s8S1NbmBYpOClpXkdxJzQMc9unkN8233yeaIWPXGbRa647--7K5_OqpkLQxwh1b2ToYzU4ftIIivNjXeUDOWWorfOA7gP3b6qi4b99DwI_958rHusEE6poHFc7M5ySQ4nq7NEqYE-GL",
       'Content-Type': "application/json"
     }
   })
@@ -37,10 +37,10 @@ export const sandboxRideDetails = rideId => (
 export const sandboxAcceptedRide = () => (
   $.ajax({
     method: 'PUT',
-    url: `https://api.lyft.com/v1/sandbox/rides/15842693761403856693`,
+    url: `https://api.lyft.com/v1/sandbox/rides/7270598162866272817`,
     headers: {
       Authorization: "Bearer " +
-      "SANDBOX-gAAAAABYpKJ1yGivkSCmhbNEKAvBOPphdGOIEQwEe4-Ed26xBWelix73qIv7GixccJjG378YZ6H6nGx32PHSeY28nrOqq0zecDoGVCAb6Fh4jdihguQO1G1U9G9Lj4YOX2zhnZ5cddizeLcdqcwjHlxmEcxdG4El9XdVZtF72DwrdusAzA9Q7SsKWNeH4EnWmwCPJbua6sFAwtv5FfaZMivWWX_U8MrM1t6-Y-X78os1Tk2So5DCQw-5HU1zJucjcbGh_msaAXrNueSxU-7chy26sLgPJsAKFMBzp_4r9PYVgpt7unWEk80ahEODHYENkYVsH03ZQBuj",
+      "SANDBOX-gAAAAABYrM2o_f1CtIyKqN8rvFbYUODqSPIuGH-cvJhpT6oZmxBmBe1tPkNaG31cIScy5hs2xGEDEUgXUjQBy-7X3CKZtEjLI58VRTKBaq-tEatsGEOW09rGXOy5FAjXibCR0fcm5SxIp390y1EB0FClggHAfyip9ibmgW-ufYlLprW2bpu-Fpw6-UNdZZOc7s8S1NbmBYpOClpXkdxJzQMc9unkN8233yeaIWPXGbRa647--7K5_OqpkLQxwh1b2ToYzU4ftIIivNjXeUDOWWorfOA7gP3b6qi4b99DwI_958rHusEE6poHFc7M5ySQ4nq7NEqYE-GL",
       'Content-Type': "application/json"
     },
     processData: false,
@@ -53,10 +53,10 @@ export const sandboxAcceptedRide = () => (
 export const sandboxArrivedRide = () => (
   $.ajax({
     method: 'PUT',
-    url: `https://api.lyft.com/v1/sandbox/rides/15842693761403856693`,
+    url: `https://api.lyft.com/v1/sandbox/rides/7270598162866272817`,
     headers: {
       Authorization: "Bearer " +
-      "SANDBOX-gAAAAABYpKJ1yGivkSCmhbNEKAvBOPphdGOIEQwEe4-Ed26xBWelix73qIv7GixccJjG378YZ6H6nGx32PHSeY28nrOqq0zecDoGVCAb6Fh4jdihguQO1G1U9G9Lj4YOX2zhnZ5cddizeLcdqcwjHlxmEcxdG4El9XdVZtF72DwrdusAzA9Q7SsKWNeH4EnWmwCPJbua6sFAwtv5FfaZMivWWX_U8MrM1t6-Y-X78os1Tk2So5DCQw-5HU1zJucjcbGh_msaAXrNueSxU-7chy26sLgPJsAKFMBzp_4r9PYVgpt7unWEk80ahEODHYENkYVsH03ZQBuj",
+      "SANDBOX-gAAAAABYrM2o_f1CtIyKqN8rvFbYUODqSPIuGH-cvJhpT6oZmxBmBe1tPkNaG31cIScy5hs2xGEDEUgXUjQBy-7X3CKZtEjLI58VRTKBaq-tEatsGEOW09rGXOy5FAjXibCR0fcm5SxIp390y1EB0FClggHAfyip9ibmgW-ufYlLprW2bpu-Fpw6-UNdZZOc7s8S1NbmBYpOClpXkdxJzQMc9unkN8233yeaIWPXGbRa647--7K5_OqpkLQxwh1b2ToYzU4ftIIivNjXeUDOWWorfOA7gP3b6qi4b99DwI_958rHusEE6poHFc7M5ySQ4nq7NEqYE-GL",
       'Content-Type': "application/json"
     },
     processData: false,
@@ -69,10 +69,10 @@ export const sandboxArrivedRide = () => (
 export const sandboxCancelRide = () => (
   $.ajax({
     method: 'POST',
-    url: `https://api.lyft.com/v1/rides/15842693761403856693/cancel`,
+    url: `https://api.lyft.com/v1/rides/7270598162866272817/cancel`,
     headers: {
       Authorization: "Bearer " +
-      "SANDBOX-gAAAAABYpKJ1yGivkSCmhbNEKAvBOPphdGOIEQwEe4-Ed26xBWelix73qIv7GixccJjG378YZ6H6nGx32PHSeY28nrOqq0zecDoGVCAb6Fh4jdihguQO1G1U9G9Lj4YOX2zhnZ5cddizeLcdqcwjHlxmEcxdG4El9XdVZtF72DwrdusAzA9Q7SsKWNeH4EnWmwCPJbua6sFAwtv5FfaZMivWWX_U8MrM1t6-Y-X78os1Tk2So5DCQw-5HU1zJucjcbGh_msaAXrNueSxU-7chy26sLgPJsAKFMBzp_4r9PYVgpt7unWEk80ahEODHYENkYVsH03ZQBuj",
+      "SANDBOX-gAAAAABYrM2o_f1CtIyKqN8rvFbYUODqSPIuGH-cvJhpT6oZmxBmBe1tPkNaG31cIScy5hs2xGEDEUgXUjQBy-7X3CKZtEjLI58VRTKBaq-tEatsGEOW09rGXOy5FAjXibCR0fcm5SxIp390y1EB0FClggHAfyip9ibmgW-ufYlLprW2bpu-Fpw6-UNdZZOc7s8S1NbmBYpOClpXkdxJzQMc9unkN8233yeaIWPXGbRa647--7K5_OqpkLQxwh1b2ToYzU4ftIIivNjXeUDOWWorfOA7gP3b6qi4b99DwI_958rHusEE6poHFc7M5ySQ4nq7NEqYE-GL",
       'Content-Type': "application/json"
     }
   }).then(res => console.log(res))
