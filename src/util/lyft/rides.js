@@ -9,11 +9,12 @@ export const createRideWithoutPrime = (origin, destination, rideType) => (
       'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
       'Content-Type': 'application/json'
     },
-    data: {
-      origin,
-      destination,
-      ride_type: rideType
-    },
+    processData: false,
+    data: JSON.stringify({
+      "origin": origin,
+      "destination": destination,
+      "ride_type": rideType
+    }),
   })
 );
 
