@@ -76,14 +76,14 @@ export const deleteUberRide = accessToken => dispatch => {
   return dispatch(removeUberRide());
 };
 
-export const createLyftRide = (origin, destination, rideType) => dispatch => (
-  LyftAPIUtil.createRideWithoutPrime(origin, destination, rideType)
+export const createLyftRide = (accessToken, origin, destination, rideType) => dispatch => (
+  LyftAPIUtil.createRideWithoutPrime(accessToken, origin, destination, rideType)
   .then(info => dispatch(receiveLyftRideInfo(info)),
     error => console.error(error))
 );
 
-export const getLyftRideInfo = rideId => dispatch => (
-  LyftAPIUtil.getRideDetails(rideId)
+export const getLyftRideInfo = (accessToken, rideId) => dispatch => (
+  LyftAPIUtil.getRideDetails(accessToken, rideId)
   .then(info => dispatch(receiveLyftRideInfo(info)),
     error => console.error(error))
 );
@@ -92,9 +92,9 @@ export const getLyftUpdate = info => dispatch => (
   dispatch(receiveLyftRideInfo(info))
 );
 
-export const deleteLyftRide = rideId => dispatch => {
-  LyftAPIUtil.cancelRide(rideId);
-  return dispatch(removeLyftRide(rideId));
+export const deleteLyftRide = (accessToken, rideId) => dispatch => {
+  LyftAPIUtil.cancelRideWithoutFee(accessToken, rideId);
+  return dispatch(removeLyftRide());
 };
 
 export const deleteSandboxRide = () => dispatch => {

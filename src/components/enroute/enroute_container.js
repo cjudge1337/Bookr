@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   getUberMap: requestId => dispatch(getUberMap(requestId)),
   deleteUberRide: requestId => dispatch(deleteUberRide(requestId)),
   getUberUpdate: info => dispatch(getUberUpdate(info)),
-  getLyftRideInfo: rideId => dispatch(getLyftRideInfo(rideId)),
+  getLyftRideInfo: (accessToken, rideId) => dispatch(getLyftRideInfo(accessToken, rideId)),
   getLyftUpdate: info => dispatch(getLyftUpdate(info)),
   deleteLyftRide: rideId => dispatch(deleteLyftRide(rideId)),
   checkSandboxStatus: rideId => dispatch(checkSandboxStatus(rideId)),

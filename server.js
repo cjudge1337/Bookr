@@ -20,7 +20,7 @@ const uberAuth = new OauthClient({
 const lyftAuth = SimpleOauth.create({
   client: {
     id: LYFT_CLIENT_ID,
-    secret: "SANDBOX-" + LYFT_CLIENT_SECRET
+    secret: LYFT_CLIENT_SECRET
   },
   auth: {
     tokenHost: 'https://api.lyft.com'

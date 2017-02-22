@@ -1,12 +1,12 @@
 import { LYFT_CLIENT_TOKEN, LYFT_CLIENT_SECRET } from '../../../config';
 import $ from 'jquery';
 
-export const createRideWithoutPrime = (origin, destination, rideType) => (
+export const createRideWithoutPrime = (accessToken, origin, destination, rideType) => (
   $.ajax({
     url: "https://api.lyft.com/v1/rides",
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
+      'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json'
     },
     processData: false,
@@ -18,12 +18,12 @@ export const createRideWithoutPrime = (origin, destination, rideType) => (
   })
 );
 
-export const createRideWithPrime = (origin, destination, rideType, primetimeConfirmationToken) => (
+export const createRideWithPrime = (accessToken, origin, destination, rideType, primetimeConfirmationToken) => (
   $.ajax({
     url: "https://api.lyft.com/v1/rides",
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
+      'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json'
     },
     data: {
@@ -35,23 +35,23 @@ export const createRideWithPrime = (origin, destination, rideType, primetimeConf
   })
 );
 
-export const getRideDetails = rideId => (
+export const getRideDetails = (accessToken, rideId) => (
   $.ajax({
     url: `https://api.lyft.com/v1/rides/${rideId}`,
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
+      'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json'
     }
   })
 );
 
-export const cancelRideWithoutFee = rideId => (
+export const cancelRideWithoutFee = (accessToken, rideId) => (
   $.ajax({
     url: `https://api.lyft.com/v1/rides/${rideId}/cancel`,
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
+      'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json'
     }
   })

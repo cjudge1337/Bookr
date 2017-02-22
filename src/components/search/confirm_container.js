@@ -22,8 +22,8 @@ const mapDispatchToProps = dispatch => (
     dispatch(createUberRide(accessToken, fareId, productId, startLat,
       startLong, endLat, endLong)),
     createSandboxRide: () => dispatch(createSandboxRide()),
-    createLyftRide: (origin, destination, rideType) =>
-      dispatch(createLyftRide(origin, destination, rideType))
+    createLyftRide: (accessToken, origin, destination, rideType) =>
+      dispatch(createLyftRide(accessToken, origin, destination, rideType))
   }
 );
 

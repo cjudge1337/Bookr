@@ -101,8 +101,8 @@ class Confirm extends React.Component {
   }
 
   orderLyft() {
-    // this.props.createSandboxRide().then(() => hashHistory.push('/enroute'));
     let args = {
+      accessToken: this.props.session.lyftCreds.access_token,
       origin: {
         lat: this.props.geos.current.lat,
         lng: this.props.geos.current.lng
@@ -114,7 +114,7 @@ class Confirm extends React.Component {
       ride_type: this.props.booked_ride.lyft.toLowerCase().replace(" ", "_")
     }
 
-    this.props.createLyftRide(args.origin, args.destination, args.ride_type)
+    this.props.createLyftRide(args.accessToken, args.origin, args.destination, args.ride_type)
       .then(() => hashHistory.push('/enroute'));
   }
 
@@ -221,7 +221,6 @@ class Confirm extends React.Component {
   }
 
   render() {
-    debugger
     return (
       <div>
         {this.renderConfirmation()}
