@@ -49,7 +49,7 @@ export const getRideDetails = (accessToken, rideId) => (
 export const cancelRideWithoutFee = (accessToken, rideId) => (
   $.ajax({
     url: `https://api.lyft.com/v1/rides/${rideId}/cancel`,
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ export const cancelRideWithoutFee = (accessToken, rideId) => (
 export const cancelRideWithFee = (rideId, cancelConfirmationToken) => (
   $.ajax({
     url: `https://api.lyft.com/v1/rides/${rideId}/cancel`,
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Authorization': `Bearer ${LYFT_CLIENT_TOKEN}`,
       'Content-Type': 'application/json'
