@@ -38,7 +38,7 @@ export const removeLyftRide = () => ({
 export const getUberRideInfo = accessToken => dispatch => (
   UberAPIUtil.getCurrentRide(accessToken)
   .then(info => dispatch(receiveUberRideInfo(info)),
-    error => console.log(error))
+    error => console.error(error))
 );
 
 export const createUberRide = (accessToken, fareId, productId, startLat,
@@ -52,7 +52,7 @@ export const createUberRide = (accessToken, fareId, productId, startLat,
 export const createSandboxRide = () => dispatch => (
   sandboxRequestRide()
   .then(info => dispatch(receiveLyftRideInfo(info)),
-    error => console.log(error))
+    error => console.error(error))
 );
 
 export const getUberUpdate = info => dispatch => (
@@ -62,13 +62,13 @@ export const getUberUpdate = info => dispatch => (
 export const checkSandboxStatus = rideId => dispatch => (
   sandboxRideDetails(rideId)
   .then(info => dispatch(receiveLyftRideInfo(info)),
-        error => console.log(error))
+        error => console.error(error))
 );
 
 export const getUberMap = requestId => dispatch => (
   UberAPIUtil.getRideMap(requestId)
   .then(mapInfo => dispatch(receiveUberMap(mapInfo)),
-    error => console.log(error))
+    error => console.error(error))
 );
 
 export const deleteUberRide = accessToken => dispatch => {
@@ -76,19 +76,25 @@ export const deleteUberRide = accessToken => dispatch => {
   return dispatch(removeUberRide());
 };
 
-export const getLyftRideInfo = rideId => dispatch => (
-  LyftAPIUtil.getRideDetails(rideId)
+export const createLyftRide = (accessToken, origin, destination, rideType) => dispatch => (
+  LyftAPIUtil.createRideWithoutPrime(accessToken, origin, destination, rideType)
   .then(info => dispatch(receiveLyftRideInfo(info)),
-    error => console.log(error))
+    error => console.error(error))
+);
+
+export const getLyftRideInfo = (accessToken, rideId) => dispatch => (
+  LyftAPIUtil.getRideDetails(accessToken, rideId)
+  .then(info => dispatch(receiveLyftRideInfo(info)),
+    error => console.error(error))
 );
 
 export const getLyftUpdate = info => dispatch => (
   dispatch(receiveLyftRideInfo(info))
 );
 
-export const deleteLyftRide = rideId => dispatch => {
-  LyftAPIUtil.cancelRide(rideId);
-  return dispatch(removeLyftRide(rideId));
+export const deleteLyftRide = (accessToken, rideId) => dispatch => {
+  LyftAPIUtil.cancelRideWithoutFee(accessToken, rideId);
+  return dispatch(removeLyftRide());
 };
 
 export const deleteSandboxRide = () => dispatch => {

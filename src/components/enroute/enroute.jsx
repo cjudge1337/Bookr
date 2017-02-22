@@ -18,12 +18,12 @@ class Enroute extends React.Component {
       if (this.props.enroute.lyft.info.status === "") {
         this.props.getUberRideInfo(this.props.session.uberCreds.access_token);
       } else if (this.props.enroute.uber.info.status === "") {
-        this.props.checkSandboxStatus(this.props.enroute.lyft.info.ride_id);
+        this.props.getLyftRideInfo(this.props.session.lyftCreds.access_token,
+                                   this.props.enroute.lyft.info.ride_id);
       }
     }, 5000);
     this.setState({ timer: newTimer });
   }
-
 
   // componentWillReceiveProps(newProps) {
   //   if (newProps.enroute.uber.info.status === "completed") {
@@ -36,7 +36,8 @@ class Enroute extends React.Component {
     if (this.props.enroute.lyft.info.status === "") {
       this.props.deleteUberRide(this.props.session.uberCreds.access_token);
     } else if (this.props.enroute.uber.info.status === "") {
-      this.props.deleteSandboxRide();
+      this.props.deleteLyftRide(this.props.session.lyftCreds.access_token,
+                                this.props.enroute.lyft.info.ride_id);
     }
     clearInterval(this.state.timer);
     hashHistory.push('/search');

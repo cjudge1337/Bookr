@@ -101,7 +101,21 @@ class Confirm extends React.Component {
   }
 
   orderLyft() {
-    this.props.createSandboxRide().then(() => hashHistory.push('/enroute'));
+    let args = {
+      accessToken: this.props.session.lyftCreds.access_token,
+      origin: {
+        lat: this.props.geos.current.lat,
+        lng: this.props.geos.current.lng
+      },
+      destination: {
+        lat: this.props.geos.destination.lat,
+        lng: this.props.geos.destination.lng
+      },
+      ride_type: this.props.booked_ride.lyft.toLowerCase().replace(" ", "_")
+    }
+
+    this.props.createLyftRide(args.accessToken, args.origin, args.destination, args.ride_type)
+      .then(() => hashHistory.push('/enroute'));
   }
 
   backToSearch() {
