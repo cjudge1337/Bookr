@@ -1,6 +1,5 @@
 import * as UberAPIUtil from '../util/uber/quotes';
 import * as LyftAPIUtil from '../util/lyft/rides';
-import { sandboxRideDetails, sandboxRequestRide, sandboxCancelRide } from '../util/lyft/sandbox';
 
 export const RECEIVE_UBER_RIDE_INFO = "RECEIVE_UBER_RIDE_INFO";
 export const RECEIVE_UBER_MAP = "RECEIVE_UBER_MAP";
@@ -49,20 +48,8 @@ export const createUberRide = (accessToken, fareId, productId, startLat,
     error => alert(error))
 );
 
-export const createSandboxRide = () => dispatch => (
-  sandboxRequestRide()
-  .then(info => dispatch(receiveLyftRideInfo(info)),
-    error => console.error(error))
-);
-
 export const getUberUpdate = info => dispatch => (
   dispatch(receiveUberRideInfo(info))
-);
-
-export const checkSandboxStatus = rideId => dispatch => (
-  sandboxRideDetails(rideId)
-  .then(info => dispatch(receiveLyftRideInfo(info)),
-        error => console.error(error))
 );
 
 export const getUberMap = requestId => dispatch => (
@@ -94,10 +81,5 @@ export const getLyftUpdate = info => dispatch => (
 
 export const deleteLyftRide = (accessToken, rideId) => dispatch => {
   LyftAPIUtil.cancelRideWithoutFee(accessToken, rideId);
-  return dispatch(removeLyftRide());
-};
-
-export const deleteSandboxRide = () => dispatch => {
-  sandboxCancelRide();
   return dispatch(removeLyftRide());
 };

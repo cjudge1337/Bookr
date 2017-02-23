@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Confirm from './confirm';
 import { getUberQuote, clearConfirmState } from '../../actions/confirm_actions.js';
-import { createUberRide, createLyftRide, createSandboxRide } from '../../actions/enroute_actions.js';
+import { createUberRide, createLyftRide } from '../../actions/enroute_actions.js';
 
 const mapStateToProps = ({ session, quotes, confirm }) => ({
   session,
@@ -21,7 +21,6 @@ const mapDispatchToProps = dispatch => (
     createUberRide: (accessToken, fareId, productId, startLat, startLong, endLat, endLong) =>
     dispatch(createUberRide(accessToken, fareId, productId, startLat,
       startLong, endLat, endLong)),
-    createSandboxRide: () => dispatch(createSandboxRide()),
     createLyftRide: (accessToken, origin, destination, rideType) =>
       dispatch(createLyftRide(accessToken, origin, destination, rideType))
   }
