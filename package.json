@@ -1,4 +1,5 @@
 {
+
   "name": "app",
   "main": "bookr.js",
   "productName": "Bookr",
@@ -58,6 +59,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0"
   },
+
   "devDependencies": {
     "devtron": "^1.1.0",
     "electron-packager": "^8.0.0",
