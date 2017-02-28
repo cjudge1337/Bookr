@@ -1,0 +1,78 @@
+.open {
+  text-align: center;
+  background-image: url('https://res.cloudinary.com/dlhshbg79/image/upload/c_fill,e_auto_color,g_custom,h_600,w_500/v1486335927/8e2gal_gie8-why-kei_jovjrn.jpg');
+  overflow: hidden;
+}
+
+#login {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 90px;
+  bottom: 0;
+  left: 0;
+  background: #F3F3F5;
+  font-size: 12px;
+}
+
+.open h1 {
+  font-size: 60px;
+  padding-top: 10vh;
+  font-family: 'Syncopate', sans-serif;
+}
+
+#login-links {
+  display: flex;
+  height: 50px;
+}
+
+#login-links > a {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-family: 'Syncopate', sans-serif;
+}
+
+#skip {
+  border-top: 1px solid #352384;
+  height: 40px;
+}
+
+#skip-link {
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Syncopate', sans-serif;
+}
+
+#skip:hover {
+  background: #352384;
+  color: white;
+}
+
+.uber-login {
+  border-right: 1px solid #352384;
+  box-sizing: border-box;
+}
+
+.uber-login:hover {
+  background: black;
+  color: white;
+}
+
+.lyft-login {
+  border-left: 1px solid #352384;
+  box-sizing: border-box;
+}
+
+.lyft-login:hover {
+  background: #FF00BF;
+  color: white;
+}
+
+#login-hover:hover {
+  color: white;
+}

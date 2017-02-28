@@ -1,0 +1,88 @@
+.back-to-search, .book-ride, .confirm-top, .confirm-bottom {
+  background: #f3f3f5;
+  color: black;
+  font-size: 12px;
+  position: absolute;
+  height: 50px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.back-to-search, .book-ride {
+  font-family: 'Syncopate', sans-serif;
+  justify-content: center;
+}
+
+.back-to-search:hover, .book-ride:hover {
+  background: #352384;
+  color: white;
+  cursor: pointer;
+}
+
+.back-to-search {
+  bottom: 0;
+  height: 40px;
+  border-top: 1px solid #352384;
+}
+
+.book-ride, .confirm-top, .confirm-bottom {
+  border-bottom: 1px solid #352384;
+}
+.book-ride {
+  top: 150px;
+}
+
+.confirm-top, .confirm-bottom {
+  display: flex;
+  font-size: 13px;
+}
+
+.confirm-top > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  width: 80px;
+}
+
+.confirm-top img {
+  height: 20px;
+  width: auto;
+}
+
+.confirm-bottom > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+}
+
+#to {
+  font-style: italic;
+}
+
+.confirm-top {
+  top: 0px;
+  justify-content: center;
+}
+
+.confirm-bottom {
+  top: 50px;
+  height: 100px;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+}
+
+.confirm-map {
+  margin-top: 200px;
+  height: calc(100vh - 240px);
+  background: blue;
+}
+
+#service-title {
+  font-size: 18px;
+  font-weight: 700;
+}
