@@ -1,4 +1,3 @@
-
 const menubar = require('menubar');
 const path = require('path');
 require('babel-register');

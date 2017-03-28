@@ -2,8 +2,8 @@ import React from 'react';
 import EnrouteMap from './enroute_map';
 import { Link, withRouter } from 'react-router';
 import { hashHistory } from 'react-router';
-import { sandboxRequestRide, sandboxRideDetails, sandboxAcceptedRide,
-          sandboxArrivedRide, sandboxCancelRide } from '../../util/lyft/sandbox';
+// import { sandboxRequestRide, sandboxRideDetails, sandboxAcceptedRide,
+//           sandboxArrivedRide, sandboxCancelRide } from '../../util/lyft/sandbox';
 
 class Enroute extends React.Component {
   constructor(props) {
@@ -24,12 +24,6 @@ class Enroute extends React.Component {
     }, 5000);
     this.setState({ timer: newTimer });
   }
-
-  // componentWillReceiveProps(newProps) {
-  //   if (newProps.enroute.uber.info.status === "completed") {
-  //     hashHistory.push('/search');
-  //   }
-  // }
 
   cancelRide(e) {
     e.preventDefault();

@@ -37,13 +37,11 @@ app.use((req, res, next) => {
 app.use('/app', express.static(path.join(__dirname, './app')));
 
 app.get('/uber', (req, res) => {
-  console.log('uber');
   let uri = uberAuth.code.getUri();
   res.redirect(uri);
 });
 
 app.get('/uberCallback', (req, res) => {
-  console.log('callback');
   let uberUserInfo;
 
   uberAuth.code.getToken(req.originalUrl)
@@ -107,7 +105,8 @@ app.get('/lyftCallback', (req, res) => {
     .then(() => {
       return res.redirect('/#/lyftAuth/' + lyftUserInfo);
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       return res.redirect('/#/');
     });
 });
